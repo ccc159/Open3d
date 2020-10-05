@@ -1,7 +1,7 @@
 {
-  "name": "vector3d",
+  "name": "open3d",
   "version": "0.0.1",
-  "description": "Vector3d is a 3d geometry library for javascript.",
+  "description": "Open3d is a 3d geometry library for javascript.",
   "main": "index.ts",
   "scripts": {
     "doc": "typedoc&&serve docs -l 8081",
