@@ -4,7 +4,9 @@
   "description": "Vector3d is a 3d geometry library for javascript.",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "doc": "typedoc&&serve docs -l 8081",
+    "build": "tsc --project tsconfig.build.json",
+    "test": "jest"
   },
   "keywords": [
     "geometry",
@@ -12,5 +14,29 @@
     "vector"
   ],
   "author": "Jingcheng Chen",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.9",
+    "@types/node": "^14.0.27",
+    "jest": "^26.3.0",
+    "serve": "^11.3.2",
+    "ts-jest": "^26.1.4",
+    "ts-node": "^8.10.2",
+    "typedoc": "^0.17.8",
+    "typescript": "^3.9.7"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".test.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
 }
