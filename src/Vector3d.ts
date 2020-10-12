@@ -44,10 +44,18 @@ export class Vector3d {
   }
 
   /**
-   * Sums up two vectors.
+   * Sums up two vectors and return a new vector
    * @param other the other vector.
    */
   public Add(other: Vector3d) {
     return new Vector3d(this.x + other.x, this.y + other.y, this.z + other.z);
+  }
+
+  /**
+   * Subtract current vector with another vector and return a new vector.
+   * @param other the other vector.
+   */
+  public Subtract(other: Vector3d) {
+    return new Vector3d(this.x - other.x, this.y - other.y, this.z - other.z);
   }
 }
