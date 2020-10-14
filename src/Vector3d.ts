@@ -1,5 +1,6 @@
 import { ParallelIndicator } from './constants';
 import { Point3d } from './Point3d';
+import { Transform } from './Transform';
 import { NumberEqual, NumberZero } from './utils';
 
 /**
@@ -172,10 +173,54 @@ export class Vector3d {
   }
 
   /**
+   * Computes the reversed vector.
+   * @param vector A vector to negate.
+   * @returns A new vector where all components were multiplied by -1.
+   */
+  public static Negate(vector: Vector3d): Vector3d {
+    return new Vector3d(-vector.x, -vector.y, -vector.z);
+  }
+
+  /**
+   * Reverses this vector in place (reverses the direction).
+   */
+  public Reverse() {
+    this.x *= -1;
+    this.y *= -1;
+    this.z *= -1;
+  }
+
+  /**
+   * Rotates this vector around a given axis.
+   * @param angleRadians Angle of rotation (in radians).
+   * @param rotationAxis Axis of rotation.
+   */
+  public Rotate(angleRadians: number, rotationAxis: Vector3d) {
+    let rot: Transform;
+    // TODO implement transform
+  }
+
+  /**
    * Subtract current vector with another vector and return a new vector.
    * @param other the other vector.
    */
   public Subtract(other: Vector3d) {
     return new Vector3d(this.x - other.x, this.y - other.y, this.z - other.z);
+  }
+
+  /**
+   * Transforms the vector in place.
+   * The transformation matrix acts on the left of the vector; i.e.,
+   * result = transformation*vector
+   * @param transformation Transformation matrix to apply.
+   */
+  public Transform(transformation: Transform) {
+    let xx, yy, zz;
+    xx = transformation.m_xform[0][0] * this.x + transformation.m_xform[0][1] * this.y + transformation.m_xform[0][2] * this.z;
+    yy = transformation.m_xform[1][0] * this.x + transformation.m_xform[1][1] * this.y + transformation.m_xform[1][2] * this.z;
+    zz = transformation.m_xform[2][0] * this.x + transformation.m_xform[2][1] * this.y + transformation.m_xform[2][2] * this.z;
+    this.x = xx;
+    this.y = yy;
+    this.z = zz;
   }
 }
