@@ -1,7 +1,6 @@
 import { ParallelIndicator } from './constants';
 import { Point3d } from './Point3d';
 import { Transform } from './Transform';
-import { NumberEqual, NumberZero } from './utils';
 
 /**
  * Represents the 3d vector in three-dimensional space.
@@ -63,17 +62,23 @@ export class Vector3d {
   /**
    * Gets or sets the X (first) component of the vector.
    */
-  public X: number;
+  public get X(): number {
+    return this.x;
+  }
 
   /**
    * Gets or sets the Y (second) component of the vector.
    */
-  public Y: number;
+  public get Y(): number {
+    return this.y;
+  }
 
   /**
    * Gets or sets the Z (third) component of the vector.
    */
-  public Z: number;
+  public get Z(): number {
+    return this.z;
+  }
 
   /**
    * Gets the value of the vector with components 1,0,0.
@@ -123,12 +128,21 @@ export class Vector3d {
   }
 
   /**
+   * returning the dot product of two vectors
+   * @param a A vector.
+   * @param b A second vector.
+   */
+  public static DotProduct(a: Vector3d, b: Vector3d): number {
+    return a.x * b.x + a.y * b.y + a.z * b.z;
+  }
+
+  /**
    * Determines whether the specified vector has the same value as the present vector.
    * @param vector The specified vector.
    * @returns true if vector has the same coordinates as this; otherwise false.
    */
   public Equals(vector: Vector3d): boolean {
-    return NumberEqual(this.x, vector.x) && NumberEqual(this.y, vector.y) && NumberEqual(this.z, vector.z);
+    return this.x === vector.x && this.y === vector.y && this.z === vector.z;
   }
 
   /**
@@ -140,7 +154,7 @@ export class Vector3d {
   public IsParallelTo(vector: Vector3d, angleTolerance: number = Math.PI / 180): ParallelIndicator {
     let parallel: ParallelIndicator = ParallelIndicator.NotParallel;
     const ll = vector.Length * this.Length;
-    if (NumberZero(ll)) return parallel;
+    if (ll === 0) return parallel;
     const cos_angle = (this.x * vector.x + this.y * vector.y + this.z * vector.z) / ll;
     const cos_tol = Math.cos(angleTolerance);
     if (cos_angle >= cos_tol) parallel = ParallelIndicator.Parallel;
@@ -157,7 +171,7 @@ export class Vector3d {
   public IsPerpendicularTo(vector: Vector3d, angleTolerance: number = Math.PI / 180): boolean {
     let rc = false;
     const ll = vector.Length * this.Length;
-    if (NumberZero(ll)) return rc;
+    if (ll === 0) return rc;
     if (Math.abs(this.x * vector.x + this.y * vector.y + this.z * vector.z) / ll < Math.sin(angleTolerance)) rc = true;
     return rc;
   }
@@ -173,21 +187,10 @@ export class Vector3d {
   }
 
   /**
-   * Computes the reversed vector.
-   * @param vector A vector to negate.
-   * @returns A new vector where all components were multiplied by -1.
-   */
-  public static Negate(vector: Vector3d): Vector3d {
-    return new Vector3d(-vector.x, -vector.y, -vector.z);
-  }
-
-  /**
-   * Reverses this vector in place (reverses the direction).
+   * Reverses this vector and returns a new vector
    */
   public Reverse() {
-    this.x *= -1;
-    this.y *= -1;
-    this.z *= -1;
+    return new Vector3d(-this.x, -this.y, -this.z);
   }
 
   /**
@@ -196,8 +199,8 @@ export class Vector3d {
    * @param rotationAxis Axis of rotation.
    */
   public Rotate(angleRadians: number, rotationAxis: Vector3d) {
-    let rot: Transform;
-    // TODO implement transform
+    let rot = Transform.Rotation(angleRadians, rotationAxis);
+    return this.Transform(rot);
   }
 
   /**
@@ -209,18 +212,35 @@ export class Vector3d {
   }
 
   /**
-   * Transforms the vector in place.
+   * Transforms the vector and return a new vector
    * The transformation matrix acts on the left of the vector; i.e.,
    * result = transformation*vector
    * @param transformation Transformation matrix to apply.
    */
-  public Transform(transformation: Transform) {
+  public Transform(transformation: Transform): Vector3d {
     let xx, yy, zz;
-    xx = transformation.m_xform[0][0] * this.x + transformation.m_xform[0][1] * this.y + transformation.m_xform[0][2] * this.z;
-    yy = transformation.m_xform[1][0] * this.x + transformation.m_xform[1][1] * this.y + transformation.m_xform[1][2] * this.z;
-    zz = transformation.m_xform[2][0] * this.x + transformation.m_xform[2][1] * this.y + transformation.m_xform[2][2] * this.z;
-    this.x = xx;
-    this.y = yy;
-    this.z = zz;
+    xx = transformation.m[0] * this.x + transformation.m[1] * this.y + transformation.m[2] * this.z;
+    yy = transformation.m[4] * this.x + transformation.m[5] * this.y + transformation.m[6] * this.z;
+    zz = transformation.m[8] * this.x + transformation.m[9] * this.y + transformation.m[10] * this.z;
+    return new Vector3d(xx, yy, zz);
+  }
+
+  /**
+   * Unitizes the vector and returns a new vector, An invalid or zero length vector cannot be unitized.
+   */
+  public Unitize(): Vector3d {
+    var length = this.Length;
+    if (length === 0) return this;
+    const unit = new Vector3d(this.x / length, this.y / length, this.z / length);
+    return unit;
+  }
+
+  /**
+   * Compute the angle between two vectors.
+   * @param a First vector for angle.
+   * @param b Second vector for angle.
+   */
+  public static VectorAngle(a: Vector3d, b: Vector3d): number {
+    return Math.acos(Vector3d.DotProduct(a, b) / (a.Length * b.Length));
   }
 }
