@@ -1,5 +1,4 @@
 import { ParallelIndicator } from './constants';
-import { Point3d } from './Point3d';
 import { Transform } from './Transform';
 
 /**

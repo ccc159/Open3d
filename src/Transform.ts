@@ -1,5 +1,4 @@
 import { error } from 'console';
-import { Point3d } from './Point3d';
 import { Vector3d } from './Vector3d';
 
 export class Transform {
