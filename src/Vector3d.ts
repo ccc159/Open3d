@@ -230,4 +230,11 @@ export class Vector3d {
   public static VectorAngle(a: Vector3d, b: Vector3d): number {
     return Math.acos(Vector3d.DotProduct(a, b) / (a.Length * b.Length));
   }
+
+  /**
+   * Return a vector with (0,0,0);
+   */
+  public static Zero(): Vector3d {
+    return new Vector3d(0, 0, 0);
+  }
 }
