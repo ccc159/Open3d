@@ -5,17 +5,17 @@ import { Transform } from './Transform';
  * Represents the 3d vector in three-dimensional space.
  */
 export class Vector3d {
-  // /**
-  //  * Initializes a new instance of a vector, copying the three components from the three coordinates of a point.
-  //  * @param point
-  //  */
-  // constructor(point: Point3d);
-
-  // /**
-  //  * Initializes a new instance of a vector, copying the three components from a vector.
-  //  * @param vector
-  //  */
-  // constructor(vector: Vector3d);
+  /**
+   * Initializes a new instance of a vector, using its three components.
+   * @param x
+   * @param y
+   * @param z
+   */
+  constructor(x: number, y: number, z: number) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
 
   /**
    * field x
@@ -31,18 +31,6 @@ export class Vector3d {
    * field z
    */
   private z: number;
-
-  /**
-   * Initializes a new instance of a vector, using its three components.
-   * @param x
-   * @param y
-   * @param z
-   */
-  constructor(x: number, y: number, z: number) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
-  }
 
   /**
    * calculate the length of the vector
