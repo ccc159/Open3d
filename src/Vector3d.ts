@@ -1,4 +1,4 @@
-import { ParallelIndicator } from './constants';
+import { Open3d, ParallelIndicator } from './constants';
 import { Transform } from './Transform';
 
 /**
@@ -12,75 +12,72 @@ export class Vector3d {
    * @param z
    */
   constructor(x: number, y: number, z: number) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
+    this.X = x;
+    this.Y = y;
+    this.Z = z;
+  }
+
+  // #region Properties
+
+  /**
+   * Gets or sets the X (first) component of the vector.
+   */
+  public X: number;
+
+  /**
+   * Gets or sets the Y (second) component of the vector.
+   */
+  public Y: number;
+
+  /**
+   * Gets or sets the Z (third) component of the vector.
+   */
+  public Z: number;
+
+  /**
+   * Gets a value indicating whether or not this is a unit vector. A unit vector has length 1.
+   */
+  public get IsUnitVector(): boolean {
+    return Open3d.equals(this.Length, 1.0);
   }
 
   /**
-   * field x
+   * Gets a value indicating whether the X, Y, and Z values are all equal to 0.0.
    */
-  private x: number;
-
-  /**
-   * field y
-   */
-  private y: number;
-
-  /**
-   * field z
-   */
-  private z: number;
-
-  /**
-   * calculate the length of the vector
-   */
-  private _length() {
-    return Math.hypot(this.x, this.y, this.z);
+  public get IsZero(): boolean {
+    return Open3d.equals(this.X, 0.0) && Open3d.equals(this.Y, 0.0) && Open3d.equals(this.Z, 0.0);
   }
 
   /**
    * Computes the length (or magnitude, or size) of this vector.
    */
   public get Length(): number {
-    return this._length();
-  }
-
-  /**
-   * Gets or sets the X (first) component of the vector.
-   */
-  public get X(): number {
-    return this.x;
-  }
-
-  /**
-   * Gets or sets the Y (second) component of the vector.
-   */
-  public get Y(): number {
-    return this.y;
-  }
-
-  /**
-   * Gets or sets the Z (third) component of the vector.
-   */
-  public get Z(): number {
-    return this.z;
+    return Math.hypot(this.X, this.Y, this.Z);
   }
 
   /**
    * Gets the value of the vector with components 1,0,0.
    */
-  public static XAxis: Vector3d;
+  public static XAxis: Vector3d = new Vector3d(1, 0, 0);
 
   /**
    * Gets the value of the vector with components 0,1,0.
    */
-  public static YAxis: Vector3d;
+  public static YAxis: Vector3d = new Vector3d(0, 1, 0);
 
   /**
    * Gets the value of the vector with components 0,0,1.
    */
-  public static ZAxis: Vector3d;
+  public static ZAxis: Vector3d = new Vector3d(0, 0, 1);
+
+  /**
+   * Gets the value of the vector with components 0,0,0.
+   */
+  public static Zero: Vector3d = new Vector3d(0, 0, 0);
+
+  // #endregion
+
+  // #region Math functions
 
   /**
    * Sums up two vectors.
@@ -89,18 +86,27 @@ export class Vector3d {
    * @returns A sum vector.
    */
   public static Add(a: Vector3d, b: Vector3d): Vector3d {
-    return new Vector3d(a.x + b.x, a.y + b.y, a.z + b.z);
+    return new Vector3d(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
   }
 
   /**
-   * Computes the cross product (or vector product, or exterior product) of two vectors.
-   * This operation is not commutative.
-   * @param a First vector.
-   * @param b Second vector.
-   * @returns A new vector that is perpendicular to both a and b, has Length == a.Length * b.Length * sin(theta) where theta is the angle between a and b. The resulting vector is oriented according to the right hand rule.
+   * Subtracts the second vector from the first one.
+   * @param a A vector.
+   * @param b A second vector.
+   * @returns A subtract vector.
    */
-  public static CrossProduct(a: Vector3d, b: Vector3d): Vector3d {
-    return new Vector3d(a.y * b.z - b.y * a.z, a.z * b.x - b.z * a.x, a.x * b.y - b.x * a.y);
+  public static Subtract(a: Vector3d, b: Vector3d): Vector3d {
+    return new Vector3d(a.X - b.X, a.Y - b.Y, a.Z - b.Z);
+  }
+
+  /**
+   * Multiplies a vector by a number, having the effect of scaling it.
+   * @param vector A vector.
+   * @param t A number.
+   * @returns A new vector that is the original vector coordinatewise multiplied by t.
+   */
+  public static Multiply(vector: Vector3d, t: number): Vector3d {
+    return new Vector3d(vector.X * t, vector.Y * t, vector.Z * t);
   }
 
   /**
@@ -111,7 +117,7 @@ export class Vector3d {
    */
   public static Divide(vector: Vector3d, t: number): Vector3d {
     const one_over_d = 1.0 / t;
-    return new Vector3d(vector.x * one_over_d, vector.y * one_over_d, vector.z * one_over_d);
+    return new Vector3d(vector.X * one_over_d, vector.Y * one_over_d, vector.Z * one_over_d);
   }
 
   /**
@@ -120,64 +126,85 @@ export class Vector3d {
    * @param b A second vector.
    */
   public static DotProduct(a: Vector3d, b: Vector3d): number {
-    return a.x * b.x + a.y * b.y + a.z * b.z;
+    return a.X * b.X + a.Y * b.Y + a.Z * b.Z;
   }
 
   /**
-   * Determines whether the specified vector has the same value as the present vector.
-   * @param vector The specified vector.
+   * Computes the cross product (or vector product, or exterior product) of two vectors.
+   * This operation is not commutative.
+   * @param a First vector.
+   * @param b Second vector.
+   * @returns A new vector that is perpendicular to both a and b, has Length == a.Length * b.Length * sin(theta) where theta is the angle between a and b. The resulting vector is oriented according to the right hand rule.
+   */
+  public static CrossProduct(a: Vector3d, b: Vector3d): Vector3d {
+    return new Vector3d(a.Y * b.Z - b.Y * a.Z, a.Z * b.X - b.Z * a.X, a.X * b.Y - b.X * a.Y);
+  }
+
+  /**
+   * Determines whether two vectors have the same value.
+   * @param a A vector.
+   * @param b A second vector.
    * @returns true if vector has the same coordinates as this; otherwise false.
    */
-  public Equals(vector: Vector3d): boolean {
-    return this.x === vector.x && this.y === vector.y && this.z === vector.z;
+  public static Equals(a: Vector3d, b: Vector3d): boolean {
+    return Open3d.equals(a.X, b.X) && Open3d.equals(a.Y, b.Y) && Open3d.equals(a.Z, b.Z);
   }
 
   /**
-   * Determines whether this vector is parallel to another vector, within a provided tolerance.
-   * @param vector Vector to use for comparison.
-   * @param angleTolerance Angle tolerance (in radians). Default Pi/180.
+   * Compute the angle between two vectors.
+   * @param a First vector for angle.
+   * @param b Second vector for angle.
+   */
+  public static VectorAngle(a: Vector3d, b: Vector3d): number {
+    if (a.IsZero || b.IsZero) throw new Error('Cannot compute angle of zero-length vector.');
+    return Math.acos(Vector3d.DotProduct(a, b) / (a.Length * b.Length));
+  }
+
+  /**
+   * Reverse a vector.
+   */
+  public static Reverse(v: Vector3d) {
+    return new Vector3d(-v.X, -v.Y, -v.Z);
+  }
+
+  /**
+   * Unitize a vector.
+   */
+  public static Unitize(v: Vector3d): Vector3d {
+    var length = v.Length;
+    if (length === 0) throw new Error('Cannot unitize a zero-length vector.');
+    const unit = new Vector3d(v.X / length, v.Y / length, v.Z / length);
+    return unit;
+  }
+
+  // #endregion
+
+  /**
+   * Determines whether a vector is parallel to another vector
+   * @param a First vector for angle.
+   * @param b Second vector for angle.
    * @returns ParallelIndicator
    */
-  public IsParallelTo(vector: Vector3d, angleTolerance: number = Math.PI / 180): ParallelIndicator {
-    let parallel: ParallelIndicator = ParallelIndicator.NotParallel;
-    const ll = vector.Length * this.Length;
-    if (ll === 0) return parallel;
-    const cos_angle = (this.x * vector.x + this.y * vector.y + this.z * vector.z) / ll;
-    const cos_tol = Math.cos(angleTolerance);
-    if (cos_angle >= cos_tol) parallel = ParallelIndicator.Parallel;
-    else if (cos_angle <= -cos_tol) parallel = ParallelIndicator.AntiParallel;
-    return parallel;
+  public static IsParallel(a: Vector3d, b: Vector3d): ParallelIndicator {
+    if (a.IsZero || b.IsZero) return ParallelIndicator.Parallel;
+    const angle = Vector3d.VectorAngle(a, b);
+    if (Open3d.angleEquals(angle, 0)) return ParallelIndicator.Parallel;
+    if (Open3d.angleEquals(angle, Math.PI)) return ParallelIndicator.AntiParallel;
+    return ParallelIndicator.NotParallel;
   }
 
   /**
-   * Determines whether this vector is perpendicular to another vector, within a provided angle tolerance.
-   * @param vector Vector to use for comparison.
-   * @param angleTolerance Angle tolerance (in radians). Default Pi/180.
+   * Determines whether a vector is perpendicular to another vector
+   * @param a First vector for angle.
+   * @param b Second vector for angle.
    * @returns true if vectors form Pi-radians (90-degree) angles with each other; otherwise false.
    */
-  public IsPerpendicularTo(vector: Vector3d, angleTolerance: number = Math.PI / 180): boolean {
-    let rc = false;
-    const ll = vector.Length * this.Length;
-    if (ll === 0) return rc;
-    if (Math.abs(this.x * vector.x + this.y * vector.y + this.z * vector.z) / ll < Math.sin(angleTolerance)) rc = true;
-    return rc;
-  }
-
-  /**
-   * Multiplies a vector by a number, having the effect of scaling it.
-   * @param vector A vector.
-   * @param t A number.
-   * @returns A new vector that is the original vector coordinatewise multiplied by t.
-   */
-  public static Multiply(vector: Vector3d, t: number): Vector3d {
-    return new Vector3d(vector.x * t, vector.y * t, vector.z * t);
-  }
-
-  /**
-   * Reverses this vector and returns a new vector
-   */
-  public Reverse() {
-    return new Vector3d(-this.x, -this.y, -this.z);
+  public IsPerpendicular(a: Vector3d, b: Vector3d): boolean {
+    if (a.IsZero || b.IsZero) true;
+    const angle = Vector3d.VectorAngle(a, b);
+    if (Open3d.angleEquals(angle, Math.PI / 2)) return true;
+    if (Open3d.angleEquals(angle, -Math.PI / 2)) return true;
+    return false;
   }
 
   /**
@@ -186,16 +213,7 @@ export class Vector3d {
    * @param rotationAxis Axis of rotation.
    */
   public Rotate(angleRadians: number, rotationAxis: Vector3d) {
-    let rot = Transform.Rotation(angleRadians, rotationAxis);
-    return this.Transform(rot);
-  }
-
-  /**
-   * Subtract current vector with another vector and return a new vector.
-   * @param other the other vector.
-   */
-  public Subtract(other: Vector3d) {
-    return new Vector3d(this.x - other.x, this.y - other.y, this.z - other.z);
+    throw new Error('Not implemented');
   }
 
   /**
@@ -206,35 +224,9 @@ export class Vector3d {
    */
   public Transform(transformation: Transform): Vector3d {
     let xx, yy, zz;
-    xx = transformation.m[0] * this.x + transformation.m[1] * this.y + transformation.m[2] * this.z;
-    yy = transformation.m[4] * this.x + transformation.m[5] * this.y + transformation.m[6] * this.z;
-    zz = transformation.m[8] * this.x + transformation.m[9] * this.y + transformation.m[10] * this.z;
+    xx = transformation.m[0] * this.X + transformation.m[1] * this.Y + transformation.m[2] * this.Z;
+    yy = transformation.m[4] * this.X + transformation.m[5] * this.Y + transformation.m[6] * this.Z;
+    zz = transformation.m[8] * this.X + transformation.m[9] * this.Y + transformation.m[10] * this.Z;
     return new Vector3d(xx, yy, zz);
-  }
-
-  /**
-   * Unitizes the vector and returns a new vector, An invalid or zero length vector cannot be unitized.
-   */
-  public Unitize(): Vector3d {
-    var length = this.Length;
-    if (length === 0) return this;
-    const unit = new Vector3d(this.x / length, this.y / length, this.z / length);
-    return unit;
-  }
-
-  /**
-   * Compute the angle between two vectors.
-   * @param a First vector for angle.
-   * @param b Second vector for angle.
-   */
-  public static VectorAngle(a: Vector3d, b: Vector3d): number {
-    return Math.acos(Vector3d.DotProduct(a, b) / (a.Length * b.Length));
-  }
-
-  /**
-   * Return a vector with (0,0,0);
-   */
-  public static Zero(): Vector3d {
-    return new Vector3d(0, 0, 0);
   }
 }
