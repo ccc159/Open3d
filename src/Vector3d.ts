@@ -168,6 +168,13 @@ export class Vector3d {
   }
 
   /**
+   * return a reversed vector
+   */
+  public Reverse() {
+    return Vector3d.Reverse(this);
+  }
+
+  /**
    * Unitize a vector.
    */
   public static Unitize(v: Vector3d): Vector3d {

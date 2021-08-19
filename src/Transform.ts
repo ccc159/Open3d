@@ -159,6 +159,15 @@ export class Transform {
   }
 
   /**
+   *   Multiplies (combines) two transformations.
+   *  @param other The second transform.
+   * @returns The result of the multiplication.
+   */
+  public MultiplyMatrix(other: Transform): Transform {
+    return Transform.MultiplyMatrix(this, other);
+  }
+
+  /**
    * Multiplies a transformation by a scalar.
    * @param a The transform.
    * @param s The scalar.
@@ -198,69 +207,129 @@ export class Transform {
    * @param axis The axis to ratate around
    */
   public static Rotation(angle: number, axis: Vector3d): Transform {
-    const xform = Transform.Identity;
-    if (axis.Length === 0) return xform;
-    let x = axis.X;
-    let y = axis.Y;
-    let z = axis.Z;
-
-    const d = Math.sqrt(x * x + y * y + z * z);
-
-    x = x / d;
-    y = y / d;
-    z = z / d;
     const c = Math.cos(angle);
     const s = Math.sin(angle);
     const t = 1 - c;
+    const x = axis.X,
+      y = axis.Y,
+      z = axis.Z;
+    const tx = t * x,
+      ty = t * y;
 
-    xform.m[0] = x * x * t + c;
-    xform.m[1] = x * y * t - z * s;
-    xform.m[2] = x * z * t + y * s;
-    xform.m[3] = 0;
-
-    xform.m[4] = y * x * t + z * s;
-    xform.m[5] = y * y * t + c;
-    xform.m[6] = y * z * t - x * s;
-    xform.m[7] = 0;
-
-    xform.m[8] = z * x * t - y * s;
-    xform.m[9] = z * y * t + x * s;
-    xform.m[10] = z * z * t + c;
-    xform.m[11] = 0;
-
-    xform.m[12] = 0;
-    xform.m[13] = 0;
-    xform.m[14] = 0;
-    xform.m[15] = 1;
-
-    return xform;
+    return new Transform([
+      tx * x + c,
+      tx * y - s * z,
+      tx * z + s * y,
+      0,
+      tx * y + s * z,
+      ty * y + c,
+      ty * z - s * x,
+      0,
+      tx * z - s * y,
+      ty * z + s * x,
+      t * z * z + c,
+      0,
+      0,
+      0,
+      0,
+      1,
+    ]);
   }
 
   /**
-   * scale a transform by a vector
-   * @param scale The vector to scale by
-   * @returns The scaled transform
+   * Create rotation transformation From XYZ angles.
+   * @param x Angle in radians to rotate around X axis.
+   * @param y Angle in radians to rotate around Y axis.
+   * @param z Angle in radians to rotate around Z axis.
    */
-  public Scale(v: Vector3d) {
-    const te = this.M;
-    const x = v.X,
-      y = v.Y,
-      z = v.Z;
+  public static RotationXYZ(x: number, y: number, z: number): Transform {
+    const te = Transform.Identity.M;
+    const a = Math.cos(x),
+      b = Math.sin(x);
+    const c = Math.cos(y),
+      d = Math.sin(y);
+    const e = Math.cos(z),
+      f = Math.sin(z);
 
-    te[0] *= x;
-    te[4] *= y;
-    te[8] *= z;
-    te[1] *= x;
-    te[5] *= y;
-    te[9] *= z;
-    te[2] *= x;
-    te[6] *= y;
-    te[10] *= z;
-    te[3] *= x;
-    te[7] *= y;
-    te[11] *= z;
+    const ae = a * e,
+      af = a * f,
+      be = b * e,
+      bf = b * f;
+
+    te[0] = c * e;
+    te[4] = -c * f;
+    te[8] = d;
+
+    te[1] = af + be * d;
+    te[5] = ae - bf * d;
+    te[9] = -b * c;
+
+    te[2] = bf - ae * d;
+    te[6] = be + af * d;
+    te[10] = a * c;
+
+    // bottom row
+    te[3] = 0;
+    te[7] = 0;
+    te[11] = 0;
+
+    // last column
+    te[12] = 0;
+    te[13] = 0;
+    te[14] = 0;
+    te[15] = 1;
 
     return new Transform(te);
+  }
+
+  /**
+   * Constructs a new translation (move) transformation.
+   * a translation matrix looks like
+   * [ 1 0 0 tx]
+   * [ 0 1 0 ty]
+   * [ 0 0 1 tz]
+   * [ 0 0 0  1]
+   * @param v The vector to scale by
+   * @returns The translated transform
+   */
+  public static Translation(v: Vector3d) {
+    return new Transform([1, 0, 0, v.X, 0, 1, 0, v.Y, 0, 0, 1, v.Z, 0, 0, 0, 1]);
+  }
+
+  /**
+   * Constructs a new uniform scaling transformation with a specified scaling anchor point.
+   * @param location The location to scale from
+   * @param scalar The scaling factor
+   * @returns The scaled transform
+   */
+  public static Scale(location: Vector3d, scalar: number) {
+    // move location to origin
+    const m1 = Transform.Translation(location.Reverse());
+
+    // scale
+    const m2 = Transform.ScaleAtOrigin(scalar, scalar, scalar);
+
+    // move back
+    const m3 = Transform.Translation(location);
+
+    // return m3 * m2 * m1
+    return m3.MultiplyMatrix(m2).MultiplyMatrix(m1);
+  }
+
+  /**
+   * Constructs a new uniform scaling transformation.
+   * a sacle matrix looks like
+   * [ sx 0  0  0]
+   * [ 0  sy 0  0]
+   * [ 0  0  sz 0]
+   * [ 0  0  0  1]
+   * @param sx The scaling factor in the x dimension
+   * @param sy The scaling factor in the y dimension
+   * @param sz The scaling factor in the z dimension
+   * @returns The scaled transform
+   */
+  public static ScaleAtOrigin(sx: number, sy: number, sz: number) {
+    return new Transform([sx, 0, 0, 0, 0, sy, 0, 0, 0, 0, sz, 0, 0, 0, 0, 1]);
   }
 
   /**
