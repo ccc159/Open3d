@@ -345,6 +345,66 @@ export class Vector3d {
   }
 
   /**
+   * get an arbitrary vector perpendicular to this vector
+   * see https://github.com/mcneel/opennurbs/blob/7.x/opennurbs_point.cpp#L1107
+   */
+  public _perpendicularVector(): Vector3d {
+    let i: number, j: number, k: number;
+    let a: number, b: number;
+    k = 2;
+    if (Math.abs(this.Y) > Math.abs(this.X)) {
+      if (Math.abs(this.Z) > Math.abs(this.Y)) {
+        // |this.Z| > |this.Y| > |this.X|
+        i = 2;
+        j = 1;
+        k = 0;
+        a = this.Z;
+        b = -this.Y;
+      } else if (Math.abs(this.Z) >= Math.abs(this.X)) {
+        // |this.Y| >= |this.Z| >= |this.X|
+        i = 1;
+        j = 2;
+        k = 0;
+        a = this.Y;
+        b = -this.Z;
+      } else {
+        // |this.Y| > |this.X| > |this.Z|
+        i = 1;
+        j = 0;
+        k = 2;
+        a = this.Y;
+        b = -this.X;
+      }
+    } else if (Math.abs(this.Z) > Math.abs(this.X)) {
+      // |this.Z| > |this.X| >= |this.Y|
+      i = 2;
+      j = 0;
+      k = 1;
+      a = this.Z;
+      b = -this.X;
+    } else if (Math.abs(this.Z) > Math.abs(this.Y)) {
+      // |this.X| >= |this.Z| > |this.Y|
+      i = 0;
+      j = 2;
+      k = 1;
+      a = this.X;
+      b = -this.Z;
+    } else {
+      // |this.X| >= |this.Y| >= |this.Z|
+      i = 0;
+      j = 1;
+      k = 2;
+      a = this.X;
+      b = -this.Y;
+    }
+    let arr = [0, 0, 0];
+    arr[i] = b;
+    arr[j] = a;
+    arr[k] = 0.0;
+    return new Vector3d(arr[0], arr[1], arr[2]).Unitize();
+  }
+
+  /**
    * Transforms the vector and return a new vector
    * The transformation matrix acts on the left of the vector; i.e.,
    * result = transformation*vector
