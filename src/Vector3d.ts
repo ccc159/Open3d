@@ -1,4 +1,4 @@
-import { Open3d, ParallelIndicator } from './constants';
+import { Open3d, ParallelIndicator } from './Open3d';
 import { Transform } from './Transform';
 
 /**

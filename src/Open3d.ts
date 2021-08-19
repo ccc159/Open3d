@@ -33,4 +33,15 @@ export class Open3d {
   public static angleEquals(a: number, b: number): boolean {
     return Math.abs(a - b) < Open3d.ANGLE_EPSILON;
   }
+
+  /**
+   * clamp a value between min and max.
+   * @param value the value to clamp.
+   * @param min the minimum value.
+   * @param max the maximum value.
+   * @return the clamped value.
+   */
+  public static Clamp(value: number, min: number, max: number): number {
+    return Math.max(min, Math.min(max, value));
+  }
 }
