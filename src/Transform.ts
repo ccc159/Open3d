@@ -1,37 +1,196 @@
-import { error } from 'console';
 import { Vector3d } from './Vector3d';
 
+/**
+ * a type that has an array of 16 numbers
+ */
+export type Array16Number = [
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number
+];
+
+/**
+ * Represents the values in a 4x4 transform matrix.
+ */
 export class Transform {
-  m: number[];
+  private m: Array16Number;
 
   /**
-   * Initializes a new transform matrix with a specified value along the diagonal.
-   * @param diagonalValue Value to assign to all diagonal cells except M33 which is set to 1.0.
+   * Create a new matrix from an array of 16 values.
+   * @param m Value to assign to the matrix using [n11, n21, n31, n41, n12, n22, n32, n42, n13, n23, n33, n43, n14, n24, n34, n44] format.
    */
-  constructor(diagonalValue: number) {
-    this.m = [diagonalValue, 0, 0, 0, 0, diagonalValue, 0, 0, 0, 0, diagonalValue, 0, 0, 0, 0, 1];
+  constructor(m: Array16Number) {
+    this.m = m;
   }
+
+  // #region Properties
 
   /**
    * The determinant of this 4x4 matrix.
    */
   public get Determinant(): number {
-    throw error();
+    const [n11, n21, n31, n41, n12, n22, n32, n42, n13, n23, n33, n43, n14, n24, n34, n44] = this.m;
+
+    return (
+      n41 * (+n14 * n23 * n32 - n13 * n24 * n32 - n14 * n22 * n33 + n12 * n24 * n33 + n13 * n22 * n34 - n12 * n23 * n34) +
+      n42 * (+n11 * n23 * n34 - n11 * n24 * n33 + n14 * n21 * n33 - n13 * n21 * n34 + n13 * n24 * n31 - n14 * n23 * n31) +
+      n43 * (+n11 * n24 * n32 - n11 * n22 * n34 - n14 * n21 * n32 + n12 * n21 * n34 + n14 * n22 * n31 - n12 * n24 * n31) +
+      n44 * (-n13 * n22 * n31 - n11 * n23 * n32 + n11 * n22 * n33 + n13 * n21 * n32 - n12 * n21 * n33 + n12 * n23 * n31)
+    );
+  }
+
+  /**
+   * Gets the transformation array.
+   */
+  public get M(): Array16Number {
+    return this.ToArray();
   }
 
   /**
    * Gets a new identity transform matrix. An identity matrix defines no transformation.
    */
   public static get Identity(): Transform {
-    return new Transform(1);
+    return new Transform([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
+  }
+
+  /**
+   * Return true if this Transform is the identity transform
+   */
+  public get IsIdentity(): boolean {
+    return this.Equals(Transform.Identity);
   }
 
   /**
    * ZeroTransformation diagonal = (0,0,0,1)
    */
   public static get ZeroTransformation(): Transform {
-    return new Transform(0);
+    return new Transform([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
   }
+
+  /**
+   * 	True if all values are 0, except for M33 which is 1.
+   */
+  public get IsZeroTransformation(): boolean {
+    return this.Equals(Transform.ZeroTransformation);
+  }
+
+  // #endregion
+
+  // #region Methods
+
+  /**
+   * Determines if another transform equals this transform value.
+   * @param other The transform to compare.
+   */
+  public Equals(other: Transform): boolean {
+    const te = this.m;
+    const me = other.m;
+
+    for (let i = 0; i < 16; i++) {
+      if (te[i] !== me[i]) return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Returns a copy of the transform.
+   */
+  public Clone(): Transform {
+    return new Transform(this.M);
+  }
+
+  /**
+   * Returns the transform as an array.
+   */
+  public ToArray(): Array16Number {
+    return [...this.m];
+  }
+
+  /**
+   * Multiplies (combines) two transformations.
+   * @param a The first transform.
+   * @param b The second transform.
+   * @returns The result of the multiplication.
+   */
+  public static MultiplyMatrix(a: Transform, b: Transform): Transform {
+    const ae = a.m;
+    const be = b.m;
+
+    const [a11, a21, a31, a41, a12, a22, a32, a42, a13, a23, a33, a43, a14, a24, a34, a44] = ae;
+    const [b11, b21, b31, b41, b12, b22, b32, b42, b13, b23, b33, b43, b14, b24, b34, b44] = be;
+
+    let te: Array16Number = Transform.Identity.M;
+
+    te[0] = a11 * b11 + a12 * b21 + a13 * b31 + a14 * b41;
+    te[4] = a11 * b12 + a12 * b22 + a13 * b32 + a14 * b42;
+    te[8] = a11 * b13 + a12 * b23 + a13 * b33 + a14 * b43;
+    te[12] = a11 * b14 + a12 * b24 + a13 * b34 + a14 * b44;
+
+    te[1] = a21 * b11 + a22 * b21 + a23 * b31 + a24 * b41;
+    te[5] = a21 * b12 + a22 * b22 + a23 * b32 + a24 * b42;
+    te[9] = a21 * b13 + a22 * b23 + a23 * b33 + a24 * b43;
+    te[13] = a21 * b14 + a22 * b24 + a23 * b34 + a24 * b44;
+
+    te[2] = a31 * b11 + a32 * b21 + a33 * b31 + a34 * b41;
+    te[6] = a31 * b12 + a32 * b22 + a33 * b32 + a34 * b42;
+    te[10] = a31 * b13 + a32 * b23 + a33 * b33 + a34 * b43;
+    te[14] = a31 * b14 + a32 * b24 + a33 * b34 + a34 * b44;
+
+    te[3] = a41 * b11 + a42 * b21 + a43 * b31 + a44 * b41;
+    te[7] = a41 * b12 + a42 * b22 + a43 * b32 + a44 * b42;
+    te[11] = a41 * b13 + a42 * b23 + a43 * b33 + a44 * b43;
+    te[15] = a41 * b14 + a42 * b24 + a43 * b34 + a44 * b44;
+
+    return new Transform(te);
+  }
+
+  /**
+   * Multiplies a transformation by a scalar.
+   * @param a The transform.
+   * @param s The scalar.
+   * @returns The result of the multiplication.
+   */
+  public static MultiplyScalar(a: Transform, s: number): Transform {
+    const te = a.M;
+
+    te[0] *= s;
+    te[4] *= s;
+    te[8] *= s;
+    te[12] *= s;
+
+    te[1] *= s;
+    te[5] *= s;
+    te[9] *= s;
+    te[13] *= s;
+
+    te[2] *= s;
+    te[6] *= s;
+    te[10] *= s;
+    te[14] *= s;
+
+    te[3] *= s;
+    te[7] *= s;
+    te[11] *= s;
+    te[15] *= s;
+
+    return new Transform(te);
+  }
+
+  // #endregion
 
   /**
    * Constructs a new rotation transformation with specified angle and rotation center.
@@ -77,177 +236,102 @@ export class Transform {
     return xform;
   }
 
-  public Scale() {}
+  /**
+   * scale a transform by a vector
+   * @param scale The vector to scale by
+   * @returns The scaled transform
+   */
+  public Scale(v: Vector3d) {
+    const te = this.M;
+    const x = v.X,
+      y = v.Y,
+      z = v.Z;
+
+    te[0] *= x;
+    te[4] *= y;
+    te[8] *= z;
+    te[1] *= x;
+    te[5] *= y;
+    te[9] *= z;
+    te[2] *= x;
+    te[6] *= y;
+    te[10] *= z;
+    te[3] *= x;
+    te[7] *= y;
+    te[11] *= z;
+
+    return new Transform(te);
+  }
 
   /**
    * Transpose the matrix and return a new one.
    */
   public Transpose() {
-    const xform = Transform.Identity;
-    xform.m[0] = this.m[0];
-    xform.m[1] = this.m[4];
-    xform.m[2] = this.m[8];
-    xform.m[3] = this.m[12];
-    xform.m[4] = this.m[1];
-    xform.m[5] = this.m[5];
-    xform.m[6] = this.m[9];
-    xform.m[7] = this.m[13];
-    xform.m[8] = this.m[2];
-    xform.m[9] = this.m[6];
-    xform.m[10] = this.m[10];
-    xform.m[11] = this.m[14];
-    xform.m[12] = this.m[3];
-    xform.m[13] = this.m[7];
-    xform.m[14] = this.m[11];
-    xform.m[15] = this.m[15];
-    return xform;
+    const te = this.M;
+    let tmp;
+
+    tmp = te[1];
+    te[1] = te[4];
+    te[4] = tmp;
+    tmp = te[2];
+    te[2] = te[8];
+    te[8] = tmp;
+    tmp = te[6];
+    te[6] = te[9];
+    te[9] = tmp;
+
+    tmp = te[3];
+    te[3] = te[12];
+    te[12] = tmp;
+    tmp = te[7];
+    te[7] = te[13];
+    te[13] = tmp;
+    tmp = te[11];
+    te[11] = te[14];
+    te[14] = tmp;
+
+    return new Transform(te);
   }
 
   /**
    * Attempts to get the inverse transform of this transform.
-   * code from https://stackoverflow.com/a/1148405
    */
-  public TryInverse(): Transform | null {
-    const inv = Transform.Identity;
-    let det;
-    let i;
+  public TryGetInverse(): Transform | null {
+    const te = this.M;
 
-    inv.m[0] =
-      this.m[5] * this.m[10] * this.m[15] -
-      this.m[5] * this.m[11] * this.m[14] -
-      this.m[9] * this.m[6] * this.m[15] +
-      this.m[9] * this.m[7] * this.m[14] +
-      this.m[13] * this.m[6] * this.m[11] -
-      this.m[13] * this.m[7] * this.m[10];
+    const [n11, n21, n31, n41, n12, n22, n32, n42, n13, n23, n33, n43, n14, n24, n34, n44] = this.m;
 
-    inv.m[4] =
-      -this.m[4] * this.m[10] * this.m[15] +
-      this.m[4] * this.m[11] * this.m[14] +
-      this.m[8] * this.m[6] * this.m[15] -
-      this.m[8] * this.m[7] * this.m[14] -
-      this.m[12] * this.m[6] * this.m[11] +
-      this.m[12] * this.m[7] * this.m[10];
+    const t11 = n23 * n34 * n42 - n24 * n33 * n42 + n24 * n32 * n43 - n22 * n34 * n43 - n23 * n32 * n44 + n22 * n33 * n44,
+      t12 = n14 * n33 * n42 - n13 * n34 * n42 - n14 * n32 * n43 + n12 * n34 * n43 + n13 * n32 * n44 - n12 * n33 * n44,
+      t13 = n13 * n24 * n42 - n14 * n23 * n42 + n14 * n22 * n43 - n12 * n24 * n43 - n13 * n22 * n44 + n12 * n23 * n44,
+      t14 = n14 * n23 * n32 - n13 * n24 * n32 - n14 * n22 * n33 + n12 * n24 * n33 + n13 * n22 * n34 - n12 * n23 * n34;
 
-    inv.m[8] =
-      this.m[4] * this.m[9] * this.m[15] -
-      this.m[4] * this.m[11] * this.m[13] -
-      this.m[8] * this.m[5] * this.m[15] +
-      this.m[8] * this.m[7] * this.m[13] +
-      this.m[12] * this.m[5] * this.m[11] -
-      this.m[12] * this.m[7] * this.m[9];
-
-    inv.m[12] =
-      -this.m[4] * this.m[9] * this.m[14] +
-      this.m[4] * this.m[10] * this.m[13] +
-      this.m[8] * this.m[5] * this.m[14] -
-      this.m[8] * this.m[6] * this.m[13] -
-      this.m[12] * this.m[5] * this.m[10] +
-      this.m[12] * this.m[6] * this.m[9];
-
-    inv.m[1] =
-      -this.m[1] * this.m[10] * this.m[15] +
-      this.m[1] * this.m[11] * this.m[14] +
-      this.m[9] * this.m[2] * this.m[15] -
-      this.m[9] * this.m[3] * this.m[14] -
-      this.m[13] * this.m[2] * this.m[11] +
-      this.m[13] * this.m[3] * this.m[10];
-
-    inv.m[5] =
-      this.m[0] * this.m[10] * this.m[15] -
-      this.m[0] * this.m[11] * this.m[14] -
-      this.m[8] * this.m[2] * this.m[15] +
-      this.m[8] * this.m[3] * this.m[14] +
-      this.m[12] * this.m[2] * this.m[11] -
-      this.m[12] * this.m[3] * this.m[10];
-
-    inv.m[9] =
-      -this.m[0] * this.m[9] * this.m[15] +
-      this.m[0] * this.m[11] * this.m[13] +
-      this.m[8] * this.m[1] * this.m[15] -
-      this.m[8] * this.m[3] * this.m[13] -
-      this.m[12] * this.m[1] * this.m[11] +
-      this.m[12] * this.m[3] * this.m[9];
-
-    inv.m[13] =
-      this.m[0] * this.m[9] * this.m[14] -
-      this.m[0] * this.m[10] * this.m[13] -
-      this.m[8] * this.m[1] * this.m[14] +
-      this.m[8] * this.m[2] * this.m[13] +
-      this.m[12] * this.m[1] * this.m[10] -
-      this.m[12] * this.m[2] * this.m[9];
-
-    inv.m[2] =
-      this.m[1] * this.m[6] * this.m[15] -
-      this.m[1] * this.m[7] * this.m[14] -
-      this.m[5] * this.m[2] * this.m[15] +
-      this.m[5] * this.m[3] * this.m[14] +
-      this.m[13] * this.m[2] * this.m[7] -
-      this.m[13] * this.m[3] * this.m[6];
-
-    inv.m[6] =
-      -this.m[0] * this.m[6] * this.m[15] +
-      this.m[0] * this.m[7] * this.m[14] +
-      this.m[4] * this.m[2] * this.m[15] -
-      this.m[4] * this.m[3] * this.m[14] -
-      this.m[12] * this.m[2] * this.m[7] +
-      this.m[12] * this.m[3] * this.m[6];
-
-    inv.m[10] =
-      this.m[0] * this.m[5] * this.m[15] -
-      this.m[0] * this.m[7] * this.m[13] -
-      this.m[4] * this.m[1] * this.m[15] +
-      this.m[4] * this.m[3] * this.m[13] +
-      this.m[12] * this.m[1] * this.m[7] -
-      this.m[12] * this.m[3] * this.m[5];
-
-    inv.m[14] =
-      -this.m[0] * this.m[5] * this.m[14] +
-      this.m[0] * this.m[6] * this.m[13] +
-      this.m[4] * this.m[1] * this.m[14] -
-      this.m[4] * this.m[2] * this.m[13] -
-      this.m[12] * this.m[1] * this.m[6] +
-      this.m[12] * this.m[2] * this.m[5];
-
-    inv.m[3] =
-      -this.m[1] * this.m[6] * this.m[11] +
-      this.m[1] * this.m[7] * this.m[10] +
-      this.m[5] * this.m[2] * this.m[11] -
-      this.m[5] * this.m[3] * this.m[10] -
-      this.m[9] * this.m[2] * this.m[7] +
-      this.m[9] * this.m[3] * this.m[6];
-
-    inv.m[7] =
-      this.m[0] * this.m[6] * this.m[11] -
-      this.m[0] * this.m[7] * this.m[10] -
-      this.m[4] * this.m[2] * this.m[11] +
-      this.m[4] * this.m[3] * this.m[10] +
-      this.m[8] * this.m[2] * this.m[7] -
-      this.m[8] * this.m[3] * this.m[6];
-
-    inv.m[11] =
-      -this.m[0] * this.m[5] * this.m[11] +
-      this.m[0] * this.m[7] * this.m[9] +
-      this.m[4] * this.m[1] * this.m[11] -
-      this.m[4] * this.m[3] * this.m[9] -
-      this.m[8] * this.m[1] * this.m[7] +
-      this.m[8] * this.m[3] * this.m[5];
-
-    inv.m[15] =
-      this.m[0] * this.m[5] * this.m[10] -
-      this.m[0] * this.m[6] * this.m[9] -
-      this.m[4] * this.m[1] * this.m[10] +
-      this.m[4] * this.m[2] * this.m[9] +
-      this.m[8] * this.m[1] * this.m[6] -
-      this.m[8] * this.m[2] * this.m[5];
-
-    det = this.m[0] * inv.m[0] + this.m[1] * inv.m[4] + this.m[2] * inv.m[8] + this.m[3] * inv.m[12];
+    const det = n11 * t11 + n21 * t12 + n31 * t13 + n41 * t14;
 
     if (det === 0) return null;
 
-    det = 1.0 / det;
+    const detInv = 1 / det;
 
-    for (i = 0; i < 16; i++) inv.m[i] = inv.m[i] * det;
+    te[0] = t11 * detInv;
+    te[1] = (n24 * n33 * n41 - n23 * n34 * n41 - n24 * n31 * n43 + n21 * n34 * n43 + n23 * n31 * n44 - n21 * n33 * n44) * detInv;
+    te[2] = (n22 * n34 * n41 - n24 * n32 * n41 + n24 * n31 * n42 - n21 * n34 * n42 - n22 * n31 * n44 + n21 * n32 * n44) * detInv;
+    te[3] = (n23 * n32 * n41 - n22 * n33 * n41 - n23 * n31 * n42 + n21 * n33 * n42 + n22 * n31 * n43 - n21 * n32 * n43) * detInv;
 
-    return inv;
+    te[4] = t12 * detInv;
+    te[5] = (n13 * n34 * n41 - n14 * n33 * n41 + n14 * n31 * n43 - n11 * n34 * n43 - n13 * n31 * n44 + n11 * n33 * n44) * detInv;
+    te[6] = (n14 * n32 * n41 - n12 * n34 * n41 - n14 * n31 * n42 + n11 * n34 * n42 + n12 * n31 * n44 - n11 * n32 * n44) * detInv;
+    te[7] = (n12 * n33 * n41 - n13 * n32 * n41 + n13 * n31 * n42 - n11 * n33 * n42 - n12 * n31 * n43 + n11 * n32 * n43) * detInv;
+
+    te[8] = t13 * detInv;
+    te[9] = (n14 * n23 * n41 - n13 * n24 * n41 - n14 * n21 * n43 + n11 * n24 * n43 + n13 * n21 * n44 - n11 * n23 * n44) * detInv;
+    te[10] = (n12 * n24 * n41 - n14 * n22 * n41 + n14 * n21 * n42 - n11 * n24 * n42 - n12 * n21 * n44 + n11 * n22 * n44) * detInv;
+    te[11] = (n13 * n22 * n41 - n12 * n23 * n41 - n13 * n21 * n42 + n11 * n23 * n42 + n12 * n21 * n43 - n11 * n22 * n43) * detInv;
+
+    te[12] = t14 * detInv;
+    te[13] = (n13 * n24 * n31 - n14 * n23 * n31 + n14 * n21 * n33 - n11 * n24 * n33 - n13 * n21 * n34 + n11 * n23 * n34) * detInv;
+    te[14] = (n14 * n22 * n31 - n12 * n24 * n31 - n14 * n21 * n32 + n11 * n24 * n32 + n12 * n21 * n34 - n11 * n22 * n34) * detInv;
+    te[15] = (n12 * n23 * n31 - n13 * n22 * n31 + n13 * n21 * n32 - n11 * n23 * n32 - n12 * n21 * n33 + n11 * n22 * n33) * detInv;
+
+    return new Transform(te);
   }
 }

@@ -224,9 +224,10 @@ export class Vector3d {
    */
   public Transform(transformation: Transform): Vector3d {
     let xx, yy, zz;
-    xx = transformation.m[0] * this.X + transformation.m[1] * this.Y + transformation.m[2] * this.Z;
-    yy = transformation.m[4] * this.X + transformation.m[5] * this.Y + transformation.m[6] * this.Z;
-    zz = transformation.m[8] * this.X + transformation.m[9] * this.Y + transformation.m[10] * this.Z;
+    const m = transformation.M;
+    xx = m[0] * this.X + m[1] * this.Y + m[2] * this.Z;
+    yy = m[4] * this.X + m[5] * this.Y + m[6] * this.Z;
+    zz = m[8] * this.X + m[9] * this.Y + m[10] * this.Z;
     return new Vector3d(xx, yy, zz);
   }
 }
