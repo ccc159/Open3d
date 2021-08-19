@@ -90,6 +90,15 @@ export class Vector3d {
   }
 
   /**
+   * Add a vector to this vector and returns a new vector.
+   * @param vector A vector.
+   * @returns A new vector that is the sum of this and vector.
+   */
+  public Add(other: Vector3d): Vector3d {
+    return Vector3d.Add(this, other);
+  }
+
+  /**
    * Subtracts the second vector from the first one.
    * @param a A vector.
    * @param b A second vector.
@@ -100,6 +109,15 @@ export class Vector3d {
   }
 
   /**
+   * Subtract a vector from this vector and returns a new vector.
+   * @param vector A vector
+   * @returns A new vector
+   */
+  public Subtract(other: Vector3d): Vector3d {
+    return Vector3d.Subtract(this, other);
+  }
+
+  /**
    * Multiplies a vector by a number, having the effect of scaling it.
    * @param vector A vector.
    * @param t A number.
@@ -107,6 +125,15 @@ export class Vector3d {
    */
   public static Multiply(vector: Vector3d, t: number): Vector3d {
     return new Vector3d(vector.X * t, vector.Y * t, vector.Z * t);
+  }
+
+  /**
+   * Multiplies this vector by a factor and returns a new vector.
+   * @param factor the factor to multiply this vector by.
+   * @returns A new vector
+   */
+  public Multiply(factor: number): Vector3d {
+    return Vector3d.Multiply(this, factor);
   }
 
   /**
@@ -121,12 +148,40 @@ export class Vector3d {
   }
 
   /**
+   * Divides this vector by a factor and returns a new vector.
+   * @param factor the factor to divide this vector by.
+   * @returns A new vector
+   */
+  public Divide(factor: number): Vector3d {
+    return Vector3d.Divide(this, factor);
+  }
+
+  /**
+   * Interpolate between two points/vectors.
+   * @param a First point/vector.
+   * @param b Second point/vector.
+   * @param t A number in the range [0,1].
+   * @returns A new vector that is the linear interpolation between a and b at t.
+   */
+  public static Interpolate(v1: Vector3d, v2: Vector3d, t: number): Vector3d {
+    return new Vector3d(v1.X + (v2.X - v1.X) * t, v1.Y + (v2.Y - v1.Y) * t, v1.Z + (v2.Z - v1.Z) * t);
+  }
+
+  /**
    * returning the dot product of two vectors
    * @param a A vector.
    * @param b A second vector.
    */
   public static DotProduct(a: Vector3d, b: Vector3d): number {
     return a.X * b.X + a.Y * b.Y + a.Z * b.Z;
+  }
+
+  /**
+   * dot product of this vector and other vector
+   * @param other Another vector to dot product with.
+   */
+  public DotProduct(other: Vector3d): number {
+    return Vector3d.DotProduct(this, other);
   }
 
   /**
@@ -141,6 +196,32 @@ export class Vector3d {
   }
 
   /**
+   * Computes distance between two points.
+   * @param a First vector.
+   * @param b Second vector.
+   */
+  public static Distance(a: Vector3d, b: Vector3d): number {
+    return b.Subtract(a).Length;
+  }
+
+  /**
+   * Computes distance to another point.
+   * @param a First vector.
+   * @param b Second vector.
+   */
+  public DistanceTo(other: Vector3d): number {
+    return Vector3d.Distance(this, other);
+  }
+
+  /**
+   * cross product of this vector and other vector
+   * @param other Another vector to cross product with.
+   */
+  public CrossProduct(other: Vector3d): Vector3d {
+    return Vector3d.CrossProduct(this, other);
+  }
+
+  /**
    * Determines whether two vectors have the same value.
    * @param a A vector.
    * @param b A second vector.
@@ -151,6 +232,14 @@ export class Vector3d {
   }
 
   /**
+   * Determines whether it equials to other vector.
+   * @param other Another vector to compare.
+   */
+  public Equals(other: Vector3d): boolean {
+    return Vector3d.Equals(this, other);
+  }
+
+  /**
    * Compute the angle between two vectors.
    * @param a First vector for angle.
    * @param b Second vector for angle.
@@ -158,6 +247,14 @@ export class Vector3d {
   public static VectorAngle(a: Vector3d, b: Vector3d): number {
     if (a.IsZero || b.IsZero) throw new Error('Cannot compute angle of zero-length vector.');
     return Math.acos(Vector3d.DotProduct(a, b) / (a.Length * b.Length));
+  }
+
+  /**
+   * Compute the angle between two vectors.
+   * @param other Another vector to compare.
+   */
+  public VectorAngle(other: Vector3d): number {
+    return Vector3d.VectorAngle(this, other);
   }
 
   /**
@@ -184,6 +281,13 @@ export class Vector3d {
     return unit;
   }
 
+  /**
+   * return a unitized vector
+   */
+  public Unitize() {
+    return Vector3d.Unitize(this);
+  }
+
   // #endregion
 
   /**
@@ -201,17 +305,33 @@ export class Vector3d {
   }
 
   /**
+   * Determines whether a vector is parallel to another vector
+   * @param other Another vector to compare.
+   */
+  public IsParallelTo(other: Vector3d): ParallelIndicator {
+    return Vector3d.IsParallel(this, other);
+  }
+
+  /**
    * Determines whether a vector is perpendicular to another vector
    * @param a First vector for angle.
    * @param b Second vector for angle.
    * @returns true if vectors form Pi-radians (90-degree) angles with each other; otherwise false.
    */
-  public IsPerpendicular(a: Vector3d, b: Vector3d): boolean {
+  public static IsPerpendicular(a: Vector3d, b: Vector3d): boolean {
     if (a.IsZero || b.IsZero) true;
     const angle = Vector3d.VectorAngle(a, b);
     if (Open3d.angleEquals(angle, Math.PI / 2)) return true;
     if (Open3d.angleEquals(angle, -Math.PI / 2)) return true;
     return false;
+  }
+
+  /**
+   * Determines whether a vector is perpendicular to another vector
+   * @param other Another vector to compare.
+   */
+  public IsPerpendicularTo(other: Vector3d): boolean {
+    return Vector3d.IsPerpendicular(this, other);
   }
 
   /**
