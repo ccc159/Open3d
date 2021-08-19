@@ -216,11 +216,12 @@ export class Vector3d {
 
   /**
    * Rotates this vector around a given axis.
-   * @param angleRadians Angle of rotation (in radians).
-   * @param rotationAxis Axis of rotation.
+   * @param angle Angle of rotation (in radians).
+   * @param axis Axis of rotation.
    */
-  public Rotate(angleRadians: number, rotationAxis: Vector3d) {
-    throw new Error('Not implemented');
+  public Rotate(angle: number, axis: Vector3d) {
+    const rotation = Transform.Rotation(angle, axis);
+    return this.Transform(rotation);
   }
 
   /**
