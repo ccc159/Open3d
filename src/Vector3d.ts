@@ -143,6 +143,7 @@ export class Vector3d {
    * @returns A new vector that is componentwise divided by t.
    */
   public static Divide(vector: Vector3d, t: number): Vector3d {
+    if (t === 0) throw new Error('Division by zero');
     const one_over_d = 1.0 / t;
     return new Vector3d(vector.X * one_over_d, vector.Y * one_over_d, vector.Z * one_over_d);
   }
@@ -417,5 +418,12 @@ export class Vector3d {
     yy = m[4] * this.X + m[5] * this.Y + m[6] * this.Z;
     zz = m[8] * this.X + m[9] * this.Y + m[10] * this.Z;
     return new Vector3d(xx, yy, zz);
+  }
+
+  /**
+   * override toString
+   */
+  public toString(): string {
+    return `[${this.X}, ${this.Y}, ${this.Z}]`;
   }
 }
