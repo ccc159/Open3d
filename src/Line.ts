@@ -92,7 +92,7 @@ export class Line {
   /**
    * Finds the parameter on the (in)finite line segment that is closest to a test point.
    * @param testPoint Point to project onto the line.
-   * @param limitToFiniteSegment If true, the projection is limited to the finite line segment.
+   * @param limitToFiniteSegment If true, the projection is limited to the finite line segment. default: false
    * @returns The parameter on the line that is closest to testPoint.
    */
   public ClosestParameter(testPoint: Vector3d, limitToFiniteSegment: boolean = false): number {
@@ -114,7 +114,7 @@ export class Line {
   /**
    * Finds the point on the (in)finite line segment that is closest to a test point.
    * @param testPoint Point to project onto the line.
-   * @param limitToFiniteSegment If true, the projection is limited to the finite line segment.
+   * @param limitToFiniteSegment If true, the projection is limited to the finite line segment. default: false
    * @returns The point on the (in)finite line that is closest to testPoint.
    */
   public ClosestPoint(testPoint: Vector3d, limitToFiniteSegment: boolean = false): Vector3d {
@@ -126,7 +126,7 @@ export class Line {
   /**
    * Compute the shortest distance between this line segment and a test point.
    * @param testPoint Point for distance computation.
-   * @param limitToFiniteSegment If true, the distance is limited to the finite line segment.
+   * @param limitToFiniteSegment If true, the distance is limited to the finite line segment. default: false
    * @returns The shortest distance between this line segment and testPoint.
    */
   public DistanceTo(testPoint: Vector3d, limitToFiniteSegment: boolean = false): number {
@@ -157,7 +157,6 @@ export class Line {
 
   /**
    * Flip the endpoints of the line segment.
-   * @param other A line.
    * @returns A new flipped line.
    */
   public Flip(): Line {
