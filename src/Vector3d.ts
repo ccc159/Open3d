@@ -345,7 +345,7 @@ export class Vector3d {
    * @param axis Axis of rotation.
    */
   public Rotate(angle: number, axis: Vector3d) {
-    const rotation = Transform.Rotation(angle, axis);
+    const rotation = Transform.RotateAtOrigin(angle, axis);
     return this.Transform(rotation);
   }
 

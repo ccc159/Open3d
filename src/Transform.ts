@@ -97,8 +97,8 @@ export class Transform {
    * @param other The transform to compare.
    */
   public Equals(other: Transform): boolean {
-    const te = this.m;
-    const me = other.m;
+    const te = this.M;
+    const me = other.M;
 
     for (let i = 0; i < 16; i++) {
       if (!Open3d.equals(te[i], me[i])) return false;
@@ -203,11 +203,32 @@ export class Transform {
   // #endregion
 
   /**
-   * Constructs a new rotation transformation with specified angle and rotation center.
+   * Constructs a new rotation transformation with specified angle and rotation axis.
+   * @param angle Angle (in Radians) of the rotation.
+   * @param rotationAxis The axis to ratate around, default Vector3D.ZAxis
+   * @param rotationCenter The center of the rotation, default (0,0,0).
+   */
+  public static Rotation(angle: number, rotationAxis: Vector3d = Vector3d.ZAxis, rotationCenter: Vector3d = Vector3d.Zero): Transform {
+    // move location to world origin
+    const m1 = Transform.Translation(rotationCenter.Reverse());
+
+    // scale
+    const m2 = Transform.RotateAtOrigin(angle, rotationAxis);
+
+    // move back
+    const m3 = Transform.Translation(rotationCenter);
+
+    // return m1 * m2 * m3
+    return Transform.CombineTransforms([m1, m2, m3]);
+  }
+
+  /**
+   * Constructs a new rotation transformation with specified angle and rotation axis.
+   * This function assume the rotation origin is the world origin.
    * @param angle Angle (in Radians) of the rotation.
    * @param axis The axis to ratate around
    */
-  public static Rotation(angle: number, axis: Vector3d): Transform {
+  public static RotateAtOrigin(angle: number, axis: Vector3d): Transform {
     const c = Math.cos(angle);
     const s = Math.sin(angle);
     const t = 1 - c;
@@ -242,49 +263,46 @@ export class Transform {
   }
 
   /**
-   * Create rotation transformation From XYZ angles.
-   * @param x Angle in radians to rotate around X axis.
-   * @param y Angle in radians to rotate around Y axis.
-   * @param z Angle in radians to rotate around Z axis.
+   * Constructs a new rotation transformation that rotates around X axis.
+   * this is also called "roll"
+   * @param angle Angle (in Radians) of the rotation.
    */
-  public static RotationXYZ(x: number, y: number, z: number): Transform {
-    const te = Transform.Identity.M;
-    const a = Math.cos(x),
-      b = Math.sin(x);
-    const c = Math.cos(y),
-      d = Math.sin(y);
-    const e = Math.cos(z),
-      f = Math.sin(z);
+  public static RotationX(angle: number): Transform {
+    return Transform.Rotation(angle, Vector3d.XAxis);
+  }
 
-    const ae = a * e,
-      af = a * f,
-      be = b * e,
-      bf = b * f;
+  /**
+   * Constructs a new rotation transformation that rotates around Y axis.
+   * this is also called "pitch"
+   * @param angle Angle (in Radians) of the rotation.
+   */
+  public static RotationY(angle: number): Transform {
+    return Transform.Rotation(angle, Vector3d.YAxis);
+  }
 
-    te[0] = c * e;
-    te[4] = -c * f;
-    te[8] = d;
+  /**
+   * Constructs a new rotation transformation that rotates around Z axis.
+   * this is also called "yaw"
+   * @param angle Angle (in Radians) of the rotation.
+   */
+  public static RotationZ(angle: number): Transform {
+    return Transform.Rotation(angle, Vector3d.ZAxis);
+  }
 
-    te[1] = af + be * d;
-    te[5] = ae - bf * d;
-    te[9] = -b * c;
+  /**
+   * Create rotation transformation From ZYX angles.
+   *
+   * @param z Yaw: Angle in radians to rotate around Z axis.
+   * @param y Pitch: Angle in radians to rotate around Y axis.
+   * @param x Roll: Angle in radians to rotate around X axis.
+   */
+  public static RotationZYX(z: number, y: number, x: number): Transform {
+    const yaw = Transform.RotationZ(z);
+    const pitch = Transform.RotationY(y);
+    const roll = Transform.RotationX(x);
 
-    te[2] = bf - ae * d;
-    te[6] = be + af * d;
-    te[10] = a * c;
-
-    // bottom row
-    te[3] = 0;
-    te[7] = 0;
-    te[11] = 0;
-
-    // last column
-    te[12] = 0;
-    te[13] = 0;
-    te[14] = 0;
-    te[15] = 1;
-
-    return new Transform(te);
+    // notice the order of transforms
+    return Transform.CombineTransforms([roll, pitch, yaw]);
   }
 
   /**
@@ -317,8 +335,23 @@ export class Transform {
     // move back
     const m3 = Transform.Translation(location);
 
-    // return m3 * m2 * m1
-    return m3.MultiplyMatrix(m2).MultiplyMatrix(m1);
+    // return m1 * m2 * m3
+    return Transform.CombineTransforms([m1, m2, m3]);
+  }
+
+  /**
+   * Constructs a new transform by combining given transforms in order
+   * Note: as transforms multiplication is not commutative, the order matters.
+   * If none given, identity transform is returned.
+   * @param transforms The transforms array.
+   * @returns The combined transform.
+   */
+  public static CombineTransforms(transforms: Transform[]): Transform {
+    let m = Transform.Identity;
+    for (let i = 0; i < transforms.length; i++) {
+      m = m.MultiplyMatrix(transforms[i]);
+    }
+    return m;
   }
 
   /**
@@ -407,5 +440,13 @@ export class Transform {
     te[15] = (n12 * n23 * n31 - n13 * n22 * n31 + n13 * n21 * n32 - n11 * n23 * n32 - n12 * n21 * n33 + n11 * n22 * n33) * detInv;
 
     return new Transform(te);
+  }
+
+  /**
+   * override toString
+   */
+  public toString(): string {
+    const [n11, n21, n31, n41, n12, n22, n32, n42, n13, n23, n33, n43, n14, n24, n34, n44] = this.m;
+    return `R0=(${n11}, ${n12}, ${n13}, ${n14}), R1=(${n21}, ${n22}, ${n23}, ${n24}), R2=(${n31}, ${n32}, ${n33}, ${n34}), R3=(${n41}, ${n42}, ${n43}, ${n44})`;
   }
 }

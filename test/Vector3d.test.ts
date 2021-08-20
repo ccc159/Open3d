@@ -248,4 +248,8 @@ test('Transform', () => {
   v1 = new Vector3d(1, 3, 2);
   const translate = Transform.Translation(new Vector3d(1, 2, 3));
   expect(v1.Transform(translate).Equals(new Vector3d(2, 5, 5))).toBe(true);
+
+  v1 = new Vector3d(-5, 3, 0);
+  const transform = Transform.Rotation(Math.PI / 3, new Vector3d(1, 2, 3), new Vector3d(1, 2, 3));
+  expect(v1.Transform(transform).Equals(new Vector3d(-4.54738093877396, -1.9003968027185, 3.11605818140365))).toBe(true);
 });
