@@ -1,6 +1,10 @@
+import { ParallelIndicator } from '../src/Open3d';
+import { Transform } from '../src/Transform';
 import { Vector3d } from '../src/Vector3d';
 
 let vec: Vector3d;
+let v1: Vector3d;
+let v2: Vector3d;
 
 beforeEach(() => {
   vec = new Vector3d(1, 2, 3);
@@ -44,14 +48,14 @@ test('XAxis, YAxis, ZAxis, Zero', () => {
 });
 
 test('Add', () => {
-  const v1 = new Vector3d(1, 2, 3);
-  const v2 = new Vector3d(4, 5, 6);
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(4, 5, 6);
   expect(v1.Add(v2)).toMatchObject(new Vector3d(5, 7, 9));
 });
 
 test('Subtract', () => {
-  const v1 = new Vector3d(1, 2, 3);
-  const v2 = new Vector3d(4, 5, 6);
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(4, 5, 6);
   expect(v1.Subtract(v2)).toMatchObject(new Vector3d(-3, -3, -3));
 });
 
@@ -70,10 +74,178 @@ test('Divide', () => {
 });
 
 test('Interpolate', () => {
-  const v1 = new Vector3d(-1, -2, -3);
-  const v2 = new Vector3d(1, 2, 3);
+  v1 = new Vector3d(-1, -2, -3);
+  v2 = new Vector3d(1, 2, 3);
   expect(Vector3d.Interpolate(v1, v2, 0)).toMatchObject(new Vector3d(-1, -2, -3));
   expect(Vector3d.Interpolate(v1, v2, 0.5)).toMatchObject(new Vector3d(0, 0, 0));
   expect(Vector3d.Interpolate(v1, v2, 1)).toMatchObject(new Vector3d(1, 2, 3));
   expect(Vector3d.Interpolate(v1, v2, 2)).toMatchObject(new Vector3d(3, 6, 9));
+});
+
+test('DotProduct', () => {
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(1, 5, 7);
+  expect(v1.DotProduct(v2)).toBe(32);
+
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(1, 2, 3);
+  expect(v1.DotProduct(v2)).toBe(14);
+
+  v1 = new Vector3d(-1, -2, 3);
+  v2 = new Vector3d(4, 0, -8);
+  expect(v1.DotProduct(v2)).toBe(-28);
+
+  v1 = new Vector3d(1, 0, 0);
+  v2 = new Vector3d(0, 1, 0);
+  expect(v1.DotProduct(v2)).toBe(0);
+});
+
+test('CrossProduct', () => {
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(1, 5, 7);
+  expect(v1.CrossProduct(v2)).toMatchObject(new Vector3d(-1, -4, 3));
+
+  v1 = new Vector3d(-1, -2, 3);
+  v2 = new Vector3d(4, 0, -8);
+  expect(v1.CrossProduct(v2)).toMatchObject(new Vector3d(16, 4, 8));
+
+  v1 = new Vector3d(1, 0, 0);
+  v2 = new Vector3d(0, 1, 0);
+  expect(v1.CrossProduct(v2)).toMatchObject(new Vector3d(0, 0, 1));
+});
+
+test('Distance', () => {
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(1, 5, 7);
+  expect(v1.DistanceTo(v2)).toBe(5);
+
+  v1 = new Vector3d(-1, -2, 3);
+  v2 = new Vector3d(4, 0, -8);
+  expect(v1.DistanceTo(v2)).toBeCloseTo(12.247, 3);
+
+  v1 = new Vector3d(1, 0, 0);
+  v2 = new Vector3d(0, 1, 0);
+  expect(v1.DistanceTo(v2)).toBeCloseTo(Math.sqrt(2));
+});
+
+test('Equals', () => {
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(1, 5, 7);
+  expect(v1.Equals(v2)).toBe(false);
+
+  v1 = new Vector3d(-1, -2, 3);
+  v2 = new Vector3d(-1, -2, 3);
+  expect(v1.Equals(v2)).toBe(true);
+
+  v1 = new Vector3d(0, 0, 0);
+  v2 = new Vector3d(0, 0.000000001, 0);
+  expect(v1.Equals(v2)).toBe(true);
+});
+
+test('VectorAngle', () => {
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(1, 5, 7);
+  expect(v1.VectorAngle(v2)).toBeCloseTo((9.054 * Math.PI) / 180, 3);
+
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(1, 2, 3);
+  expect(v1.VectorAngle(v2)).toBe(0);
+
+  v1 = new Vector3d(-1, -2, 3);
+  v2 = new Vector3d(4, 0, -8);
+  expect(v1.VectorAngle(v2)).toBeCloseTo((146.789 * Math.PI) / 180, 3);
+
+  v1 = new Vector3d(0, 0, 0);
+  v2 = new Vector3d(0, 0, 0);
+  expect(() => v1.VectorAngle(v2)).toThrowError();
+});
+
+test('Reverse', () => {
+  v1 = new Vector3d(1, 2, 3);
+  expect(v1.Reverse()).toMatchObject(new Vector3d(-1, -2, -3));
+
+  v1 = new Vector3d(-1, -2, 3);
+  expect(v1.Reverse()).toMatchObject(new Vector3d(1, 2, -3));
+
+  v1 = new Vector3d(0, 0, 0);
+  expect(v1.Reverse()).toMatchObject(new Vector3d(-0, -0, -0));
+});
+
+test('Unitize', () => {
+  v1 = new Vector3d(2, 0, 0);
+  expect(v1.Unitize()).toMatchObject(new Vector3d(1, 0, 0));
+
+  v1 = new Vector3d(1, 2, 3);
+  expect(v1.Unitize().X).toBeCloseTo(0.267, 3);
+  expect(v1.Unitize().Y).toBeCloseTo(0.535, 3);
+  expect(v1.Unitize().Z).toBeCloseTo(0.802, 3);
+
+  v1 = new Vector3d(0, 0, 0);
+  expect(() => v1.Unitize()).toThrowError();
+});
+
+test('IsParallelTo', () => {
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(1, 5, 7);
+  expect(v1.IsParallelTo(v2)).toBe(ParallelIndicator.NotParallel);
+
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(1, 2, 3);
+  expect(v1.IsParallelTo(v2)).toBe(ParallelIndicator.Parallel);
+
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(2, 4, 6);
+  expect(v1.IsParallelTo(v2)).toBe(ParallelIndicator.Parallel);
+
+  v1 = new Vector3d(0, 0, 0);
+  v2 = new Vector3d(0, 0, 0);
+  expect(v1.IsParallelTo(v2)).toBe(ParallelIndicator.Parallel);
+
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(-1, -2, -3);
+  expect(v1.IsParallelTo(v2)).toBe(ParallelIndicator.AntiParallel);
+});
+
+test('IsPerpendicularTo', () => {
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(1, 5, 7);
+  expect(v1.IsPerpendicularTo(v2)).toBe(false);
+
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(-2.432, 0.374, 0.561);
+  expect(v1.IsPerpendicularTo(v2)).toBe(true);
+
+  v1 = new Vector3d(0, 0, 0);
+  v2 = new Vector3d(0, 0, 0);
+  expect(v1.IsPerpendicularTo(v2)).toBe(true);
+
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(-1, -2, -3);
+  expect(v1.IsPerpendicularTo(v2)).toBe(false);
+});
+
+test('Rotate', () => {
+  v1 = new Vector3d(1, 0, 0);
+  expect(v1.Rotate(Math.PI / 2, Vector3d.ZAxis).Equals(new Vector3d(0, 1, 0))).toBe(true);
+
+  v1 = new Vector3d(1, 2, 3);
+  expect(v1.Rotate(Math.PI / 2, Vector3d.ZAxis).Equals(new Vector3d(-2, 1, 3))).toBe(true);
+
+  v1 = new Vector3d(1, 5, 7);
+  expect(v1.Rotate(Math.PI / 2, Vector3d.XAxis).Equals(new Vector3d(1, -7, 5))).toBe(true);
+
+  v1 = new Vector3d(1, 5, 7);
+  const rotated = v1.Rotate(Math.PI, new Vector3d(1, 2, 3));
+  expect(rotated.X).toBeCloseTo(3.571, 3);
+  expect(rotated.Y).toBeCloseTo(4.143, 3);
+  expect(rotated.Z).toBeCloseTo(6.714, 3);
+
+  v1 = new Vector3d(1, 2, 0);
+  expect(() => v1.Rotate(Math.PI, new Vector3d(0, 0, 0))).toThrowError();
+});
+
+test('Transform', () => {
+  v1 = new Vector3d(1, 3, 2);
+  const translate = Transform.Translation(new Vector3d(1, 2, 3));
+  expect(v1.Transform(translate).Equals(new Vector3d(2, 5, 5))).toBe(true);
 });

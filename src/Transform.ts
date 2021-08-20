@@ -210,6 +210,10 @@ export class Transform {
     const c = Math.cos(angle);
     const s = Math.sin(angle);
     const t = 1 - c;
+
+    if (axis.IsZero) throw new Error('Rotation axis should not be zero vector.');
+    axis = axis.Unitize();
+
     const x = axis.X,
       y = axis.Y,
       z = axis.Z;

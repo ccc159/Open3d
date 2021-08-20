@@ -197,6 +197,14 @@ export class Vector3d {
   }
 
   /**
+   * cross product of this vector and other vector
+   * @param other Another vector to cross product with.
+   */
+  public CrossProduct(other: Vector3d): Vector3d {
+    return Vector3d.CrossProduct(this, other);
+  }
+
+  /**
    * Computes distance between two points.
    * @param a First vector.
    * @param b Second vector.
@@ -212,14 +220,6 @@ export class Vector3d {
    */
   public DistanceTo(other: Vector3d): number {
     return Vector3d.Distance(this, other);
-  }
-
-  /**
-   * cross product of this vector and other vector
-   * @param other Another vector to cross product with.
-   */
-  public CrossProduct(other: Vector3d): Vector3d {
-    return Vector3d.CrossProduct(this, other);
   }
 
   /**
@@ -244,15 +244,19 @@ export class Vector3d {
    * Compute the angle between two vectors.
    * @param a First vector for angle.
    * @param b Second vector for angle.
+   * @returns The angle between a and b in radians.
    */
   public static VectorAngle(a: Vector3d, b: Vector3d): number {
     if (a.IsZero || b.IsZero) throw new Error('Cannot compute angle of zero-length vector.');
-    return Math.acos(Vector3d.DotProduct(a, b) / (a.Length * b.Length));
+    let cos = Vector3d.DotProduct(a, b) / (a.Length * b.Length);
+    cos = Open3d.Clamp(cos, -1, 1);
+    return Math.acos(cos);
   }
 
   /**
    * Compute the angle between two vectors.
    * @param other Another vector to compare.
+   * @returns The angle between this and other in radians.
    */
   public VectorAngle(other: Vector3d): number {
     return Vector3d.VectorAngle(this, other);
@@ -320,7 +324,7 @@ export class Vector3d {
    * @returns true if vectors form Pi-radians (90-degree) angles with each other; otherwise false.
    */
   public static IsPerpendicular(a: Vector3d, b: Vector3d): boolean {
-    if (a.IsZero || b.IsZero) true;
+    if (a.IsZero || b.IsZero) return true;
     const angle = Vector3d.VectorAngle(a, b);
     if (Open3d.angleEquals(angle, Math.PI / 2)) return true;
     if (Open3d.angleEquals(angle, -Math.PI / 2)) return true;
@@ -414,9 +418,9 @@ export class Vector3d {
   public Transform(transformation: Transform): Vector3d {
     let xx, yy, zz;
     const m = transformation.M;
-    xx = m[0] * this.X + m[1] * this.Y + m[2] * this.Z;
-    yy = m[4] * this.X + m[5] * this.Y + m[6] * this.Z;
-    zz = m[8] * this.X + m[9] * this.Y + m[10] * this.Z;
+    xx = m[0] * this.X + m[1] * this.Y + m[2] * this.Z + m[3];
+    yy = m[4] * this.X + m[5] * this.Y + m[6] * this.Z + m[7];
+    zz = m[8] * this.X + m[9] * this.Y + m[10] * this.Z + m[11];
     return new Vector3d(xx, yy, zz);
   }
 
