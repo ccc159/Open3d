@@ -149,6 +149,19 @@ export class Plane {
   }
 
   /**
+   * Intersect plane with a line.
+   * @param line The line to intersect with.
+   * @returns The intersection point.
+   */
+  public IntersectWithLine(line: Line): Vector3d {
+    const diff = line.From.Subtract(this.Origin);
+    const prod1 = diff.DotProduct(this.Normal);
+    const prod2 = line.UnitDirection.DotProduct(this.Normal);
+    const prod3 = prod1 / prod2;
+    return line.From.Subtract(line.UnitDirection.Multiply(prod3));
+  }
+
+  /**
    * Constructs a plane from a point and a normal vector.
    * @param origin The origin point of the plane.
    * @param normal The normal vector of the plane.

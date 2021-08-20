@@ -51,6 +51,14 @@ export class Line {
   }
 
   /**
+   * Determines whether this line is valid.
+   * A line is not valid when the start and end points are the same point.
+   */
+  public get IsValid(): boolean {
+    return !this.From.Equals(this.To);
+  }
+
+  /**
    * Sets the length of this line segment. Note that a negative length will invert the line segment without making the actual length negative. The line From point will remain fixed when a new Length is set.
    */
   public set Length(l: number) {
@@ -161,6 +169,44 @@ export class Line {
    */
   public Flip(): Line {
     return new Line(this.To, this.From);
+  }
+
+  /**
+   * Try to get an intersection point between this line and another line.
+   * If there's no intersection, null is returned.
+   * @param other Line to intersect with.
+   * @returns The intersection point, or null if there's no intersection.
+   */
+  public LineLineIntersection(other: Line): Vector3d | null {
+    // http://paulbourke.net/geometry/pointlineplane/
+    if (!this.IsValid || !other.IsValid) return null;
+    const p1 = this.From;
+    const p2 = this.To;
+    const p3 = other.From;
+    const p4 = other.To;
+    const p13 = p1.Subtract(p3);
+    const p43 = p4.Subtract(p3);
+    const p21 = p2.Subtract(p1);
+
+    const d1343 = p13.X * p43.X + p13.Y * p43.Y + p13.Z * p43.Z;
+    const d4321 = p43.X * p21.X + p43.Y * p21.Y + p43.Z * p21.Z;
+    const d1321 = p13.X * p21.X + p13.Y * p21.Y + p13.Z * p21.Z;
+    const d4343 = p43.X * p43.X + p43.Y * p43.Y + p43.Z * p43.Z;
+    const d2121 = p21.X * p21.X + p21.Y * p21.Y + p21.Z * p21.Z;
+
+    const denom = d2121 * d4343 - d4321 * d4321;
+    if (Open3d.equals(denom, 0)) {
+      return null;
+    }
+    const numer = d1343 * d4321 - d1321 * d4343;
+
+    const mua = numer / denom;
+    const mub = (d1343 + d4321 * mua) / d4343;
+
+    const pointA = new Vector3d(p1.X + mua * p21.X, p1.Y + mua * p21.Y, p1.Z + mua * p21.Z);
+    const pointB = new Vector3d(p3.X + mub * p43.X, p3.Y + mub * p43.Y, p3.Z + mub * p43.Z);
+
+    return pointA.Equals(pointB) ? pointA : null;
   }
 
   /**
