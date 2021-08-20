@@ -1,3 +1,4 @@
+import { Open3d } from './Open3d';
 import { Vector3d } from './Vector3d';
 
 /**
@@ -100,7 +101,7 @@ export class Transform {
     const me = other.m;
 
     for (let i = 0; i < 16; i++) {
-      if (te[i] !== me[i]) return false;
+      if (!Open3d.equals(te[i], me[i])) return false;
     }
 
     return true;
