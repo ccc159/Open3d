@@ -126,7 +126,7 @@ export class Plane {
   }
 
   /**
-   * Make a copy of this plane.
+   * Make a copy of this plane by creating again from origin, XAxis and YAxis.
    */
   public Clone(): Plane {
     return new Plane(this.Origin, this.XAxis, this.YAxis);
