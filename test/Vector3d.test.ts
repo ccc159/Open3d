@@ -1,4 +1,5 @@
 import { ParallelIndicator } from '../src/Open3d';
+import { Plane } from '../src/Plane';
 import { Transform } from '../src/Transform';
 import { Vector3d } from '../src/Vector3d';
 
@@ -245,11 +246,20 @@ test('Rotate', () => {
 });
 
 test('Transform', () => {
+  // test translation
   v1 = new Vector3d(1, 3, 2);
   const translate = Transform.Translation(new Vector3d(1, 2, 3));
   expect(v1.Transform(translate).Equals(new Vector3d(2, 5, 5))).toBe(true);
 
+  // test rotation
   v1 = new Vector3d(-5, 3, 0);
-  const transform = Transform.Rotation(Math.PI / 3, new Vector3d(1, 2, 3), new Vector3d(1, 2, 3));
-  expect(v1.Transform(transform).Equals(new Vector3d(-4.54738093877396, -1.9003968027185, 3.11605818140365))).toBe(true);
+  const rotation = Transform.Rotation(Math.PI / 3, new Vector3d(1, 2, 3), new Vector3d(1, 2, 3));
+  expect(v1.Transform(rotation).Equals(new Vector3d(-4.54738093877396, -1.9003968027185, 3.11605818140365))).toBe(true);
+
+  // test projection
+  v1 = new Vector3d(-5, 3, 0);
+  const plane = new Plane(Vector3d.Zero, new Vector3d(8.66, 2.5, -4.33), new Vector3d(0, 8.66, 5));
+
+  const projection = Transform.PlanarProjection(plane);
+  expect(v1.Transform(projection).Equals(new Vector3d(-3.10045052477886, 1.35491777084041, 2.84928242090441))).toBe(true);
 });

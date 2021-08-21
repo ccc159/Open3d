@@ -1,4 +1,5 @@
 import { Open3d } from './Open3d';
+import { Plane } from './Plane';
 import { Vector3d } from './Vector3d';
 
 /**
@@ -368,6 +369,42 @@ export class Transform {
    */
   public static ScaleAtOrigin(sx: number, sy: number, sz: number) {
     return new Transform([sx, 0, 0, 0, 0, sy, 0, 0, 0, 0, sz, 0, 0, 0, 0, 1]);
+  }
+
+  /**
+   * Constructs a projection transformation.
+   * @param plane Plane onto which everything will be perpendicularly projected.
+   * @returns A transformation matrix which projects geometry onto a specified plane.
+   */
+  public static PlanarProjection(plane: Plane) {
+    let x = plane.XAxis;
+    let y = plane.YAxis;
+    let p = plane.Origin;
+
+    const n11 = x.X * x.X + y.X * y.X;
+    const n12 = x.X * x.Y + y.X * y.Y;
+    const n13 = x.X * x.Z + y.X * y.Z;
+
+    const n21 = x.Y * x.X + y.Y * y.X;
+    const n22 = x.Y * x.Y + y.Y * y.Y;
+    const n23 = x.Y * x.Z + y.Y * y.Z;
+
+    const n31 = x.Z * x.X + y.Z * y.X;
+    const n32 = x.Z * x.Y + y.Z * y.Y;
+    const n33 = x.Z * x.Z + y.Z * y.Z;
+
+    const n41 = 0.0;
+    const n14 = p.X - n11 * p.X + n12 * p.Y + n13 * p.Z;
+
+    const n42 = 0.0;
+    const n24 = p.Y - n21 * p.X + n22 * p.Y + n23 * p.Z;
+
+    const n43 = 0.0;
+    const n34 = p.Z - n31 * p.X + n32 * p.Y + n33 * p.Z;
+
+    const n44 = 1;
+
+    return new Transform([n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44]);
   }
 
   /**

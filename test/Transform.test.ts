@@ -1,12 +1,10 @@
-import { ParallelIndicator } from '../src/Open3d';
+import { Plane } from '../src/Plane';
 import { Transform } from '../src/Transform';
 import { Vector3d } from '../src/Vector3d';
 
 let t1: Transform;
 let t2: Transform;
 let t3: Transform;
-
-// calculations compared with result in https://ncalculators.com/matrix/4x4-matrix-multiplication-calculator.htm
 
 beforeEach(() => {
   t1 = new Transform([5, 7, 9, 10, 2, 3, 3, 8, 8, 10, 2, 3, 3, 3, 4, 8]);
@@ -77,12 +75,25 @@ test('Rotation', () => {
 });
 
 test('RotationZYX', () => {
-  console.log(Transform.RotationZYX(Math.PI / 4, Math.PI / 3, Math.PI / 2));
   expect(
     Transform.RotationZYX(Math.PI / 4, Math.PI / 3, Math.PI / 2).Equals(
       new Transform([
         0.353553390593274, 0.612372435695795, 0.707106781186548, 0, 0.353553390593274, 0.612372435695795, -0.707106781186548, 0, -0.866025403784439,
         0.5, 0, 0, 0, 0, 0, 1,
+      ])
+    )
+  ).toBe(true);
+});
+
+test('PlanarProjection', () => {
+  const v1 = new Vector3d(8.66, 2.5, -4.33);
+  const v2 = new Vector3d(0, 8.66, 5);
+  const plane = new Plane(Vector3d.Zero, v1, v2);
+  expect(
+    Transform.PlanarProjection(plane).Equals(
+      new Transform([
+        0.749997249848742, 0.216511908154949, -0.374998624924371, 0, 0.216511908154949, 0.812492437205051, 0.324763098760851, 0, -0.374998624924371,
+        0.324763098760851, 0.437510312946207, 0, 0, 0, 0, 1,
       ])
     )
   ).toBe(true);
