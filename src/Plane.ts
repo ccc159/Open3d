@@ -46,7 +46,7 @@ export class Plane {
    * Gets the normal of this plane. This is essentially the ZAxis of the plane.
    */
   public get Normal(): Vector3d {
-    return this.XAxis;
+    return this.ZAxis.Unitize();
   }
 
   /**
@@ -68,6 +68,14 @@ export class Plane {
    */
   public get ZAxisLine(): Line {
     return new Line(this.Origin, this.Origin.Add(this.ZAxis));
+  }
+
+  /**
+   * Gets plane equation in the form Ax + By + Cz + D = 0.
+   */
+  public get Equation(): [number, number, number, number] {
+    const { X, Y, Z } = this.Normal;
+    return [X, Y, Z, -X * this.Origin.X - Y * this.Origin.Y - Z * this.Origin.Z];
   }
 
   // #endregion
