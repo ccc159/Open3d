@@ -30,9 +30,18 @@ export class Line {
   // #region Properties
 
   /**
+   * Determines whether this line is valid.
+   * A line is not valid when the start and end points are the same point.
+   */
+  public get IsValid(): boolean {
+    return !this.From.Equals(this.To);
+  }
+
+  /**
    * Gets the direction of this line segment. The length of the direction vector equals the length of the line segment.
    */
   public get Direction(): Vector3d {
+    if (!this.IsValid) throw new Error('Cannot get direction of an invalid line.');
     return this.To.Subtract(this.From);
   }
 
@@ -47,15 +56,7 @@ export class Line {
    * Gets the length of this line segment.
    */
   public get Length(): number {
-    return this.Direction.Length;
-  }
-
-  /**
-   * Determines whether this line is valid.
-   * A line is not valid when the start and end points are the same point.
-   */
-  public get IsValid(): boolean {
-    return !this.From.Equals(this.To);
+    return this.To.DistanceTo(this.From);
   }
 
   /**
@@ -85,6 +86,7 @@ export class Line {
    * @returns The point at the specified parameter.
    */
   public PointAt(param: number): Vector3d {
+    if (!this.IsValid) throw new Error('Cannot evaluate an invalid line.');
     return this.Direction.Multiply(param).Add(this.From);
   }
 
@@ -94,6 +96,7 @@ export class Line {
    * @returns The newly found point.
    */
   public PointAtLength(distance: number): Vector3d {
+    if (!this.IsValid) throw new Error('Cannot evaluate an invalid line.');
     return this.UnitDirection.Multiply(distance).Add(this.From);
   }
 
@@ -104,6 +107,7 @@ export class Line {
    * @returns The parameter on the line that is closest to testPoint.
    */
   public ClosestParameter(testPoint: Vector3d, limitToFiniteSegment: boolean = false): number {
+    if (!this.IsValid) throw new Error('Invalid line does not have a closest point.');
     const startToP = testPoint.Subtract(this.From);
     const startToEnd = this.To.Subtract(this.From);
 
@@ -158,13 +162,14 @@ export class Line {
    * @returns The extended line.
    */
   public Extend(startLength: number, endLength: number): Line {
+    if (!this.IsValid) throw new Error('Cannot extend an invalid line.');
     const startPt = this.UnitDirection.Multiply(-startLength).Add(this.From);
     const endPt = this.UnitDirection.Multiply(endLength).Add(this.To);
     return new Line(startPt, endPt);
   }
 
   /**
-   * Flip the endpoints of the line segment.
+   * Flip the endpoints of the line and return a new line.
    * @returns A new flipped line.
    */
   public Flip(): Line {
@@ -174,16 +179,25 @@ export class Line {
   /**
    * Try to get an intersection point between this line and another line.
    * If there's no intersection, null is returned.
-   * @param other Line to intersect with.
+   * @param firstLine first Line Line to intersect with.
+   * @param secondLine second Line to intersect with.
+   * @param limitToFiniteSegment If true, the distance is limited to the finite line segment. default: false
+   * @param tolerance Tolerance used to determine if the lines are intersecting, default: Open3d.EPSILON
    * @returns The intersection point, or null if there's no intersection.
    */
-  public LineLineIntersection(other: Line): Vector3d | null {
+  public static LineLineIntersection(
+    firstLine: Line,
+    secondLine: Line,
+    limitToFiniteSegment: boolean = false,
+    tolerance: number = Open3d.EPSILON
+  ): Vector3d | null {
     // http://paulbourke.net/geometry/pointlineplane/
-    if (!this.IsValid || !other.IsValid) return null;
-    const p1 = this.From;
-    const p2 = this.To;
-    const p3 = other.From;
-    const p4 = other.To;
+    if (!firstLine.IsValid || !secondLine.IsValid) return null;
+    const p1 = firstLine.From;
+    const p2 = firstLine.To;
+    const p3 = secondLine.From;
+    const p4 = secondLine.To;
+
     const p13 = p1.Subtract(p3);
     const p43 = p4.Subtract(p3);
     const p21 = p2.Subtract(p1);
@@ -206,12 +220,26 @@ export class Line {
     const pointA = new Vector3d(p1.X + mua * p21.X, p1.Y + mua * p21.Y, p1.Z + mua * p21.Z);
     const pointB = new Vector3d(p3.X + mub * p43.X, p3.Y + mub * p43.Y, p3.Z + mub * p43.Z);
 
-    return pointA.Equals(pointB) ? pointA : null;
+    const distance = pointA.DistanceTo(pointB);
+
+    if (distance > tolerance) return null;
+
+    const intersecPt = pointA.Add(pointB).Divide(2);
+
+    if (!limitToFiniteSegment) return intersecPt;
+
+    const paramA = firstLine.ClosestParameter(intersecPt, false);
+    const paramB = secondLine.ClosestParameter(intersecPt, false);
+
+    if (paramA >= 0 && paramA <= 1 && paramB >= 0 && paramB <= 1) return intersecPt;
+
+    return null;
   }
 
   /**
    * Transform the line using a Transformation matrix.
    * @param transformation Transformation matrix to apply.
+   * @returns A new transformed line.
    */
   public Transform(transformation: Transform): Line {
     const start = this.From.Transform(transformation);
