@@ -23,9 +23,36 @@ test('Equals', () => {
   expect(t2.Equals(t2)).toBe(true);
 });
 
+test('Identity', () => {
+  expect(Transform.Identity.M).toStrictEqual([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
+});
+
+test('IsIdentity', () => {
+  expect(t1.IsIdentity).toBe(false);
+  expect(Transform.Identity.IsIdentity).toBe(true);
+});
+
+test('ZeroTransformation', () => {
+  expect(Transform.ZeroTransformation.M).toStrictEqual([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
+});
+
+test('IsZeroTransformation', () => {
+  expect(t1.IsZeroTransformation).toBe(false);
+  expect(Transform.ZeroTransformation.IsZeroTransformation).toBe(true);
+});
+
+test('Clone', () => {
+  expect(t1.Clone().Equals(t1)).toBe(true);
+  expect(t3.Clone()).toStrictEqual(new Transform([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]));
+});
+
 test('Determinant', () => {
   expect(t1.Determinant).toBe(-361);
   expect(t3.Determinant).toBe(0);
+});
+
+test('MultiplyMatrix', () => {
+  expect(t1.MultiplyMatrix(t2).Equals(new Transform([210, 267, 236, 271, 93, 149, 104, 149, 171, 146, 172, 268, 105, 169, 128, 169]))).toBe(true);
 });
 
 test('Inverse', () => {
