@@ -408,6 +408,40 @@ export class Transform {
   }
 
   /**
+   * Constructs a new Mirror transformation.
+   * @param plane Plane that defines the mirror orientation and position.
+   * @returns A transformation matrix which mirrors geometry in a specified plane.
+   */
+  public static Mirror(plane: Plane) {
+    const equation = plane.Equation;
+    const n = plane.Normal;
+
+    const v = n.Multiply(-2.0 * equation[3]);
+
+    const n11 = 1.0 - 2.0 * n.X * n.X;
+    const n12 = -2.0 * n.X * n.Y;
+    const n13 = -2.0 * n.X * n.Z;
+    const n14 = v.X;
+
+    const n21 = -2.0 * n.Y * n.X;
+    const n22 = 1.0 - 2.0 * n.Y * n.Y;
+    const n23 = -2.0 * n.Y * n.Z;
+    const n24 = v.Y;
+
+    const n31 = -2.0 * n.Z * n.X;
+    const n32 = -2.0 * n.Z * n.Y;
+    const n33 = 1.0 - 2.0 * n.Z * n.Z;
+    const n34 = v.Z;
+
+    const n41 = 0.0;
+    const n42 = 0.0;
+    const n43 = 0.0;
+    const n44 = 1.0;
+
+    return new Transform([n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44]);
+  }
+
+  /**
    * Transpose the matrix and return a new one.
    */
   public Transpose() {

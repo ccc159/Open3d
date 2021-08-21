@@ -98,3 +98,18 @@ test('PlanarProjection', () => {
     )
   ).toBe(true);
 });
+
+test('Mirror', () => {
+  const v1 = new Vector3d(8.66, 2.5, -4.33);
+  const v2 = new Vector3d(0, 8.66, 5);
+  const plane = new Plane(Vector3d.Zero, v1, v2);
+
+  expect(
+    Transform.Mirror(plane).Equals(
+      new Transform([
+        0.499994499697483, 0.433023816309897, -0.749997249848742, 0, 0.433023816309897, 0.624984874410103, 0.649526197521701, 0, -0.749997249848742,
+        0.649526197521701, -0.124979374107587, 0, 0, 0, 0, 1,
+      ])
+    )
+  ).toBe(true);
+});

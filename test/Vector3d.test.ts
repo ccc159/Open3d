@@ -258,8 +258,15 @@ test('Transform', () => {
 
   // test projection
   v1 = new Vector3d(-5, 3, 0);
-  const plane = new Plane(Vector3d.Zero, new Vector3d(8.66, 2.5, -4.33), new Vector3d(0, 8.66, 5));
+  const pplane = new Plane(Vector3d.Zero, new Vector3d(8.66, 2.5, -4.33), new Vector3d(0, 8.66, 5));
 
-  const projection = Transform.PlanarProjection(plane);
+  const projection = Transform.PlanarProjection(pplane);
   expect(v1.Transform(projection).Equals(new Vector3d(-3.10045052477886, 1.35491777084041, 2.84928242090441))).toBe(true);
+
+  // test mirror
+  v1 = new Vector3d(-5, 3, 0);
+  const mplane = new Plane(Vector3d.Zero, new Vector3d(8.66, 2.5, -4.33), new Vector3d(0, 8.66, 5));
+
+  const mirror = Transform.Mirror(mplane);
+  expect(v1.Transform(mirror).Equals(new Vector3d(-1.20090104955773, -0.290164458319175, 5.69856484180881))).toBe(true);
 });
