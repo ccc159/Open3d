@@ -35,10 +35,12 @@ export class Plane {
   public constructor(origin: Vector3d, xAxis: Vector3d, yAxis: Vector3d) {
     xAxis = xAxis.Unitize();
     yAxis = yAxis.Unitize();
+    const zAxis = xAxis.CrossProduct(yAxis).Unitize();
+    yAxis = zAxis.CrossProduct(xAxis).Unitize();
     this.Origin = origin;
     this.XAxis = xAxis;
     this.YAxis = yAxis;
-    this.ZAxis = xAxis.CrossProduct(yAxis).Unitize();
+    this.ZAxis = zAxis;
   }
 
   // #region Properties
