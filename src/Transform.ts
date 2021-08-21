@@ -176,27 +176,20 @@ export class Transform {
   public static MultiplyScalar(a: Transform, s: number): Transform {
     const te = a.M;
 
-    te[0] *= s;
-    te[4] *= s;
-    te[8] *= s;
-    te[12] *= s;
-
-    te[1] *= s;
-    te[5] *= s;
-    te[9] *= s;
-    te[13] *= s;
-
-    te[2] *= s;
-    te[6] *= s;
-    te[10] *= s;
-    te[14] *= s;
-
-    te[3] *= s;
-    te[7] *= s;
-    te[11] *= s;
-    te[15] *= s;
+    for (let i = 0; i < 16; i++) {
+      te[i] *= s;
+    }
 
     return new Transform(te);
+  }
+
+  /**
+   *   Multiplies a transformation by a scalar.
+   *  @param scalar The scalar.
+   * @returns The result of the multiplication.
+   */
+  public MultiplyScalar(scalar: number): Transform {
+    return Transform.MultiplyScalar(this, scalar);
   }
 
   // #endregion

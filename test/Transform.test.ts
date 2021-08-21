@@ -55,6 +55,14 @@ test('MultiplyMatrix', () => {
   expect(t1.MultiplyMatrix(t2).Equals(new Transform([210, 267, 236, 271, 93, 149, 104, 149, 171, 146, 172, 268, 105, 169, 128, 169]))).toBe(true);
 });
 
+test('MultiplyScalar', () => {
+  expect(t1.MultiplyScalar(3).Equals(new Transform([15, 21, 27, 30, 6, 9, 9, 24, 24, 30, 6, 9, 9, 9, 12, 24]))).toBe(true);
+});
+
+test('Transpose', () => {
+  expect(t1.Transpose().Equals(new Transform([5, 2, 8, 3, 7, 3, 10, 3, 9, 3, 2, 4, 10, 8, 3, 8]))).toBe(true);
+});
+
 test('Inverse', () => {
   expect(t1.TryGetInverse()).toMatchObject(
     new Transform([
