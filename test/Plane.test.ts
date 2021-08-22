@@ -30,7 +30,6 @@ test('CreateFromFrame', () => {
 
 test('CreateFromNormal', () => {
   p2 = Plane.CreateFromNormal(o, p1.ZAxis);
-  console.log(p2);
   expect(p2.Origin.Equals(o)).toBe(true);
   expect(p2.XAxis.IsPerpendicularTo(p2.ZAxis)).toBe(true);
   expect(p2.XAxis.IsPerpendicularTo(p2.YAxis)).toBe(true);
@@ -106,4 +105,18 @@ test('IsLineCoplanar', () => {
   expect(p1.IsLineCoplanar(new Line(v1, v2))).toBe(true);
   expect(p1.IsLineCoplanar(new Line(v1, o))).toBe(true);
   expect(p1.IsLineCoplanar(new Line(v1, new Vector3d(12, 5, 5)))).toBe(false);
+});
+
+test('Transform', () => {
+  // test rotation
+  const rotation = Transform.Rotation(Math.PI / 2, new Vector3d(-1, -3, -2), new Vector3d(5, 3, 1));
+  console.log(rotation);
+  p2 = p1.Transform(rotation);
+  expect(p2.Origin.X).toBeCloseTo(3.055, 3);
+  expect(p2.Origin.Y).toBeCloseTo(1.977, 3);
+  expect(p2.Origin.Z).toBeCloseTo(-4.493, 3);
+
+  expect(p2.XAxis.X).toBeCloseTo(-0.109, 3);
+  expect(p2.XAxis.Y).toBeCloseTo(0.816, 3);
+  expect(p2.XAxis.Z).toBeCloseTo(0.568, 3);
 });

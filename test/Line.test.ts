@@ -126,31 +126,6 @@ test('Flip', () => {
   expect(l1.Flip().To.Equals(v1)).toBe(true);
 });
 
-test('LineLineIntersection', () => {
-  l2 = new Line(new Vector3d(0, 0, 0), new Vector3d(1.429, 10.0, 1.429));
-
-  expect(Line.LineLineIntersection(l1, l2, true, 0.001)?.X).toBeCloseTo(1, 3);
-  expect(Line.LineLineIntersection(l1, l2, true, 0.001)?.Y).toBeCloseTo(7, 3);
-  expect(Line.LineLineIntersection(l1, l2, true, 0.001)?.Z).toBeCloseTo(1, 3);
-
-  l1 = new Line(new Vector3d(3, 3, 0), new Vector3d(5, 5, 0));
-  l2 = new Line(new Vector3d(3, 5, 0), new Vector3d(5, 3, 0));
-  expect(Line.LineLineIntersection(l1, l2)?.Equals(new Vector3d(4, 4, 0))).toBe(true);
-
-  l1 = new Line(new Vector3d(3, 3, 0), new Vector3d(5, 5, 0));
-  l2 = new Line(new Vector3d(7, 5, 0), new Vector3d(9, 3, 0));
-  expect(Line.LineLineIntersection(l1, l2)?.Equals(new Vector3d(6, 6, 0))).toBe(true);
-  expect(Line.LineLineIntersection(l1, l2, true)).toBe(null);
-
-  l1 = new Line(new Vector3d(0, 0, 0), new Vector3d(1, 0, 0));
-  l2 = new Line(new Vector3d(0, 0, 0), new Vector3d(0, 1, 0));
-  expect(Line.LineLineIntersection(l1, l2, true)?.Equals(new Vector3d(0, 0, 0))).toBe(true);
-
-  l1 = new Line(new Vector3d(0, 0, 0), new Vector3d(1, 0, 0));
-  l2 = new Line(new Vector3d(0, 1, 0), new Vector3d(0, 2, 0));
-  expect(Line.LineLineIntersection(l1, l2, true)).toBe(null);
-});
-
 test('Transform', () => {
   // test rotation
   const rotation = Transform.Rotation(Math.PI / 2, new Vector3d(0, 0, 1), new Vector3d(0, 0, 0));

@@ -1,3 +1,4 @@
+import { Transform } from './Transform';
 import { Line } from './Line';
 import { Vector3d } from './Vector3d';
 
@@ -193,6 +194,19 @@ export class Plane {
    * @returns The plane created from the given point and vectors.
    */
   public static CreateFromFrame(origin: Vector3d, xAxis: Vector3d, yAxis: Vector3d): Plane {
+    return new Plane(origin, xAxis, yAxis);
+  }
+
+  /**
+   * Transform the plane using a Transformation matrix.
+   * @param transformation Transformation matrix to apply.
+   * @returns A new transformed plane.
+   */
+  public Transform(transformation: Transform): Plane {
+    const origin = this.Origin.Transform(transformation);
+    const xAxis = this.XAxis.Transform(transformation);
+    const yAxis = this.YAxis.Transform(transformation);
+
     return new Plane(origin, xAxis, yAxis);
   }
 
