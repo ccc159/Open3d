@@ -23,6 +23,20 @@ test('Constructor', () => {
   expect(p1.YAxis.Length).toBeCloseTo(1);
 });
 
+test('CreateFromFrame', () => {
+  expect(Plane.CreateFromFrame(o, v1, v2).YAxis.Equals(p1.YAxis)).toBe(true);
+  expect(Plane.CreateFromFrame(o, v1, v2).ZAxisLine.Equals(p1.ZAxisLine)).toBe(true);
+});
+
+test('CreateFromNormal', () => {
+  p2 = Plane.CreateFromNormal(o, p1.ZAxis);
+  console.log(p2);
+  expect(p2.Origin.Equals(o)).toBe(true);
+  expect(p2.XAxis.IsPerpendicularTo(p2.ZAxis)).toBe(true);
+  expect(p2.XAxis.IsPerpendicularTo(p2.YAxis)).toBe(true);
+  expect(p2.ZAxis.IsPerpendicularTo(p2.YAxis)).toBe(true);
+});
+
 test('Axis, Normal, AxisLine', () => {
   expect(p1.YAxisLine.Length).toBeCloseTo(1);
   expect(p1.ZAxisLine.To.X).toBeCloseTo(-0.408, 3);
