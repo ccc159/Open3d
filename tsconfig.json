@@ -8,6 +8,7 @@
     "rootDir": "./src",
     "outDir": "./build",
     "tsBuildInfoFile": "./build/tsconfig.build.tsbuildinfo",
+    "declaration": true,
 
     /* Strict Type-Checking Options */
     "strict": true,
