@@ -25,7 +25,7 @@
     "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "removeComments": true,
+    "removeComments": false,
 
     /* Module Resolution Options */
     "moduleResolution": "node",
