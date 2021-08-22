@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "doc": "typedoc&&serve docs -l 8081",
-    "build": "tsc --project tsconfig.build.json",
+    "build": "tsc --project tsconfig.build.json&&typedoc",
     "test": "jest"
   },
   "keywords": [
