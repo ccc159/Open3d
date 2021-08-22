@@ -1,7 +1,6 @@
 import { Line } from './Line';
 import { Open3d } from './Open3d';
 import { Plane } from './Plane';
-import { Transform } from './Transform';
 import { Vector3d } from './Vector3d';
 
 /**
