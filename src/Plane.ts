@@ -81,6 +81,27 @@ export class Plane {
     return [X, Y, Z, -X * this.Origin.X - Y * this.Origin.Y - Z * this.Origin.Z];
   }
 
+  /**
+   * Gets XY plane where XAxis is world XAxis and YAxis is world YAxis.
+   */
+  public static get PlaneXY(): Plane {
+    return new Plane(Vector3d.Zero, Vector3d.XAxis, Vector3d.YAxis);
+  }
+
+  /**
+   * Gets ZX plane where XAxis is world ZAxis and YAxis is world XAxis.
+   */
+  public static get PlaneZX(): Plane {
+    return new Plane(Vector3d.Zero, Vector3d.ZAxis, Vector3d.XAxis);
+  }
+
+  /**
+   * Gets YZ plane where XAxis is world YAxis and YAxis is world ZAxis.
+   */
+  public static get PlaneYZ(): Plane {
+    return new Plane(Vector3d.Zero, Vector3d.YAxis, Vector3d.ZAxis);
+  }
+
   // #endregion
 
   // #region Methods

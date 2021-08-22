@@ -68,3 +68,23 @@ test('LinePlane', () => {
   intersect = Intersection.LinePlane(l2, p1, true);
   expect(intersect).toBe(null);
 });
+
+test('PlanePlane', () => {
+  p1 = new Plane(Vector3d.Zero, new Vector3d(1, 2, 3), new Vector3d(4, 5, 6));
+  p2 = new Plane(new Vector3d(-4, 1, 6), new Vector3d(5, 5, 3), new Vector3d(2, 6, 1));
+
+  let line = Intersection.PlanePlane(p1, p2);
+  expect(line?.From.Equals(new Vector3d(-4.114727540500736, 0.9076583210603815, 5.9300441826215025))).toBe(true);
+  expect(line?.To.Equals(new Vector3d(-4.818389328318404, 0.341296394280307, 5.500982116879022))).toBe(true);
+
+  expect(Intersection.PlanePlane(Plane.PlaneXY, Plane.PlaneXY)).toBe(null);
+});
+
+test('PlanePlanePlane', () => {
+  p1 = new Plane(Vector3d.Zero, new Vector3d(1, 2, 3), new Vector3d(4, 5, 6));
+  p2 = new Plane(new Vector3d(-4, 1, 6), new Vector3d(5, 5, 3), new Vector3d(2, 6, 1));
+  let p3 = new Plane(new Vector3d(2, 5, 7), new Vector3d(7, 1, -4), new Vector3d(-3, 2, 8));
+
+  expect(Intersection.PlanePlanePlane(p1, p2, p3)?.Equals(new Vector3d(2.9622641509433913, 6.603773584905657, 10.245283018867923))).toBe(true);
+  expect(Intersection.PlanePlanePlane(Plane.PlaneXY, Plane.PlaneXY, p1)).toBe(null);
+});

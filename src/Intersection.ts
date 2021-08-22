@@ -96,4 +96,69 @@ export class Intersection {
 
     return line.From.Add(line.UnitDirection.Multiply(projectLength));
   }
+
+  /**
+   * Intersects two planes and return the intersection line. If the planes are parallel or coincident, no intersection is assumed.
+   * @param planeA First plane for intersection.
+   * @param planeB Second plane for intersection.
+   * @returns The intersection line or null.
+   */
+  public static PlanePlane(planeA: Plane, planeB: Plane): Line | null {
+    if (planeA.Normal.IsParallelTo(planeB.Normal)) return null;
+
+    const normal = planeB.Normal.CrossProduct(planeA.Normal);
+    const origin = planeA.Origin.Add(planeB.Origin).Multiply(0.5);
+    const planeC = Plane.CreateFromNormal(origin, normal);
+
+    const pt = Intersection.PlanePlanePlane(planeA, planeB, planeC);
+
+    if (pt == null) return null;
+
+    return new Line(pt, pt.Add(planeC.Normal));
+  }
+
+  /**
+   * Intersects three planes to find the single point they all share.
+   * @param planeA First plane for intersection.
+   * @param planeB Second plane for intersection.
+   * @param planeC Third plane for intersection.
+   * @returns The intersection point or null.
+   */
+  public static PlanePlanePlane(planeA: Plane, planeB: Plane, planeC: Plane): Vector3d | null {
+    // see https://www.mathsisfun.com/algebra/systems-linear-equations-matrices.html for solving a system of linear equations
+
+    const ea = planeA.Equation;
+    const eb = planeB.Equation;
+    const ec = planeC.Equation;
+    const mA = [ea[0], ea[1], ea[2], eb[0], eb[1], eb[2], ec[0], ec[1], ec[2]];
+    const mB = [-ea[3], -eb[3], -ec[3]];
+
+    // ma*V = mb => V = (ma)^-1 * mb
+
+    const [a11, a12, a13, a21, a22, a23, a31, a32, a33] = mA;
+
+    const det = a11 * (a22 * a33 - a23 * a32) - a12 * (a21 * a33 - a23 * a31) + a13 * (a21 * a32 - a22 * a31);
+
+    if (Open3d.equals(det, 0)) return null;
+
+    const invDet = 1 / det;
+
+    const v11 = invDet * (a22 * a33 - a23 * a32);
+    const v12 = invDet * (a13 * a32 - a12 * a33);
+    const v13 = invDet * (a12 * a23 - a13 * a22);
+
+    const v21 = invDet * (a23 * a31 - a21 * a33);
+    const v22 = invDet * (a11 * a33 - a13 * a31);
+    const v23 = invDet * (a13 * a21 - a11 * a23);
+
+    const v31 = invDet * (a21 * a32 - a22 * a31);
+    const v32 = invDet * (a12 * a31 - a11 * a32);
+    const v33 = invDet * (a11 * a22 - a12 * a21);
+
+    const vX = v11 * mB[0] + v12 * mB[1] + v13 * mB[2];
+    const vY = v21 * mB[0] + v22 * mB[1] + v23 * mB[2];
+    const vZ = v31 * mB[0] + v32 * mB[1] + v33 * mB[2];
+
+    return new Vector3d(vX, vY, vZ);
+  }
 }
