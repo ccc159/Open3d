@@ -4,9 +4,6 @@ node_modules
 # production
 build
 
-# docs
-docs
-
 # test
 coverage
 

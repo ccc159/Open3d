@@ -1,0 +1,918 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Plane | open3d</title>
+	<meta name="description" content="Documentation for open3d">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">open3d</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../modules.html">open3d</a>
+				</li>
+				<li>
+					<a href="Plane.html">Plane</a>
+				</li>
+			</ul>
+			<h1>Class Plane</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents the value of a center point and two axes in a plane in three dimensions.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">Plane</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="Plane.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="Plane.html#Origin" class="tsd-kind-icon">Origin</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="Plane.html#XAxis" class="tsd-kind-icon">XAxis</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="Plane.html#YAxis" class="tsd-kind-icon">YAxis</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="Plane.html#ZAxis" class="tsd-kind-icon">ZAxis</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="Plane.html#Equation" class="tsd-kind-icon">Equation</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="Plane.html#Normal" class="tsd-kind-icon">Normal</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="Plane.html#XAxisLine" class="tsd-kind-icon">XAxis<wbr>Line</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="Plane.html#YAxisLine" class="tsd-kind-icon">YAxis<wbr>Line</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="Plane.html#ZAxisLine" class="tsd-kind-icon">ZAxis<wbr>Line</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="Plane.html#PlaneXY" class="tsd-kind-icon">PlaneXY</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="Plane.html#PlaneYZ" class="tsd-kind-icon">PlaneYZ</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="Plane.html#PlaneZX" class="tsd-kind-icon">PlaneZX</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Plane.html#Clone" class="tsd-kind-icon">Clone</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Plane.html#ClosestParameter" class="tsd-kind-icon">Closest<wbr>Parameter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Plane.html#ClosestPoint" class="tsd-kind-icon">Closest<wbr>Point</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Plane.html#DistanceTo" class="tsd-kind-icon">Distance<wbr>To</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Plane.html#Flip" class="tsd-kind-icon">Flip</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Plane.html#IsLineCoplanar" class="tsd-kind-icon">Is<wbr>Line<wbr>Coplanar</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Plane.html#IsPointCoplanar" class="tsd-kind-icon">Is<wbr>Point<wbr>Coplanar</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Plane.html#PointAt" class="tsd-kind-icon">Point<wbr>At</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Plane.html#Transform" class="tsd-kind-icon">Transform</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Plane.html#CreateFromFrame" class="tsd-kind-icon">Create<wbr>From<wbr>Frame</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Plane.html#CreateFromNormal" class="tsd-kind-icon">Create<wbr>From<wbr>Normal</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Plane<span class="tsd-signature-symbol">(</span>origin<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, xAxis<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, yAxis<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L36">Plane.ts:36</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Constructs a plane from a point and two vectors in the plane.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>origin: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The origin point of the plane.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>xAxis: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The X axis vector of the plane.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>yAxis: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The Y axis vector of the plane.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4>
+							<p>The plane created from the given point and vectors.</p>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="Origin" class="tsd-anchor"></a>
+					<h3>Origin</h3>
+					<div class="tsd-signature tsd-kind-icon">Origin<span class="tsd-signature-symbol">:</span> <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L12">Plane.ts:12</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Origin point of this plane.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="XAxis" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> XAxis</h3>
+					<div class="tsd-signature tsd-kind-icon">XAxis<span class="tsd-signature-symbol">:</span> <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L17">Plane.ts:17</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>X axis vector of this plane.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="YAxis" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> YAxis</h3>
+					<div class="tsd-signature tsd-kind-icon">YAxis<span class="tsd-signature-symbol">:</span> <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L22">Plane.ts:22</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Y axis vector of this plane.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="ZAxis" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> ZAxis</h3>
+					<div class="tsd-signature tsd-kind-icon">ZAxis<span class="tsd-signature-symbol">:</span> <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L27">Plane.ts:27</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Z axis vector of this plane.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="Equation" class="tsd-anchor"></a>
+					<h3>Equation</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> Equation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L79">Plane.ts:79</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets plane equation in the form Ax + By + Cz + D = 0.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="Normal" class="tsd-anchor"></a>
+					<h3>Normal</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> Normal<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L51">Plane.ts:51</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the normal of this plane. This is essentially the ZAxis of the plane.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="XAxisLine" class="tsd-anchor"></a>
+					<h3>XAxis<wbr>Line</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> XAxisLine<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Line.html" class="tsd-signature-type" data-tsd-kind="Class">Line</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L58">Plane.ts:58</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets x axis as a line</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="Line.html" class="tsd-signature-type" data-tsd-kind="Class">Line</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="YAxisLine" class="tsd-anchor"></a>
+					<h3>YAxis<wbr>Line</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> YAxisLine<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Line.html" class="tsd-signature-type" data-tsd-kind="Class">Line</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L65">Plane.ts:65</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets y axis as a line</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="Line.html" class="tsd-signature-type" data-tsd-kind="Class">Line</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="ZAxisLine" class="tsd-anchor"></a>
+					<h3>ZAxis<wbr>Line</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> ZAxisLine<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Line.html" class="tsd-signature-type" data-tsd-kind="Class">Line</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L72">Plane.ts:72</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets z axis as a line</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="Line.html" class="tsd-signature-type" data-tsd-kind="Class">Line</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+					<a name="PlaneXY" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> PlaneXY</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> PlaneXY<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L87">Plane.ts:87</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets XY plane where XAxis is world XAxis and YAxis is world YAxis.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+					<a name="PlaneYZ" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> PlaneYZ</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> PlaneYZ<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L101">Plane.ts:101</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets YZ plane where XAxis is world YAxis and YAxis is world ZAxis.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+					<a name="PlaneZX" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> PlaneZX</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> PlaneZX<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L94">Plane.ts:94</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets ZX plane where XAxis is world ZAxis and YAxis is world XAxis.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="Clone" class="tsd-anchor"></a>
+					<h3>Clone</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">Clone<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L153">Plane.ts:153</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Make a copy of this plane by creating again from origin, XAxis and YAxis.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ClosestParameter" class="tsd-anchor"></a>
+					<h3>Closest<wbr>Parameter</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">Closest<wbr>Parameter<span class="tsd-signature-symbol">(</span>testPoint<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L124">Plane.ts:124</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the parameters of the point on the plane closest to a test point.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>testPoint: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h4>
+							<p>The [u,v] parameters of the point on the plane closest to the test point.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ClosestPoint" class="tsd-anchor"></a>
+					<h3>Closest<wbr>Point</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">Closest<wbr>Point<span class="tsd-signature-symbol">(</span>testPoint<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L135">Plane.ts:135</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the point on the plane closest to a test point.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>testPoint: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
+							<p>The point on the plane that is closest to testPoint.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="DistanceTo" class="tsd-anchor"></a>
+					<h3>Distance<wbr>To</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">Distance<wbr>To<span class="tsd-signature-symbol">(</span>testPoint<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L144">Plane.ts:144</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the signed distance from testPoint to its projection onto this plane. If the point is below the plane, a negative distance is returned.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>testPoint: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The point to test.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>The signed distance</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="Flip" class="tsd-anchor"></a>
+					<h3>Flip</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">Flip<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L161">Plane.ts:161</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Flip this plane by swapping out the X and Y axes and inverting the Z axis.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4>
+							<p>A new flipped plane.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="IsLineCoplanar" class="tsd-anchor"></a>
+					<h3>Is<wbr>Line<wbr>Coplanar</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">Is<wbr>Line<wbr>Coplanar<span class="tsd-signature-symbol">(</span>line<span class="tsd-signature-symbol">: </span><a href="Line.html" class="tsd-signature-type" data-tsd-kind="Class">Line</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L179">Plane.ts:179</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks if a line is coplanar to this plane.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>line: <a href="Line.html" class="tsd-signature-type" data-tsd-kind="Class">Line</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The line to check.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if the line is coplanar to this plane.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="IsPointCoplanar" class="tsd-anchor"></a>
+					<h3>Is<wbr>Point<wbr>Coplanar</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">Is<wbr>Point<wbr>Coplanar<span class="tsd-signature-symbol">(</span>point<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L170">Plane.ts:170</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks if a point is coplanar to this plane.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>point: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The point to check.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if the point is coplanar to this plane.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="PointAt" class="tsd-anchor"></a>
+					<h3>Point<wbr>At</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">Point<wbr>At<span class="tsd-signature-symbol">(</span>u<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, v<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L115">Plane.ts:115</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Evaluate a point on the plane.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>u: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The u parameter of the point on the plane.</p>
+									</div>
+								</li>
+								<li>
+									<h5>v: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The v parameter of the point on the plane.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
+							<p>The point at the specified parameter.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="Transform" class="tsd-anchor"></a>
+					<h3>Transform</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">Transform<span class="tsd-signature-symbol">(</span>transformation<span class="tsd-signature-symbol">: </span><a href="Transform.html" class="tsd-signature-type" data-tsd-kind="Class">Transform</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L213">Plane.ts:213</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Transform the plane using a Transformation matrix.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transformation: <a href="Transform.html" class="tsd-signature-type" data-tsd-kind="Class">Transform</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Transformation matrix to apply.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4>
+							<p>A new transformed plane.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="CreateFromFrame" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> Create<wbr>From<wbr>Frame</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">Create<wbr>From<wbr>Frame<span class="tsd-signature-symbol">(</span>origin<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, xAxis<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, yAxis<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L204">Plane.ts:204</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Constructs a plane from a point and two vectors in the plane.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>origin: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The origin point of the plane.</p>
+									</div>
+								</li>
+								<li>
+									<h5>xAxis: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The X axis vector of the plane.</p>
+									</div>
+								</li>
+								<li>
+									<h5>yAxis: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Y axis vector of the plane.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4>
+							<p>The plane created from the given point and vectors.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="CreateFromNormal" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> Create<wbr>From<wbr>Normal</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">Create<wbr>From<wbr>Normal<span class="tsd-signature-symbol">(</span>origin<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, normal<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/5906ae9/src/Plane.ts#L189">Plane.ts:189</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Constructs a plane from a point and a normal vector.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>origin: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The origin point of the plane.</p>
+									</div>
+								</li>
+								<li>
+									<h5>normal: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The normal vector of the plane.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4>
+							<p>The plane created from the given point and normal.</p>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="Intersection.html" class="tsd-kind-icon">Intersection</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="Line.html" class="tsd-kind-icon">Line</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="Plane.html" class="tsd-kind-icon">Plane</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="Plane.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="Plane.html#Origin" class="tsd-kind-icon">Origin</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="Plane.html#XAxis" class="tsd-kind-icon">XAxis</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="Plane.html#YAxis" class="tsd-kind-icon">YAxis</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="Plane.html#ZAxis" class="tsd-kind-icon">ZAxis</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="Plane.html#Equation" class="tsd-kind-icon">Equation</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="Plane.html#Normal" class="tsd-kind-icon">Normal</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="Plane.html#XAxisLine" class="tsd-kind-icon">XAxis<wbr>Line</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="Plane.html#YAxisLine" class="tsd-kind-icon">YAxis<wbr>Line</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="Plane.html#ZAxisLine" class="tsd-kind-icon">ZAxis<wbr>Line</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="Plane.html#PlaneXY" class="tsd-kind-icon">PlaneXY</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="Plane.html#PlaneYZ" class="tsd-kind-icon">PlaneYZ</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
+								<a href="Plane.html#PlaneZX" class="tsd-kind-icon">PlaneZX</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="Plane.html#Clone" class="tsd-kind-icon">Clone</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="Plane.html#ClosestParameter" class="tsd-kind-icon">Closest<wbr>Parameter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="Plane.html#ClosestPoint" class="tsd-kind-icon">Closest<wbr>Point</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="Plane.html#DistanceTo" class="tsd-kind-icon">Distance<wbr>To</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="Plane.html#Flip" class="tsd-kind-icon">Flip</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="Plane.html#IsLineCoplanar" class="tsd-kind-icon">Is<wbr>Line<wbr>Coplanar</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="Plane.html#IsPointCoplanar" class="tsd-kind-icon">Is<wbr>Point<wbr>Coplanar</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="Plane.html#PointAt" class="tsd-kind-icon">Point<wbr>At</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="Plane.html#Transform" class="tsd-kind-icon">Transform</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="Plane.html#CreateFromFrame" class="tsd-kind-icon">Create<wbr>From<wbr>Frame</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="Plane.html#CreateFromNormal" class="tsd-kind-icon">Create<wbr>From<wbr>Normal</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-class">
+						<a href="Transform.html" class="tsd-kind-icon">Transform</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="Vector3d.html" class="tsd-kind-icon">Vector3d</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
