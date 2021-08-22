@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "description": "Open3d is a 3d geometry library for javascript.",
   "main": "index.ts",
+  "homepage": "https://github.com/ccc159/open3d",
   "scripts": {
     "doc": "typedoc&&serve docs -l 8081",
     "build": "tsc --project tsconfig.build.json&&typedoc",
@@ -13,7 +14,19 @@
     "3d",
     "vector"
   ],
-  "author": "Jingcheng Chen",
+  "author": {
+    "name" : "Jingcheng Chen",
+    "email" : "mail@chenjingcheng.com",
+    "url" : "https://chen.works/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ccc159/open3d.git"
+  },
+  "bugs": {
+    "url" : "https://github.com/ccc159/open3d/issues",
+    "email" : "mail@chenjingcheng.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^27.0.1",
