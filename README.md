@@ -17,7 +17,7 @@ yarn add open3d
 or
 
 ```bash
-npm install --save open3d
+npm i open3d
 ```
 
 to add the package to your project.
