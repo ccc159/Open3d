@@ -73,7 +73,7 @@ const transformedPlane = plane.Transform(transformation);
 
 # API Reference
 
-The full API reference can be found here.
+The full API reference can be found at [https://open3d.vercel.app/](https://open3d.vercel.app/).
 
 # Contribute
 
