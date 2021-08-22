@@ -344,7 +344,7 @@ export class Vector3d {
    * @param angle Angle of rotation (in radians).
    * @param axis Axis of rotation.
    */
-  public Rotate(angle: number, axis: Vector3d) {
+  public VectorRotate(angle: number, axis: Vector3d) {
     const rotation = Transform.RotateAtOrigin(angle, axis);
     return this.Transform(rotation);
   }
@@ -414,10 +414,18 @@ export class Vector3d {
    * The transformation matrix acts on the left of the vector; i.e.,
    * result = transformation*vector
    * @param transformation Transformation matrix to apply.
+   * @param asVector If true, the transform will not apply its translation part (a vector being translated is equal to itself), otherwise, the translation will be applied like transforming a point. default: false.
    */
-  public Transform(transformation: Transform): Vector3d {
+  public Transform(transformation: Transform, asVector: boolean = false): Vector3d {
     let xx, yy, zz;
     const m = transformation.M;
+
+    if (asVector) {
+      m[3] = 0;
+      m[7] = 0;
+      m[11] = 0;
+    }
+
     xx = m[0] * this.X + m[1] * this.Y + m[2] * this.Z + m[3];
     yy = m[4] * this.X + m[5] * this.Y + m[6] * this.Z + m[7];
     zz = m[8] * this.X + m[9] * this.Y + m[10] * this.Z + m[11];

@@ -204,8 +204,8 @@ export class Plane {
    */
   public Transform(transformation: Transform): Plane {
     const origin = this.Origin.Transform(transformation);
-    const xAxis = this.XAxis.Transform(transformation);
-    const yAxis = this.YAxis.Transform(transformation);
+    const xAxis = this.XAxis.Transform(transformation, true);
+    const yAxis = this.YAxis.Transform(transformation, true);
 
     return new Plane(origin, xAxis, yAxis);
   }

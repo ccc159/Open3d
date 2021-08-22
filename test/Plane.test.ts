@@ -110,7 +110,7 @@ test('IsLineCoplanar', () => {
 test('Transform', () => {
   // test rotation
   const rotation = Transform.Rotation(Math.PI / 2, new Vector3d(-1, -3, -2), new Vector3d(5, 3, 1));
-  console.log(rotation);
+
   p2 = p1.Transform(rotation);
   expect(p2.Origin.X).toBeCloseTo(3.055, 3);
   expect(p2.Origin.Y).toBeCloseTo(1.977, 3);
@@ -119,4 +119,8 @@ test('Transform', () => {
   expect(p2.XAxis.X).toBeCloseTo(-0.109, 3);
   expect(p2.XAxis.Y).toBeCloseTo(0.816, 3);
   expect(p2.XAxis.Z).toBeCloseTo(0.568, 3);
+
+  expect(p2.YAxis.X).toBeCloseTo(0.513, 3);
+  expect(p2.YAxis.Y).toBeCloseTo(-0.443, 3);
+  expect(p2.YAxis.Z).toBeCloseTo(0.735, 3);
 });

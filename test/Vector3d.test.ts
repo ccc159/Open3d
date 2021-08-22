@@ -225,24 +225,24 @@ test('IsPerpendicularTo', () => {
   expect(v1.IsPerpendicularTo(v2)).toBe(false);
 });
 
-test('Rotate', () => {
+test('VectorRotate', () => {
   v1 = new Vector3d(1, 0, 0);
-  expect(v1.Rotate(Math.PI / 2, Vector3d.ZAxis).Equals(new Vector3d(0, 1, 0))).toBe(true);
+  expect(v1.VectorRotate(Math.PI / 2, Vector3d.ZAxis).Equals(new Vector3d(0, 1, 0))).toBe(true);
 
   v1 = new Vector3d(1, 2, 3);
-  expect(v1.Rotate(Math.PI / 2, Vector3d.ZAxis).Equals(new Vector3d(-2, 1, 3))).toBe(true);
+  expect(v1.VectorRotate(Math.PI / 2, Vector3d.ZAxis).Equals(new Vector3d(-2, 1, 3))).toBe(true);
 
   v1 = new Vector3d(1, 5, 7);
-  expect(v1.Rotate(Math.PI / 2, Vector3d.XAxis).Equals(new Vector3d(1, -7, 5))).toBe(true);
+  expect(v1.VectorRotate(Math.PI / 2, Vector3d.XAxis).Equals(new Vector3d(1, -7, 5))).toBe(true);
 
   v1 = new Vector3d(1, 5, 7);
-  const rotated = v1.Rotate(Math.PI, new Vector3d(1, 2, 3));
+  const rotated = v1.VectorRotate(Math.PI, new Vector3d(1, 2, 3));
   expect(rotated.X).toBeCloseTo(3.571, 3);
   expect(rotated.Y).toBeCloseTo(4.143, 3);
   expect(rotated.Z).toBeCloseTo(6.714, 3);
 
   v1 = new Vector3d(1, 2, 0);
-  expect(() => v1.Rotate(Math.PI, new Vector3d(0, 0, 0))).toThrowError();
+  expect(() => v1.VectorRotate(Math.PI, new Vector3d(0, 0, 0))).toThrowError();
 });
 
 test('Transform', () => {
