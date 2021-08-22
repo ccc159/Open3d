@@ -1,5 +1,6 @@
 import { Line } from './Line';
 import { Open3d } from './Open3d';
+import { Plane } from './Plane';
 import { Transform } from './Transform';
 import { Vector3d } from './Vector3d';
 
@@ -20,7 +21,7 @@ export class Intersection {
    * @param tolerance Tolerance used to determine if the lines are intersecting, default: Open3d.EPSILON
    * @returns The intersection point, or null if there's no intersection.
    */
-  public static LineLineIntersection(
+  public static LineLine(
     firstLine: Line,
     secondLine: Line,
     limitToFiniteSegment: boolean = false,
@@ -69,5 +70,30 @@ export class Intersection {
     if (paramA >= 0 && paramA <= 1 && paramB >= 0 && paramB <= 1) return intersecPt;
 
     return null;
+  }
+
+  /**
+   * Intersects a line and a plane. This function only returns a single intersection point or null (i.e. if the line is coincident with the plane then no intersection is assumed).
+   * @param line The line to intersect with.
+   * @param plane The plane to intersect with.
+   * @param limitToFiniteSegment If true, the intersection is limited to the finite line segment. default: false
+   * @returns The intersection point.
+   */
+  public static LinePlane(line: Line, plane: Plane, limitToFiniteSegment: boolean = false): Vector3d | null {
+    const diff = line.From.Subtract(plane.Origin);
+    const projectLine = diff.DotProduct(plane.Normal);
+    const projectNormal = line.UnitDirection.DotProduct(plane.Normal);
+
+    // if line is parallel to plane
+    if (Open3d.equals(projectNormal, 0)) return null;
+
+    const projectLength = -projectLine / projectNormal;
+
+    // if limitToFiniteSegment is true, we check if the intersection is within the finite line segment
+    if (limitToFiniteSegment) {
+      if (projectLength < 0 || projectLength > line.Length) return null;
+    }
+
+    return line.From.Add(line.UnitDirection.Multiply(projectLength));
   }
 }
