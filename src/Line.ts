@@ -117,7 +117,7 @@ export class Line {
     let t = startEnd_startP / startEnd2;
 
     if (limitToFiniteSegment) {
-      t = Open3d.Clamp(t, 0, 1);
+      t = Open3d.clamp(t, 0, 1);
     }
 
     return t;

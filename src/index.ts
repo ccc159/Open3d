@@ -4,4 +4,4 @@ export { Plane } from './Plane';
 export { Transform } from './Transform';
 export { Intersection } from './Intersection';
 
-export { ParallelIndicator, Open3d } from './Open3d';
+export { Open3d } from './Open3d';

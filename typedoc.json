@@ -1,6 +1,5 @@
 {
-  "inputFiles": ["./src"],
-  "mode": "modules",
-  "exclude": "**/*+(test).ts",
-  "out": "docs"
+  "out": "docs",
+  "entryPoints": ["src/index.ts"],
+  "exclude": "**/*+(test).ts"
 }

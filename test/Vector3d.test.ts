@@ -1,4 +1,4 @@
-import { ParallelIndicator } from '../src/Open3d';
+import { Open3d } from '../src/Open3d';
 import { Plane } from '../src/Plane';
 import { Transform } from '../src/Transform';
 import { Vector3d } from '../src/Vector3d';
@@ -188,23 +188,23 @@ test('Unitize', () => {
 test('IsParallelTo', () => {
   v1 = new Vector3d(1, 2, 3);
   v2 = new Vector3d(1, 5, 7);
-  expect(v1.IsParallelTo(v2)).toBe(ParallelIndicator.NotParallel);
+  expect(v1.IsParallelTo(v2)).toBe(Open3d.ParallelIndicator.NotParallel);
 
   v1 = new Vector3d(1, 2, 3);
   v2 = new Vector3d(1, 2, 3);
-  expect(v1.IsParallelTo(v2)).toBe(ParallelIndicator.Parallel);
+  expect(v1.IsParallelTo(v2)).toBe(Open3d.ParallelIndicator.Parallel);
 
   v1 = new Vector3d(1, 2, 3);
   v2 = new Vector3d(2, 4, 6);
-  expect(v1.IsParallelTo(v2)).toBe(ParallelIndicator.Parallel);
+  expect(v1.IsParallelTo(v2)).toBe(Open3d.ParallelIndicator.Parallel);
 
   v1 = new Vector3d(0, 0, 0);
   v2 = new Vector3d(0, 0, 0);
-  expect(v1.IsParallelTo(v2)).toBe(ParallelIndicator.Parallel);
+  expect(v1.IsParallelTo(v2)).toBe(Open3d.ParallelIndicator.Parallel);
 
   v1 = new Vector3d(1, 2, 3);
   v2 = new Vector3d(-1, -2, -3);
-  expect(v1.IsParallelTo(v2)).toBe(ParallelIndicator.AntiParallel);
+  expect(v1.IsParallelTo(v2)).toBe(Open3d.ParallelIndicator.AntiParallel);
 });
 
 test('IsPerpendicularTo', () => {

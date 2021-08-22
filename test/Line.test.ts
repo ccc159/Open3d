@@ -1,5 +1,5 @@
 import { Line } from '../src/Line';
-import { ParallelIndicator } from '../src/Open3d';
+import { Open3d } from '../src/Open3d';
 import { Plane } from '../src/Plane';
 import { Transform } from '../src/Transform';
 import { Vector3d } from '../src/Vector3d';

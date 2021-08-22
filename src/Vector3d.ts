@@ -1,4 +1,4 @@
-import { Open3d, ParallelIndicator } from './Open3d';
+import { Open3d } from './Open3d';
 import { Transform } from './Transform';
 
 /**
@@ -249,7 +249,7 @@ export class Vector3d {
   public static VectorAngle(a: Vector3d, b: Vector3d): number {
     if (a.IsZero || b.IsZero) throw new Error('Cannot compute angle of zero-length vector.');
     let cos = Vector3d.DotProduct(a, b) / (a.Length * b.Length);
-    cos = Open3d.Clamp(cos, -1, 1);
+    cos = Open3d.clamp(cos, -1, 1);
     return Math.acos(cos);
   }
 
@@ -301,19 +301,19 @@ export class Vector3d {
    * @param b Second vector for angle.
    * @returns ParallelIndicator
    */
-  public static IsParallel(a: Vector3d, b: Vector3d): ParallelIndicator {
-    if (a.IsZero || b.IsZero) return ParallelIndicator.Parallel;
+  public static IsParallel(a: Vector3d, b: Vector3d): Open3d.ParallelIndicator {
+    if (a.IsZero || b.IsZero) return Open3d.ParallelIndicator.Parallel;
     const angle = Vector3d.VectorAngle(a, b);
-    if (Open3d.angleEquals(angle, 0)) return ParallelIndicator.Parallel;
-    if (Open3d.angleEquals(angle, Math.PI)) return ParallelIndicator.AntiParallel;
-    return ParallelIndicator.NotParallel;
+    if (Open3d.angleEquals(angle, 0)) return Open3d.ParallelIndicator.Parallel;
+    if (Open3d.angleEquals(angle, Math.PI)) return Open3d.ParallelIndicator.AntiParallel;
+    return Open3d.ParallelIndicator.NotParallel;
   }
 
   /**
    * Determines whether a vector is parallel to another vector
    * @param other Another vector to compare.
    */
-  public IsParallelTo(other: Vector3d): ParallelIndicator {
+  public IsParallelTo(other: Vector3d): Open3d.ParallelIndicator {
     return Vector3d.IsParallel(this, other);
   }
 

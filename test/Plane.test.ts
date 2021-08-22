@@ -1,5 +1,5 @@
 import { Line } from '../src/Line';
-import { ParallelIndicator } from '../src/Open3d';
+import { Open3d } from '../src/Open3d';
 import { Plane } from '../src/Plane';
 import { Transform } from '../src/Transform';
 import { Vector3d } from '../src/Vector3d';
@@ -18,8 +18,8 @@ beforeEach(() => {
 });
 
 test('Constructor', () => {
-  expect(p1.XAxis.IsParallelTo(v1)).toBe(ParallelIndicator.Parallel);
-  expect(p1.YAxis.IsParallelTo(v2)).toBe(ParallelIndicator.NotParallel);
+  expect(p1.XAxis.IsParallelTo(v1)).toBe(Open3d.ParallelIndicator.Parallel);
+  expect(p1.YAxis.IsParallelTo(v2)).toBe(Open3d.ParallelIndicator.NotParallel);
   expect(p1.YAxis.Length).toBeCloseTo(1);
 });
 
