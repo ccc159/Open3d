@@ -148,3 +148,57 @@ test('Mirror', () => {
     )
   ).toBe(true);
 });
+
+test('VectorToVector', () => {
+  const v1 = new Vector3d(1, 2, 3);
+  const v2 = new Vector3d(5, 8, 2);
+
+  expect(
+    Transform.VectorToVector(v1, v2).Equals(
+      new Transform([
+        0.9239977166542427, -0.05879568524972252, 0.37785087933437617, 0, -0.16965048434446112, 0.8225148990075958, 0.5428516869939839, 0,
+        -0.3427053147814248, -0.5656963039534022, 0.7500271721171337, 0, 0, 0, 0, 1,
+      ])
+    )
+  ).toBe(true);
+});
+
+test('PlaneToPlane', () => {
+  let v1 = new Vector3d(1, 2, 3);
+  let v2 = new Vector3d(5, 8, 2);
+  let p1 = new Plane(Vector3d.Zero, v1, v2);
+
+  let v3 = new Vector3d(-2, 2, 7);
+  let v4 = new Vector3d(0, -3, -5);
+  let p2 = new Plane(new Vector3d(3, 1, -3), v3, v4);
+
+  expect(
+    Transform.PlaneToPlane(p1, p2).Equals(
+      new Transform([
+        -0.9693598382713079, -0.20768534113133943, 0.13118042165576027, 3, 0.23894604552133986, -0.6733489512835822, 0.6996470375375099, 1,
+        -0.05697623431166421, 0.7095547821588263, 0.7023430214924924, -3, 0, 0, 0, 1,
+      ])
+    )
+  ).toBe(true);
+
+  v1 = new Vector3d(1, 2, 3);
+  v2 = new Vector3d(5, 8, 2);
+  p1 = new Plane(v1, v2, v1);
+
+  v3 = new Vector3d(-2, 2, 7);
+  v4 = new Vector3d(0, -3, -5);
+  p2 = new Plane(v3, new Vector3d(3, 1, -3), v4);
+
+  const t = Transform.PlaneToPlane(p1, p2);
+
+  expect(v1.Transform(t, false).Equals(v3)).toBe(true);
+
+  expect(
+    t.Equals(
+      new Transform([
+        -0.09816429803311877, 0.9581933784990011, -0.268754944126308, -3.0119576265859593, 0.8068511325064378, -0.08145318259637324,
+        -0.5851124926183007, 3.1113927105412107, -0.5825418616414995, -0.27428238814329964, -0.7651236181099526, 10.426477492257956, 0, 0, 0, 1,
+      ])
+    )
+  ).toBe(true);
+});

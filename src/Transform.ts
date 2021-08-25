@@ -435,6 +435,42 @@ export class Transform {
   }
 
   /**
+   * Constructs a rotation transformation that rotates one vecor to another
+   * @param fromVector the from vector
+   * @param toVector the to vector
+   * @returns A rotation matrix which rotates fromVector to toVector
+   */
+  public static VectorToVector(fromVector: Vector3d, toVector: Vector3d) {
+    const rotationAxis = toVector.CrossProduct(fromVector);
+
+    let rotationAngle = Vector3d.VectorAngle(fromVector, toVector);
+
+    return Transform.RotateAtOrigin(-rotationAngle, rotationAxis);
+  }
+
+  /**
+   * Create a transformation that orients plane0 to plane1. If you want to orient objects from one plane to another, use this form of transformation.
+   * @param fromPlane The plane to orient from.
+   * @param toPlane the plane to orient to.
+   * @returns A transformation matrix which orients from fromPlane to toPlane
+   */
+  public static PlaneToPlane(fromPlane: Plane, toPlane: Plane) {
+    // move fromPlane to world origin
+    const translation1 = Transform.Translation(Vector3d.Zero.Subtract(fromPlane.Origin));
+
+    const rotationX = Transform.VectorToVector(fromPlane.XAxis, toPlane.XAxis);
+
+    const tranformedFromPlaneYAxis = fromPlane.YAxis.Transform(rotationX);
+
+    const rotationY = Transform.VectorToVector(tranformedFromPlaneYAxis, toPlane.YAxis);
+
+    // move from world origin to toPlane
+    const translation2 = Transform.Translation(toPlane.Origin);
+
+    return Transform.CombineTransforms([translation1, rotationX, rotationY, translation2]);
+  }
+
+  /**
    * Transpose the matrix and return a new one.
    */
   public Transpose() {
