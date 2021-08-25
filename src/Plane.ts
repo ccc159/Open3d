@@ -188,7 +188,7 @@ export class Plane {
    */
   public static CreateFromNormal(origin: Vector3d, normal: Vector3d): Plane {
     const zAxis = normal.Unitize();
-    const xAxis = normal._perpendicularVector();
+    const xAxis = normal.GetPerpendicularVector();
     const yAxis = zAxis.CrossProduct(xAxis).Unitize();
 
     return new Plane(origin, xAxis, yAxis);

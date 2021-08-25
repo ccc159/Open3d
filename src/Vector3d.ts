@@ -350,10 +350,10 @@ export class Vector3d {
   }
 
   /**
-   * get an arbitrary vector perpendicular to this vector
-   * see https://github.com/mcneel/opennurbs/blob/7.x/opennurbs_point.cpp#L1107
+   * Get an arbitrary vector perpendicular to this vector
    */
-  public _perpendicularVector(): Vector3d {
+  public GetPerpendicularVector(): Vector3d {
+    // see https://github.com/mcneel/opennurbs/blob/7.x/opennurbs_point.cpp#L1107
     let i: number, j: number, k: number;
     let a: number, b: number;
     k = 2;
