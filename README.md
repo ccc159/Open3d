@@ -10,7 +10,7 @@ It currently has `Vector3d`, `Line`, `Transform (or Matrix4x4)`, `Plane` and `In
 
 # Install
 
-Simple run
+Simply run
 
 ```bash
 yarn add open3d
@@ -71,6 +71,7 @@ const transformation = Transform.CombineTransforms([translate, rotation, scale, 
 // transform plane
 const plane = new Plane(Vector3d.Zero, Vector3d.XAxis, Vector3d.YAxis);
 const transformedPlane = plane.Transform(transformation);
+const normal = transformedPlane.Normal;
 ```
 
 # API Reference
