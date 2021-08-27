@@ -115,6 +115,23 @@ export class BoundingBox {
     return (this.maxX - this.minX) * (this.maxY - this.minY) * (this.maxZ - this.minZ);
   }
 
+  /**
+   * Determines whether a bounding box is degenerate (flat) in one or more directions.
+   * 0 = box is not degenerate;
+   * 1 = box is a rectangle (degenerate in one direction);
+   * 2 = box is a line (degenerate in two directions);
+   * 3 = box is a point (degenerate in three directions);
+   * 4 = box is not valid.
+   */
+  public get IsDegenerate(): number {
+    if (!this.IsValid) return 4;
+    let degenerate = 0;
+    if (Open3d.equals(this.minX, this.maxX)) degenerate++;
+    if (Open3d.equals(this.minY, this.maxY)) degenerate++;
+    if (Open3d.equals(this.minZ, this.maxZ)) degenerate++;
+    return degenerate;
+  }
+
   // #endregion
 
   // #region Methods
@@ -200,14 +217,84 @@ export class BoundingBox {
   }
 
   /**
-   * Compute the shortest distance between this line segment and a test point.
-   * @param testPoint Point for distance computation.
-   * @param limitToFiniteSegment If true, the distance is limited to the finite line segment. default: false
-   * @returns The shortest distance between this line segment and testPoint.
+   * Gets one of the eight corners of the box.
+   * @param minX true for the minimum on the X axis; false for the maximum.
+   * @param minY true for the minimum on the Y axis; false for the maximum.
+   * @param minZ true for the minimum on the Z axis; false for the maximum.
+   * @returns The corner point.
    */
-  public DistanceTo(testPoint: Vector3d, limitToFiniteSegment: boolean = false): number {
-    const closestPt = this.ClosestPoint(testPoint, limitToFiniteSegment);
-    return closestPt.DistanceTo(testPoint);
+  public GetCorner(minX: boolean, minY: boolean, minZ: boolean): Vector3d {
+    const x = minX ? this.minX : this.maxX;
+    const y = minY ? this.minY : this.maxY;
+    const z = minZ ? this.minZ : this.maxZ;
+
+    return new Vector3d(x, y, z);
+  }
+
+  /**
+   * Tests a point for BoundingBox inclusion.
+   * @param testPoint Point to test.
+   * @param strict If true, the point needs to be fully on the inside of the BoundingBox. I.e. coincident points will be considered 'outside'.
+   * @returns If 'strict' is affirmative, true if the point is inside this bounding box; false if it is on the surface or outside. If 'strict' is negative, true if the point is on the surface or on the inside of the bounding box; otherwise false.
+   */
+  public ContainsPoint(testPoint: Vector3d, strict: boolean = true): boolean {
+    const x = testPoint.X;
+    const y = testPoint.Y;
+    const z = testPoint.Z;
+
+    if (strict) {
+      return x >= this.minX && x <= this.maxX && y >= this.minY && y <= this.maxY && z >= this.minZ && z <= this.maxZ;
+    } else {
+      return x > this.minX && x < this.maxX && y > this.minY && y < this.maxY && z > this.minZ && z < this.maxZ;
+    }
+  }
+
+  /**
+   * Determines whether this bounding box contains another bounding box.
+   * @param testBox box to test.
+   * @param strict f true, the box needs to be fully on the inside of the bounding box. I.e. coincident boxes will be considered 'outside'.
+   * @returns If 'strict' is affirmative, true if the box is inside this bounding box; false if it is on the surface or outside. If 'strict' is negative, true if the point is on the surface or on the inside of the bounding box; otherwise false.
+   */
+  public ContainsBoundingBox(testBox: BoundingBox, strict: boolean = true): boolean {
+    const allPoints = testBox.GetCorners();
+
+    return allPoints.every((point) => this.ContainsPoint(point, strict));
+  }
+
+  /**
+   * Returns a clone of this bounding box.
+   */
+  public Clone(): BoundingBox {
+    return new BoundingBox(this.minX, this.maxX, this.minY, this.maxY, this.minZ, this.maxZ);
+  }
+
+  /**
+   * Inflates the box with equal amounts in all directions. Inflating with negative amounts may result in decreasing boxes. InValid boxes can not be inflated and will return a clone of itself.
+   * @param amount Amount to inflate the box.
+   * @returns A new inflated box or a clone of itself if it is invalid.
+   */
+  public InflateEqual(amount: number): BoundingBox {
+    return this.Inflate(amount, amount, amount);
+  }
+
+  /**
+   * Returns a new inflated box with custom amounts in all directions. Inflating with negative amounts may result in decreasing boxes. InValid boxes can not be inflated and will return a clone of itself.
+   * @param xAmount Amount to inflate this box in the x direction.
+   * @param yAmount Amount to inflate this box in the y direction.
+   * @param zAmount Amount to inflate this box in the z direction.
+   * @returns A new inflated box or a clone of itself if it is invalid.
+   */
+  public Inflate(xAmount: number, yAmount: number, zAmount: number): BoundingBox {
+    if (!this.IsValid) return this.Clone();
+
+    const newMinX = this.minX - xAmount;
+    const newMaxX = this.maxX + xAmount;
+    const newMinY = this.minY - yAmount;
+    const newMaxY = this.maxY + yAmount;
+    const newMinZ = this.minZ - zAmount;
+    const newMaxZ = this.maxZ + zAmount;
+
+    return new BoundingBox(newMinX, newMaxX, newMinY, newMaxY, newMinZ, newMaxZ);
   }
 
   /**
@@ -224,6 +311,65 @@ export class BoundingBox {
       Open3d.equals(this.maxY, other.maxY) &&
       Open3d.equals(this.maxZ, other.maxZ)
     );
+  }
+
+  /**
+   * Evaluates the bounding box with normalized parameters. The box has idealized side length of 1x1x1.
+   * @param tx Normalized (between 0 and 1 is inside the box) parameter along the X direction.
+   * @param ty Normalized (between 0 and 1 is inside the box) parameter along the Y direction.
+   * @param tz Normalized (between 0 and 1 is inside the box) parameter along the Z direction.
+   * @returns The point at the {tx, ty, tz} parameters.
+   */
+  public PointAt(tx: number, ty: number, tz: number): Vector3d {
+    const x = this.minX + (this.maxX - this.minX) * tx;
+    const y = this.minY + (this.maxY - this.minY) * ty;
+    const z = this.minZ + (this.maxZ - this.minZ) * tz;
+
+    return new Vector3d(x, y, z);
+  }
+
+  /**
+   * Computes the intersection of two bounding boxes. Invalid boxes are ignored and will not affect the intersection.
+   * If both boxes are invalid, the union will return an empty boundingbox.
+   * @param a A BoundingBox.
+   * @param b Another BoundingBox.
+   * @returns An intersected BoundingBox.
+   */
+  public static Intersect(a: BoundingBox, b: BoundingBox): BoundingBox {
+    if (!a.IsValid && !b.IsValid) return BoundingBox.Empty;
+    if (!a.IsValid) return b.Clone();
+    if (!b.IsValid) return a.Clone();
+
+    const minX = Math.max(a.minX, b.minX);
+    const minY = Math.max(a.minY, b.minY);
+    const minZ = Math.max(a.minZ, b.minZ);
+    const maxX = Math.min(a.maxX, b.maxX);
+    const maxY = Math.min(a.maxY, b.maxY);
+    const maxZ = Math.min(a.maxZ, b.maxZ);
+
+    return new BoundingBox(minX, maxX, minY, maxY, minZ, maxZ);
+  }
+
+  /**
+   * Returns a new BoundingBox that represents the union of boxes a and b. Invalid boxes are ignored and will not affect the union.
+   * If both boxes are invalid, the union will return an empty boundingbox.
+   * @param a A BoundingBox.
+   * @param b Another BoundingBox.
+   * @returns A unioned BoundingBox.
+   */
+  public static Union(a: BoundingBox, b: BoundingBox): BoundingBox {
+    if (!a.IsValid && !b.IsValid) return BoundingBox.Empty;
+    if (!a.IsValid) return b.Clone();
+    if (!b.IsValid) return a.Clone();
+
+    const minX = Math.min(a.minX, b.minX);
+    const minY = Math.min(a.minY, b.minY);
+    const minZ = Math.min(a.minZ, b.minZ);
+    const maxX = Math.max(a.maxX, b.maxX);
+    const maxY = Math.max(a.maxY, b.maxY);
+    const maxZ = Math.max(a.maxZ, b.maxZ);
+
+    return new BoundingBox(minX, maxX, minY, maxY, minZ, maxZ);
   }
 
   // #endregion
