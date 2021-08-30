@@ -1,13 +1,13 @@
 {
-  "exclude": ["node_modules", "test", "dist", "**/*test.ts"],
+  "exclude": ["test"],
   "compilerOptions": {
     /* Basic Options */
     "incremental": true,
     "target": "es6",
     "module": "commonjs",
     "rootDir": "./src",
-    "outDir": "./dist",
-    "tsBuildInfoFile": "./dist/tsconfig.build.tsbuildinfo",
+    "outDir": "./build",
+    "tsBuildInfoFile": "./build/tsconfig.build.tsbuildinfo",
     "declaration": true,
 
     /* Strict Type-Checking Options */
