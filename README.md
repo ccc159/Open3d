@@ -10,19 +10,23 @@ It currently has `Vector3d`, `Line`, `Transform (or Matrix4x4)`, `Plane` and `In
 
 # Install
 
-Simple run
+**via Yarn**
 
 ```bash
 yarn add open3d
 ```
 
-or
+or **via NPM**
 
 ```bash
 npm i open3d
 ```
 
-to add the package to your project.
+or if you prefer to drive without safe belt **via CDN**:
+
+```html
+<script src="https://unpkg.com/open3d"></script>
+```
 
 # Usage
 
@@ -31,6 +35,9 @@ If you are familiar with RhinoCommon, then Open3d should be very intuitive to us
 ### Example 1: Find the closest point on a line for a test point
 
 ```typescript
+import { Line, Vector3d } from 'open3d';
+// if you use CDN, you can use the global parameter "Open3d" without import, such as "Open3d.Vector"
+
 const p = new Vector3d(1, 2, 3);
 
 const from = new Vector3d(6, 7, 8);
@@ -43,6 +50,8 @@ const closestPt = line.ClosestPoint(p);
 ### Example 2: Intersection of two lines
 
 ```typescript
+import { Line, Vector3d, Intersection } from 'open3d';
+
 const line1 = new Line(new Vector3d(-4, -1, 0), new Vector3d(5, 0, 0));
 
 const line2 = new Line(new Vector3d(0, -2, 0), new Vector3d(3, 7, 0));
@@ -53,6 +62,8 @@ const intersection = Intersection.LineLine(line1, line2);
 ### Example 3: Transform a plane and find the normal of the transformed plane
 
 ```typescript
+import { Line, Vector3d, Transform, Plane } from 'open3d';
+
 // translation
 const translate = Transform.Translation(new Vector3d(1, 2, 3));
 

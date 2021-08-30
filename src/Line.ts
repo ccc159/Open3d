@@ -18,9 +18,8 @@ export class Line {
 
   /**
    * Constructs a new line segment between two points.
-   * @param x
-   * @param y
-   * @param z
+   * @param from the from point
+   * @param to the to point
    */
   constructor(from: Vector3d, to: Vector3d) {
     this.From = from;

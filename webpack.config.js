@@ -8,7 +8,7 @@ module.exports = {
     filename: 'open3d.js',
     library: {
       type: 'umd',
-      name: 'Open3D',
+      name: 'Open3d',
     },
   },
   resolve: {

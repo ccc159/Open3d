@@ -68,13 +68,15 @@
 				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
 					<h1>Install</h1>
 				</a>
-				<p>Simply run</p>
+				<p><strong>via Yarn</strong></p>
 				<pre><code class="language-bash"><span style="color: #000000">yarn add open3d</span>
 </code></pre>
-				<p>or</p>
+				<p>or <strong>via NPM</strong></p>
 				<pre><code class="language-bash"><span style="color: #000000">npm i open3d</span>
 </code></pre>
-				<p>to add the package to your project.</p>
+				<p>or if you prefer to drive without safe belt <strong>via CDN</strong>:</p>
+				<pre><code class="language-html"><span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;https://unpkg.com/open3d&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
+</code></pre>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h1>Usage</h1>
 				</a>
@@ -82,7 +84,10 @@
 				<a href="#example-1-find-the-closest-point-on-a-line-for-a-test-point" id="example-1-find-the-closest-point-on-a-line-for-a-test-point" style="color: inherit; text-decoration: none;">
 					<h3>Example 1: Find the closest point on a line for a test point</h3>
 				</a>
-				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">p</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Vector3d</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">);</span>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Line</span><span style="color: #000000">, </span><span style="color: #001080">Vector3d</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;open3d&#039;</span><span style="color: #000000">;</span>
+<span style="color: #008000">// if you use CDN, you can use the global parameter &quot;Open3d&quot; without import, such as &quot;Open3d.Vector&quot;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">p</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Vector3d</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">);</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">from</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Vector3d</span><span style="color: #000000">(</span><span style="color: #098658">6</span><span style="color: #000000">, </span><span style="color: #098658">7</span><span style="color: #000000">, </span><span style="color: #098658">8</span><span style="color: #000000">);</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">to</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Vector3d</span><span style="color: #000000">(-</span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">);</span>
@@ -93,7 +98,9 @@
 				<a href="#example-2-intersection-of-two-lines" id="example-2-intersection-of-two-lines" style="color: inherit; text-decoration: none;">
 					<h3>Example 2: Intersection of two lines</h3>
 				</a>
-				<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">line1</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Line</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Vector3d</span><span style="color: #000000">(-</span><span style="color: #098658">4</span><span style="color: #000000">, -</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">), </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Vector3d</span><span style="color: #000000">(</span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">));</span>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Line</span><span style="color: #000000">, </span><span style="color: #001080">Vector3d</span><span style="color: #000000">, </span><span style="color: #001080">Intersection</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;open3d&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">line1</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Line</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Vector3d</span><span style="color: #000000">(-</span><span style="color: #098658">4</span><span style="color: #000000">, -</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">), </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Vector3d</span><span style="color: #000000">(</span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">));</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">line2</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Line</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Vector3d</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">, -</span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">), </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Vector3d</span><span style="color: #000000">(</span><span style="color: #098658">3</span><span style="color: #000000">, </span><span style="color: #098658">7</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">));</span>
 
@@ -102,7 +109,9 @@
 				<a href="#example-3-transform-a-plane-and-find-the-normal-of-the-transformed-plane" id="example-3-transform-a-plane-and-find-the-normal-of-the-transformed-plane" style="color: inherit; text-decoration: none;">
 					<h3>Example 3: Transform a plane and find the normal of the transformed plane</h3>
 				</a>
-				<pre><code class="language-typescript"><span style="color: #008000">// translation</span>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Line</span><span style="color: #000000">, </span><span style="color: #001080">Vector3d</span><span style="color: #000000">, </span><span style="color: #001080">Transform</span><span style="color: #000000">, </span><span style="color: #001080">Plane</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;open3d&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #008000">// translation</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">translate</span><span style="color: #000000"> = </span><span style="color: #001080">Transform</span><span style="color: #000000">.</span><span style="color: #795E26">Translation</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Vector3d</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000">));</span>
 
 <span style="color: #008000">// rotation</span>
@@ -120,7 +129,6 @@
 <span style="color: #008000">// transform plane</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">plane</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Plane</span><span style="color: #000000">(</span><span style="color: #001080">Vector3d</span><span style="color: #000000">.</span><span style="color: #001080">Zero</span><span style="color: #000000">, </span><span style="color: #001080">Vector3d</span><span style="color: #000000">.</span><span style="color: #001080">XAxis</span><span style="color: #000000">, </span><span style="color: #001080">Vector3d</span><span style="color: #000000">.</span><span style="color: #001080">YAxis</span><span style="color: #000000">);</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">transformedPlane</span><span style="color: #000000"> = </span><span style="color: #001080">plane</span><span style="color: #000000">.</span><span style="color: #795E26">Transform</span><span style="color: #000000">(</span><span style="color: #001080">transformation</span><span style="color: #000000">);</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">normal</span><span style="color: #000000"> = </span><span style="color: #001080">transformedPlane</span><span style="color: #000000">.</span><span style="color: #001080">Normal</span><span style="color: #000000">;</span>
 </code></pre>
 				<a href="#api-reference" id="api-reference" style="color: inherit; text-decoration: none;">
 					<h1>API Reference</h1>
