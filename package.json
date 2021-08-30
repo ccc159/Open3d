@@ -2,12 +2,12 @@
   "name": "open3d",
   "version": "0.1.4",
   "description": "Open3d is a 3d geometry library for javascript.",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "main": "./dist/open3d.js",
+  "types": "./dist/index.d.ts",
   "homepage": "https://github.com/ccc159/open3d",
   "scripts": {
     "doc": "typedoc&&serve docs -l 8081",
-    "build": "tsc --project tsconfig.build.json&&typedoc",
+    "build": "webpack&&typedoc",
     "test": "jest"
   },
   "keywords": [
@@ -16,17 +16,17 @@
     "vector"
   ],
   "author": {
-    "name" : "Jingcheng Chen",
-    "email" : "mail@chenjingcheng.com",
-    "url" : "https://chen.works/"
+    "name": "Jingcheng Chen",
+    "email": "mail@chenjingcheng.com",
+    "url": "https://chen.works/"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/ccc159/open3d.git"
   },
   "bugs": {
-    "url" : "https://github.com/ccc159/open3d/issues",
-    "email" : "mail@chenjingcheng.com"
+    "url": "https://github.com/ccc159/open3d/issues",
+    "email": "mail@chenjingcheng.com"
   },
   "license": "ISC",
   "devDependencies": {
@@ -35,8 +35,11 @@
     "jest": "^27.0.6",
     "serve": "^12.0.0",
     "ts-jest": "^27.0.5",
+    "ts-loader": "^9.2.5",
     "ts-node": "^10.2.1",
     "typedoc": "^0.21.6",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
   }
 }
