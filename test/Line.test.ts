@@ -101,6 +101,13 @@ test('ClosestParameter', () => {
   expect(() => lInvalid.ClosestParameter(p)).toThrowError();
 });
 
+test('ClosestPoint', () => {
+  let p = new Vector3d(1000, 1000, 0);
+  l1 = new Line(new Vector3d(0, 2000, 0), new Vector3d(2000, 2000, 0));
+  expect(l1.ClosestParameter(p)).toBeCloseTo(0.5, 3);
+  expect(l1.ClosestPoint(p).Equals(new Vector3d(1000, 2000, 0))).toBe(true);
+});
+
 test('DistanceTo', () => {
   let p = new Vector3d(0, 0, 0);
   expect(l1.DistanceTo(p)).toBeCloseTo(6.959, 3);
