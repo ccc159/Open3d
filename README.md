@@ -96,4 +96,4 @@ If you realy find it useful and like to contribute straightforwardly, feel free 
 
 # License
 
-GPLv3(./LICENSE.md)
+[GPLv3](./LICENSE.md)
