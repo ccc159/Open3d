@@ -54,8 +54,8 @@ export class Point3d {
   /**
    * Gets the value of a point at location 0,0,0.
    */
-  public get Origin(): boolean {
-    return Open3d.equals(this.X, 0.0) && Open3d.equals(this.Y, 0.0) && Open3d.equals(this.Z, 0.0);
+  public static get Origin(): Point3d {
+    return new Point3d(0, 0, 0);
   }
 
   // #endregion
@@ -73,12 +73,31 @@ export class Point3d {
   }
 
   /**
+   * Sums up a point and a point, and returns a new vector.
+   * @param point1 A point.
+   * @param point2 Another point.
+   * @returns A new point that results from the addition of point1 and point2.
+   */
+  public static AddPoint(point1: Point3d, point2: Point3d): Point3d {
+    return new Point3d(point1.X + point2.X, point1.Y + point2.Y, point1.Z + point2.Z);
+  }
+
+  /**
    * Sums up a point and a vector, and returns a new point.
    * @param vector A vector.
    * @returns A new point that results from the addition of point and vector.
    */
   public Add(vecotr: Vector3d): Point3d {
     return Point3d.Add(this, vecotr);
+  }
+
+  /**
+   * Sums up a point and a point, and returns a new point.
+   * @param point A point.
+   * @returns A new point that results from the addition of point and point.
+   */
+  public AddPoint(point: Point3d): Point3d {
+    return Point3d.AddPoint(this, point);
   }
 
   /**
@@ -92,12 +111,31 @@ export class Point3d {
   }
 
   /**
+   * Subtracts a point from a point.
+   * @param point1 A point.
+   * @param point2 A point.
+   * @returns A new point that is the difference of point minus vector.
+   */
+  public static SubtractPoint(point1: Point3d, point2: Point3d): Vector3d {
+    return new Vector3d(point1.X - point2.X, point1.Y - point2.Y, point1.Z - point2.Z);
+  }
+
+  /**
    * Subtracts a vector from a point.
    * @param vecotr A vector.
    * @returns A new point that is the difference of point minus vector.
    */
   public Subtract(vecotr: Vector3d): Point3d {
     return Point3d.Subtract(this, vecotr);
+  }
+
+  /**
+   * Subtracts a point from a point.
+   * @param point A point.
+   * @returns A new point that is the difference of point minus vector.
+   */
+  public SubtractPoint(point: Point3d): Vector3d {
+    return Point3d.SubtractPoint(this, point);
   }
 
   /**

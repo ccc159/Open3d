@@ -1,4 +1,5 @@
 import { Open3d } from './Open3d';
+import { Point3d } from './Point3d';
 import { Transform } from './Transform';
 
 /**
@@ -15,6 +16,23 @@ export class Vector3d {
     this.X = x;
     this.Y = y;
     this.Z = z;
+  }
+
+  /**
+   * 	
+Initializes a new instance of a vector, copying the three components from a vector.
+   * @param vector A vector.
+   */
+  public static CreateFromVector(vector: Vector3d): Vector3d {
+    return new Vector3d(vector.X, vector.Y, vector.Z);
+  }
+
+  /**
+   * Initializes a new instance of a vector, copying the three components from the three coordinates of a point.
+   * @param point A point3d.
+   */
+  public static CreateFromPoint3d(point: Point3d): Vector3d {
+    return new Vector3d(point.X, point.Y, point.Z);
   }
 
   // #region Properties
@@ -90,12 +108,31 @@ export class Vector3d {
   }
 
   /**
+   * Sums up a vector to a point and returns a new point.
+   * @param vector A vector.
+   * @param point A point.
+   * @returns The new point from the addition of vector and point.
+   */
+  public static AddToPoint(vector: Vector3d, point: Point3d): Point3d {
+    return new Point3d(vector.X + point.X, vector.Y + point.Y, vector.Z + point.Z);
+  }
+
+  /**
    * Add a vector to this vector and returns a new vector.
    * @param vector A vector.
    * @returns A new vector that is the sum of this and vector.
    */
   public Add(other: Vector3d): Vector3d {
     return Vector3d.Add(this, other);
+  }
+
+  /**
+   * Add a point to this vector and returns a new point.
+   * @param point A point.
+   * @returns A new point that is the sum of this and vector.
+   */
+  public AddToPoint(other: Point3d): Point3d {
+    return Vector3d.AddToPoint(this, other);
   }
 
   /**
@@ -412,19 +449,16 @@ export class Vector3d {
   /**
    * Transforms the vector and return a new vector
    * The transformation matrix acts on the left of the vector; i.e.,
-   * result = transformation*vector
+   * result = transformation * vector
    * @param transformation Transformation matrix to apply.
-   * @param asVector If true, the transform will not apply its translation part (a vector being translated is equal to itself), otherwise, the translation will be applied like transforming a point. default: false.
    */
-  public Transform(transformation: Transform, asVector: boolean = false): Vector3d {
+  public Transform(transformation: Transform): Vector3d {
     let xx, yy, zz;
     const m = transformation.M;
 
-    if (asVector) {
-      m[3] = 0;
-      m[7] = 0;
-      m[11] = 0;
-    }
+    m[3] = 0;
+    m[7] = 0;
+    m[11] = 0;
 
     xx = m[0] * this.X + m[1] * this.Y + m[2] * this.Z + m[3];
     yy = m[4] * this.X + m[5] * this.Y + m[6] * this.Z + m[7];
@@ -436,6 +470,6 @@ export class Vector3d {
    * override toString
    */
   public toString(): string {
-    return `[${this.X}, ${this.Y}, ${this.Z}]`;
+    return `Vector3d [${this.X}, ${this.Y}, ${this.Z}]`;
   }
 }

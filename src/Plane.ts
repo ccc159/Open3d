@@ -1,6 +1,7 @@
 import { Transform } from './Transform';
 import { Line } from './Line';
 import { Vector3d } from './Vector3d';
+import { Point3d } from './Point3d';
 
 /**
  * Represents the value of a center point and two axes in a plane in three dimensions.
@@ -9,7 +10,7 @@ export class Plane {
   /**
    * Origin point of this plane.
    */
-  public Origin: Vector3d;
+  public Origin: Point3d;
 
   /**
    * X axis vector of this plane.
@@ -33,7 +34,7 @@ export class Plane {
    * @param yAxis The Y axis vector of the plane.
    * @returns The plane created from the given point and vectors.
    */
-  public constructor(origin: Vector3d, xAxis: Vector3d, yAxis: Vector3d) {
+  public constructor(origin: Point3d, xAxis: Vector3d, yAxis: Vector3d) {
     xAxis = xAxis.Unitize();
     yAxis = yAxis.Unitize();
     const zAxis = xAxis.CrossProduct(yAxis).Unitize();
@@ -85,21 +86,21 @@ export class Plane {
    * Gets XY plane where XAxis is world XAxis and YAxis is world YAxis.
    */
   public static get PlaneXY(): Plane {
-    return new Plane(Vector3d.Zero, Vector3d.XAxis, Vector3d.YAxis);
+    return new Plane(Point3d.Origin, Vector3d.XAxis, Vector3d.YAxis);
   }
 
   /**
    * Gets ZX plane where XAxis is world ZAxis and YAxis is world XAxis.
    */
   public static get PlaneZX(): Plane {
-    return new Plane(Vector3d.Zero, Vector3d.ZAxis, Vector3d.XAxis);
+    return new Plane(Point3d.Origin, Vector3d.ZAxis, Vector3d.XAxis);
   }
 
   /**
    * Gets YZ plane where XAxis is world YAxis and YAxis is world ZAxis.
    */
   public static get PlaneYZ(): Plane {
-    return new Plane(Vector3d.Zero, Vector3d.YAxis, Vector3d.ZAxis);
+    return new Plane(Point3d.Origin, Vector3d.YAxis, Vector3d.ZAxis);
   }
 
   // #endregion
@@ -112,7 +113,7 @@ export class Plane {
    * @param v The v parameter of the point on the plane.
    * @returns The point at the specified parameter.
    */
-  public PointAt(u: number, v: number): Vector3d {
+  public PointAt(u: number, v: number): Point3d {
     return this.Origin.Add(this.XAxis.Multiply(u)).Add(this.YAxis.Multiply(v));
   }
 
@@ -121,7 +122,7 @@ export class Plane {
    * @param point The point to test.
    * @returns The [u,v] parameters of the point on the plane closest to the test point.
    */
-  public ClosestParameter(testPoint: Vector3d): [number, number] {
+  public ClosestParameter(testPoint: Point3d): [number, number] {
     const u = this.XAxisLine.ClosestParameter(testPoint);
     const v = this.YAxisLine.ClosestParameter(testPoint);
     return [u, v];
@@ -132,7 +133,7 @@ export class Plane {
    * @param point Point to get close to..
    * @returns The point on the plane that is closest to testPoint.
    */
-  public ClosestPoint(testPoint: Vector3d): Vector3d {
+  public ClosestPoint(testPoint: Point3d): Point3d {
     return this.PointAt(...this.ClosestParameter(testPoint));
   }
 
@@ -141,8 +142,8 @@ export class Plane {
    * @param testPoint The point to test.
    * @returns The signed distance
    */
-  public DistanceTo(testPoint: Vector3d): number {
-    const vec = testPoint.Subtract(this.Origin);
+  public DistanceTo(testPoint: Point3d): number {
+    const vec = testPoint.SubtractPoint(this.Origin);
     const distance = testPoint.DistanceTo(this.ClosestPoint(testPoint));
     return vec.DotProduct(this.ZAxis) > 0 ? distance : -distance;
   }
@@ -167,7 +168,7 @@ export class Plane {
    * @param point The point to check.
    * @returns True if the point is coplanar to this plane.
    */
-  public IsPointCoplanar(point: Vector3d): boolean {
+  public IsPointCoplanar(point: Point3d): boolean {
     return this.ClosestPoint(point).Equals(point);
   }
 
@@ -186,7 +187,7 @@ export class Plane {
    * @param normal The normal vector of the plane.
    * @returns The plane created from the given point and normal.
    */
-  public static CreateFromNormal(origin: Vector3d, normal: Vector3d): Plane {
+  public static CreateFromNormal(origin: Point3d, normal: Vector3d): Plane {
     const zAxis = normal.Unitize();
     const xAxis = normal.GetPerpendicularVector();
     const yAxis = zAxis.CrossProduct(xAxis).Unitize();
@@ -201,7 +202,7 @@ export class Plane {
    * @param yAxis The Y axis vector of the plane.
    * @returns The plane created from the given point and vectors.
    */
-  public static CreateFromFrame(origin: Vector3d, xAxis: Vector3d, yAxis: Vector3d): Plane {
+  public static CreateFromFrame(origin: Point3d, xAxis: Vector3d, yAxis: Vector3d): Plane {
     return new Plane(origin, xAxis, yAxis);
   }
 
@@ -212,8 +213,8 @@ export class Plane {
    */
   public Transform(transformation: Transform): Plane {
     const origin = this.Origin.Transform(transformation);
-    const xAxis = this.XAxis.Transform(transformation, true);
-    const yAxis = this.YAxis.Transform(transformation, true);
+    const xAxis = this.XAxis.Transform(transformation);
+    const yAxis = this.YAxis.Transform(transformation);
 
     return new Plane(origin, xAxis, yAxis);
   }
