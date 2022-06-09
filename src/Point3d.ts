@@ -1,4 +1,5 @@
 import { Open3d } from './Open3d';
+import { Open3dMath } from './Open3dMath';
 import { Transform } from './Transform';
 import { Vector3d } from './Vector3d';
 
@@ -215,7 +216,7 @@ export class Point3d {
    * @returns true if point has the same coordinates as this; otherwise false.
    */
   public static Equals(a: Point3d, b: Point3d): boolean {
-    return Open3d.equals(a.X, b.X) && Open3d.equals(a.Y, b.Y) && Open3d.equals(a.Z, b.Z);
+    return Open3dMath.EpsilonEquals(a.X, b.X) && Open3dMath.EpsilonEquals(a.Y, b.Y) && Open3dMath.EpsilonEquals(a.Z, b.Z);
   }
 
   /**

@@ -1,5 +1,6 @@
 import { Line } from './Line';
 import { Open3d } from './Open3d';
+import { Open3dMath } from './Open3dMath';
 import { Plane } from './Plane';
 import { Point3d } from './Point3d';
 import { Vector3d } from './Vector3d';
@@ -40,7 +41,7 @@ export class Intersection {
     const d2121 = p21.X * p21.X + p21.Y * p21.Y + p21.Z * p21.Z;
 
     const denom = d2121 * d4343 - d4321 * d4321;
-    if (Open3d.equals(denom, 0)) {
+    if (Open3dMath.EpsilonEquals(denom, 0)) {
       return null;
     }
     const numer = d1343 * d4321 - d1321 * d4343;
@@ -80,7 +81,7 @@ export class Intersection {
     const projectNormal = line.UnitDirection.DotProduct(plane.Normal);
 
     // if line is parallel to plane
-    if (Open3d.equals(projectNormal, 0)) return null;
+    if (Open3dMath.EpsilonEquals(projectNormal, 0)) return null;
 
     const projectLength = -projectLine / projectNormal;
 
@@ -134,7 +135,7 @@ export class Intersection {
 
     const det = a11 * (a22 * a33 - a23 * a32) - a12 * (a21 * a33 - a23 * a31) + a13 * (a21 * a32 - a22 * a31);
 
-    if (Open3d.equals(det, 0)) return null;
+    if (Open3dMath.EpsilonEquals(det, 0)) return null;
 
     const invDet = 1 / det;
 

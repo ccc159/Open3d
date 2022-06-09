@@ -1,4 +1,5 @@
 import { Open3d } from './Open3d';
+import { Open3dMath } from './Open3dMath';
 import { Plane } from './Plane';
 import { Point3d } from './Point3d';
 import { Vector3d } from './Vector3d';
@@ -86,7 +87,7 @@ export class Transform {
     const me = other.M;
 
     for (let i = 0; i < 16; i++) {
-      if (!Open3d.equals(te[i], me[i])) return false;
+      if (!Open3dMath.EpsilonEquals(te[i], me[i])) return false;
     }
 
     return true;
