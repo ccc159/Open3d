@@ -1,4 +1,5 @@
 import { Open3d } from './Open3d';
+import { Open3dMath } from './Open3dMath';
 import { Point3d } from './Point3d';
 import { Transform } from './Transform';
 
@@ -56,14 +57,14 @@ Initializes a new instance of a vector, copying the three components from a vect
    * Gets a value indicating whether or not this is a unit vector. A unit vector has length 1.
    */
   public get IsUnitVector(): boolean {
-    return Open3d.equals(this.Length, 1.0);
+    return Open3dMath.EpsilonEquals(this.Length, 1.0);
   }
 
   /**
    * Gets a value indicating whether the X, Y, and Z values are all equal to 0.0.
    */
   public get IsZero(): boolean {
-    return Open3d.equals(this.X, 0.0) && Open3d.equals(this.Y, 0.0) && Open3d.equals(this.Z, 0.0);
+    return Open3dMath.EpsilonEquals(this.X, 0.0) && Open3dMath.EpsilonEquals(this.Y, 0.0) && Open3dMath.EpsilonEquals(this.Z, 0.0);
   }
 
   /**
@@ -266,7 +267,7 @@ Initializes a new instance of a vector, copying the three components from a vect
    * @returns true if vector has the same coordinates as this; otherwise false.
    */
   public static Equals(a: Vector3d, b: Vector3d): boolean {
-    return Open3d.equals(a.X, b.X) && Open3d.equals(a.Y, b.Y) && Open3d.equals(a.Z, b.Z);
+    return Open3dMath.EpsilonEquals(a.X, b.X) && Open3dMath.EpsilonEquals(a.Y, b.Y) && Open3dMath.EpsilonEquals(a.Z, b.Z);
   }
 
   /**
@@ -286,7 +287,7 @@ Initializes a new instance of a vector, copying the three components from a vect
   public static VectorAngle(a: Vector3d, b: Vector3d): number {
     if (a.IsZero || b.IsZero) throw new Error('Cannot compute angle of zero-length vector.');
     let cos = Vector3d.DotProduct(a, b) / (a.Length * b.Length);
-    cos = Open3d.clamp(cos, -1, 1);
+    cos = Open3dMath.Clamp(cos, -1, 1);
     return Math.acos(cos);
   }
 
@@ -341,8 +342,8 @@ Initializes a new instance of a vector, copying the three components from a vect
   public static IsParallel(a: Vector3d, b: Vector3d): Open3d.ParallelIndicator {
     if (a.IsZero || b.IsZero) return Open3d.ParallelIndicator.Parallel;
     const angle = Vector3d.VectorAngle(a, b);
-    if (Open3d.angleEquals(angle, 0)) return Open3d.ParallelIndicator.Parallel;
-    if (Open3d.angleEquals(angle, Math.PI)) return Open3d.ParallelIndicator.AntiParallel;
+    if (Open3dMath.EpsilonEquals(angle, 0, Open3d.ANGLE_EPSILON)) return Open3d.ParallelIndicator.Parallel;
+    if (Open3dMath.EpsilonEquals(angle, Math.PI, Open3d.ANGLE_EPSILON)) return Open3d.ParallelIndicator.AntiParallel;
     return Open3d.ParallelIndicator.NotParallel;
   }
 
@@ -363,8 +364,8 @@ Initializes a new instance of a vector, copying the three components from a vect
   public static IsPerpendicular(a: Vector3d, b: Vector3d): boolean {
     if (a.IsZero || b.IsZero) return true;
     const angle = Vector3d.VectorAngle(a, b);
-    if (Open3d.angleEquals(angle, Math.PI / 2)) return true;
-    if (Open3d.angleEquals(angle, -Math.PI / 2)) return true;
+    if (Open3dMath.EpsilonEquals(angle, Math.PI / 2, Open3d.ANGLE_EPSILON)) return true;
+    if (Open3dMath.EpsilonEquals(angle, -Math.PI / 2, Open3d.ANGLE_EPSILON)) return true;
     return false;
   }
 

@@ -1,4 +1,5 @@
 import { Open3d } from './Open3d';
+import { Open3dMath } from './Open3dMath';
 import { Point3d } from './Point3d';
 import { Transform } from './Transform';
 import { Vector3d } from './Vector3d';
@@ -117,7 +118,7 @@ export class Line {
     let t = startEnd_startP / startEnd2;
 
     if (limitToFiniteSegment) {
-      t = Open3d.clamp(t, 0, 1);
+      t = Open3dMath.Clamp(t, 0, 1);
     }
 
     return t;
