@@ -10,6 +10,7 @@ module.exports = {
       type: 'umd',
       name: 'Open3d',
     },
+    globalObject: 'this',
   },
   resolve: {
     extensions: ['.ts', '.js'],
