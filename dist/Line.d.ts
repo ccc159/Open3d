@@ -1,3 +1,4 @@
+import { Point3d } from './Point3d';
 import { Transform } from './Transform';
 import { Vector3d } from './Vector3d';
 /**
@@ -7,17 +8,17 @@ export declare class Line {
     /**
      * Start point of line segment.
      */
-    From: Vector3d;
+    From: Point3d;
     /**
      * End point of line segment.
      */
-    To: Vector3d;
+    To: Point3d;
     /**
      * Constructs a new line segment between two points.
      * @param from the from point
      * @param to the to point
      */
-    constructor(from: Vector3d, to: Vector3d);
+    constructor(from: Point3d, to: Point3d);
     /**
      * Determines whether this line is valid.
      * A line is not valid when the start and end points are the same point.
@@ -48,34 +49,34 @@ export declare class Line {
      * @param param Parameter to evaluate line segment at. Line parameters are normalized parameters.
      * @returns The point at the specified parameter.
      */
-    PointAt(param: number): Vector3d;
+    PointAt(param: number): Point3d;
     /**
      * Computes a point located at a specific metric distance from the line origin (From). If line start and end coincide, then the start point is always returned.
      * @param distance A positive, 0, or a negative value that will be the distance from From.
      * @returns The newly found point.
      */
-    PointAtLength(distance: number): Vector3d;
+    PointAtLength(distance: number): Point3d;
     /**
      * Finds the parameter on the (in)finite line segment that is closest to a test point.
      * @param testPoint Point to project onto the line.
      * @param limitToFiniteSegment If true, the projection is limited to the finite line segment. default: false
      * @returns The parameter on the line that is closest to testPoint.
      */
-    ClosestParameter(testPoint: Vector3d, limitToFiniteSegment?: boolean): number;
+    ClosestParameter(testPoint: Point3d, limitToFiniteSegment?: boolean): number;
     /**
      * Finds the point on the (in)finite line segment that is closest to a test point.
      * @param testPoint Point to project onto the line.
      * @param limitToFiniteSegment If true, the projection is limited to the finite line segment. default: false
      * @returns The point on the (in)finite line that is closest to testPoint.
      */
-    ClosestPoint(testPoint: Vector3d, limitToFiniteSegment?: boolean): Vector3d;
+    ClosestPoint(testPoint: Point3d, limitToFiniteSegment?: boolean): Point3d;
     /**
      * Compute the shortest distance between this line segment and a test point.
      * @param testPoint Point for distance computation.
      * @param limitToFiniteSegment If true, the distance is limited to the finite line segment. default: false
      * @returns The shortest distance between this line segment and testPoint.
      */
-    DistanceTo(testPoint: Vector3d, limitToFiniteSegment?: boolean): number;
+    DistanceTo(testPoint: Point3d, limitToFiniteSegment?: boolean): number;
     /**
      * Determines whether a line has the same value as this line.
      * @param other A line.

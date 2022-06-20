@@ -1,6 +1,6 @@
 {
   "name": "open3d",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Open3d is a 3d geometry library for javascript.",
   "main": "./dist/open3d.js",
   "types": "./dist/index.d.ts",

@@ -1,1574 +1,192 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Vector3d | open3d</title>
-	<meta name="description" content="Documentation for open3d">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../assets/css/main.css">
-	<script async src="../assets/js/search.js" id="search-script"></script>
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="../index.html" class="title">open3d</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="../modules.html">open3d</a>
-				</li>
-				<li>
-					<a href="Vector3d.html">Vector3d</a>
-				</li>
-			</ul>
-			<h1>Class Vector3d</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Represents the 3d vector in three-dimensional space.</p>
-					</div>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">Vector3d</span>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
-				<section class="tsd-panel tsd-index-panel">
-					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="Vector3d.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="Vector3d.html#X" class="tsd-kind-icon">X</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="Vector3d.html#Y" class="tsd-kind-icon">Y</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="Vector3d.html#Z" class="tsd-kind-icon">Z</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#XAxis" class="tsd-kind-icon">XAxis</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#YAxis" class="tsd-kind-icon">YAxis</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#ZAxis" class="tsd-kind-icon">ZAxis</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Zero" class="tsd-kind-icon">Zero</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Accessors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="Vector3d.html#IsUnitVector" class="tsd-kind-icon">Is<wbr>Unit<wbr>Vector</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="Vector3d.html#IsZero" class="tsd-kind-icon">Is<wbr>Zero</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="Vector3d.html#Length" class="tsd-kind-icon">Length</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Add" class="tsd-kind-icon">Add</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#CrossProduct" class="tsd-kind-icon">Cross<wbr>Product</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#DistanceTo" class="tsd-kind-icon">Distance<wbr>To</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Divide" class="tsd-kind-icon">Divide</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#DotProduct" class="tsd-kind-icon">Dot<wbr>Product</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Equals" class="tsd-kind-icon">Equals</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#GetPerpendicularVector" class="tsd-kind-icon">Get<wbr>Perpendicular<wbr>Vector</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#IsParallelTo" class="tsd-kind-icon">Is<wbr>Parallel<wbr>To</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#IsPerpendicularTo" class="tsd-kind-icon">Is<wbr>Perpendicular<wbr>To</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Multiply" class="tsd-kind-icon">Multiply</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Reverse" class="tsd-kind-icon">Reverse</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Subtract" class="tsd-kind-icon">Subtract</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Transform" class="tsd-kind-icon">Transform</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Unitize" class="tsd-kind-icon">Unitize</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#VectorAngle" class="tsd-kind-icon">Vector<wbr>Angle</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#VectorRotate" class="tsd-kind-icon">Vector<wbr>Rotate</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#toString" class="tsd-kind-icon">to<wbr>String</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Add-1" class="tsd-kind-icon">Add</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#CrossProduct-1" class="tsd-kind-icon">Cross<wbr>Product</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Distance" class="tsd-kind-icon">Distance</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Divide-1" class="tsd-kind-icon">Divide</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#DotProduct-1" class="tsd-kind-icon">Dot<wbr>Product</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Equals-1" class="tsd-kind-icon">Equals</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Interpolate" class="tsd-kind-icon">Interpolate</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#IsParallel" class="tsd-kind-icon">Is<wbr>Parallel</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#IsPerpendicular" class="tsd-kind-icon">Is<wbr>Perpendicular</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Multiply-1" class="tsd-kind-icon">Multiply</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Reverse-1" class="tsd-kind-icon">Reverse</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Subtract-1" class="tsd-kind-icon">Subtract</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Unitize-1" class="tsd-kind-icon">Unitize</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#VectorAngle-1" class="tsd-kind-icon">Vector<wbr>Angle</a></li>
-							</ul>
-						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Vector3d<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L14">Vector3d.ts:14</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Initializes a new instance of a vector, using its three components.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>x: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>y: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>z: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-										</div>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="X" class="tsd-anchor"></a>
-					<h3>X</h3>
-					<div class="tsd-signature tsd-kind-icon">X<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L25">Vector3d.ts:25</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Gets or sets the X (first) component of the vector.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="Y" class="tsd-anchor"></a>
-					<h3>Y</h3>
-					<div class="tsd-signature tsd-kind-icon">Y<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L30">Vector3d.ts:30</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Gets or sets the Y (second) component of the vector.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="Z" class="tsd-anchor"></a>
-					<h3>Z</h3>
-					<div class="tsd-signature tsd-kind-icon">Z<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L35">Vector3d.ts:35</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Gets or sets the Z (third) component of the vector.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="XAxis" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> XAxis</h3>
-					<div class="tsd-signature tsd-kind-icon">XAxis<span class="tsd-signature-symbol">:</span> <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol"> = ...</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L61">Vector3d.ts:61</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Gets the value of the vector with components 1,0,0.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="YAxis" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> YAxis</h3>
-					<div class="tsd-signature tsd-kind-icon">YAxis<span class="tsd-signature-symbol">:</span> <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol"> = ...</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L66">Vector3d.ts:66</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Gets the value of the vector with components 0,1,0.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="ZAxis" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> ZAxis</h3>
-					<div class="tsd-signature tsd-kind-icon">ZAxis<span class="tsd-signature-symbol">:</span> <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol"> = ...</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L71">Vector3d.ts:71</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Gets the value of the vector with components 0,0,1.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="Zero" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Zero</h3>
-					<div class="tsd-signature tsd-kind-icon">Zero<span class="tsd-signature-symbol">:</span> <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol"> = ...</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L76">Vector3d.ts:76</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Gets the value of the vector with components 0,0,0.</p>
-						</div>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Accessors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="IsUnitVector" class="tsd-anchor"></a>
-					<h3>Is<wbr>Unit<wbr>Vector</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> IsUnitVector<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L40">Vector3d.ts:40</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Gets a value indicating whether or not this is a unit vector. A unit vector has length 1.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="IsZero" class="tsd-anchor"></a>
-					<h3>Is<wbr>Zero</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> IsZero<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L47">Vector3d.ts:47</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Gets a value indicating whether the X, Y, and Z values are all equal to 0.0.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="Length" class="tsd-anchor"></a>
-					<h3>Length</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> Length<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L54">Vector3d.ts:54</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Computes the length (or magnitude, or size) of this vector.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="Add" class="tsd-anchor"></a>
-					<h3>Add</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Add<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L97">Vector3d.ts:97</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Add a vector to this vector and returns a new vector.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-							<p>A new vector that is the sum of this and vector.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="CrossProduct" class="tsd-anchor"></a>
-					<h3>Cross<wbr>Product</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Cross<wbr>Product<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L203">Vector3d.ts:203</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>cross product of this vector and other vector</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Another vector to cross product with.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="DistanceTo" class="tsd-anchor"></a>
-					<h3>Distance<wbr>To</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Distance<wbr>To<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L221">Vector3d.ts:221</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Computes distance to another point.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="Divide" class="tsd-anchor"></a>
-					<h3>Divide</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Divide<span class="tsd-signature-symbol">(</span>factor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L156">Vector3d.ts:156</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Divides this vector by a factor and returns a new vector.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>factor: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the factor to divide this vector by.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-							<p>A new vector</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="DotProduct" class="tsd-anchor"></a>
-					<h3>Dot<wbr>Product</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Dot<wbr>Product<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L184">Vector3d.ts:184</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>dot product of this vector and other vector</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Another vector to dot product with.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="Equals" class="tsd-anchor"></a>
-					<h3>Equals</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Equals<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L239">Vector3d.ts:239</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Determines whether it equials to other vector.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Another vector to compare.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="GetPerpendicularVector" class="tsd-anchor"></a>
-					<h3>Get<wbr>Perpendicular<wbr>Vector</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Get<wbr>Perpendicular<wbr>Vector<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L355">Vector3d.ts:355</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Get an arbitrary vector perpendicular to this vector</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="IsParallelTo" class="tsd-anchor"></a>
-					<h3>Is<wbr>Parallel<wbr>To</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Is<wbr>Parallel<wbr>To<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/Open3d.ParallelIndicator.html" class="tsd-signature-type" data-tsd-kind="Enumeration">ParallelIndicator</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L316">Vector3d.ts:316</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Determines whether a vector is parallel to another vector</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Another vector to compare.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../enums/Open3d.ParallelIndicator.html" class="tsd-signature-type" data-tsd-kind="Enumeration">ParallelIndicator</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="IsPerpendicularTo" class="tsd-anchor"></a>
-					<h3>Is<wbr>Perpendicular<wbr>To</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Is<wbr>Perpendicular<wbr>To<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L338">Vector3d.ts:338</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Determines whether a vector is perpendicular to another vector</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Another vector to compare.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="Multiply" class="tsd-anchor"></a>
-					<h3>Multiply</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Multiply<span class="tsd-signature-symbol">(</span>factor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L135">Vector3d.ts:135</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Multiplies this vector by a factor and returns a new vector.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>factor: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the factor to multiply this vector by.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-							<p>A new vector</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="Reverse" class="tsd-anchor"></a>
-					<h3>Reverse</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Reverse<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L275">Vector3d.ts:275</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>return a reversed vector</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="Subtract" class="tsd-anchor"></a>
-					<h3>Subtract</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Subtract<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L116">Vector3d.ts:116</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Subtract a vector from this vector and returns a new vector.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-							<p>A new vector</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="Transform" class="tsd-anchor"></a>
-					<h3>Transform</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Transform<span class="tsd-signature-symbol">(</span>transformation<span class="tsd-signature-symbol">: </span><a href="Transform.html" class="tsd-signature-type" data-tsd-kind="Class">Transform</a>, asVector<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L419">Vector3d.ts:419</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Transforms the vector and return a new vector
-										The transformation matrix acts on the left of the vector; i.e.,
-									result = transformation*vector</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>transformation: <a href="Transform.html" class="tsd-signature-type" data-tsd-kind="Class">Transform</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Transformation matrix to apply.</p>
-									</div>
-								</li>
-								<li>
-									<h5>asVector: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>If true, the transform will not apply its translation part (a vector being translated is equal to itself), otherwise, the translation will be applied like transforming a point. default: false.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="Unitize" class="tsd-anchor"></a>
-					<h3>Unitize</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Unitize<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L292">Vector3d.ts:292</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>return a unitized vector</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="VectorAngle" class="tsd-anchor"></a>
-					<h3>Vector<wbr>Angle</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Vector<wbr>Angle<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L261">Vector3d.ts:261</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Compute the angle between two vectors.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Another vector to compare.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>The angle between this and other in radians.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="VectorRotate" class="tsd-anchor"></a>
-					<h3>Vector<wbr>Rotate</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">Vector<wbr>Rotate<span class="tsd-signature-symbol">(</span>angle<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, axis<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L347">Vector3d.ts:347</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Rotates this vector around a given axis.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>angle: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Angle of rotation (in radians).</p>
-									</div>
-								</li>
-								<li>
-									<h5>axis: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Axis of rotation.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="toString" class="tsd-anchor"></a>
-					<h3>to<wbr>String</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L438">Vector3d.ts:438</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>override toString</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="Add-1" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Add</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">Add<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L88">Vector3d.ts:88</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Sums up two vectors.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A vector.</p>
-									</div>
-								</li>
-								<li>
-									<h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A second vector.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-							<p>A sum vector.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="CrossProduct-1" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Cross<wbr>Product</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">Cross<wbr>Product<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L195">Vector3d.ts:195</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Computes the cross product (or vector product, or exterior product) of two vectors.
-									This operation is not commutative.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>First vector.</p>
-									</div>
-								</li>
-								<li>
-									<h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Second vector.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-							<p>A new vector that is perpendicular to both a and b, has Length == a.Length * b.Length * sin(theta) where theta is the angle between a and b. The resulting vector is oriented according to the right hand rule.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="Distance" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Distance</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">Distance<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L212">Vector3d.ts:212</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Computes distance between two points.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>First vector.</p>
-									</div>
-								</li>
-								<li>
-									<h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Second vector.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="Divide-1" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Divide</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">Divide<span class="tsd-signature-symbol">(</span>vector<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, t<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L145">Vector3d.ts:145</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Divides a Vector3d by a number, having the effect of shrinking it.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>vector: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A vector.</p>
-									</div>
-								</li>
-								<li>
-									<h5>t: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A number.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-							<p>A new vector that is componentwise divided by t.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="DotProduct-1" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Dot<wbr>Product</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">Dot<wbr>Product<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L176">Vector3d.ts:176</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>returning the dot product of two vectors</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A vector.</p>
-									</div>
-								</li>
-								<li>
-									<h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A second vector.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="Equals-1" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Equals</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">Equals<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L231">Vector3d.ts:231</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Determines whether two vectors have the same value.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A vector.</p>
-									</div>
-								</li>
-								<li>
-									<h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A second vector.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>true if vector has the same coordinates as this; otherwise false.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="Interpolate" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Interpolate</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">Interpolate<span class="tsd-signature-symbol">(</span>v1<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, v2<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, t<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L167">Vector3d.ts:167</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Interpolate between two points/vectors.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>v1: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-								</li>
-								<li>
-									<h5>v2: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-								</li>
-								<li>
-									<h5>t: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A number in the range [0,1].</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-							<p>A new vector that is the linear interpolation between a and b at t.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="IsParallel" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Is<wbr>Parallel</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">Is<wbr>Parallel<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/Open3d.ParallelIndicator.html" class="tsd-signature-type" data-tsd-kind="Enumeration">ParallelIndicator</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L304">Vector3d.ts:304</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Determines whether a vector is parallel to another vector</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>First vector for angle.</p>
-									</div>
-								</li>
-								<li>
-									<h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Second vector for angle.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../enums/Open3d.ParallelIndicator.html" class="tsd-signature-type" data-tsd-kind="Enumeration">ParallelIndicator</a></h4>
-							<p>ParallelIndicator</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="IsPerpendicular" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Is<wbr>Perpendicular</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">Is<wbr>Perpendicular<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L326">Vector3d.ts:326</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Determines whether a vector is perpendicular to another vector</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>First vector for angle.</p>
-									</div>
-								</li>
-								<li>
-									<h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Second vector for angle.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>true if vectors form Pi-radians (90-degree) angles with each other; otherwise false.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="Multiply-1" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Multiply</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">Multiply<span class="tsd-signature-symbol">(</span>vector<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, t<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L126">Vector3d.ts:126</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Multiplies a vector by a number, having the effect of scaling it.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>vector: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A vector.</p>
-									</div>
-								</li>
-								<li>
-									<h5>t: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A number.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-							<p>A new vector that is the original vector coordinatewise multiplied by t.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="Reverse-1" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Reverse</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">Reverse<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L268">Vector3d.ts:268</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Reverse a vector.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>v: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="Subtract-1" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Subtract</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">Subtract<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L107">Vector3d.ts:107</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Subtracts the second vector from the first one.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A vector.</p>
-									</div>
-								</li>
-								<li>
-									<h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A second vector.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-							<p>A subtract vector.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="Unitize-1" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Unitize</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">Unitize<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L282">Vector3d.ts:282</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Unitize a vector.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>v: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="VectorAngle-1" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Vector<wbr>Angle</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">Vector<wbr>Angle<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/ccc159/open3d/blob/f243edf/src/Vector3d.ts#L249">Vector3d.ts:249</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Compute the angle between two vectors.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>First vector for angle.</p>
-									</div>
-								</li>
-								<li>
-									<h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Second vector for angle.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>The angle between a and b in radians.</p>
-						</li>
-					</ul>
-				</section>
-			</section>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class=" ">
-						<a href="../modules.html">Exports</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-class">
-						<a href="Intersection.html" class="tsd-kind-icon">Intersection</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="Line.html" class="tsd-kind-icon">Line</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="Plane.html" class="tsd-kind-icon">Plane</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="Transform.html" class="tsd-kind-icon">Transform</a>
-					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="Vector3d.html" class="tsd-kind-icon">Vector3d</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="Vector3d.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="Vector3d.html#X" class="tsd-kind-icon">X</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="Vector3d.html#Y" class="tsd-kind-icon">Y</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="Vector3d.html#Z" class="tsd-kind-icon">Z</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#XAxis" class="tsd-kind-icon">XAxis</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#YAxis" class="tsd-kind-icon">YAxis</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#ZAxis" class="tsd-kind-icon">ZAxis</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#Zero" class="tsd-kind-icon">Zero</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="Vector3d.html#IsUnitVector" class="tsd-kind-icon">Is<wbr>Unit<wbr>Vector</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="Vector3d.html#IsZero" class="tsd-kind-icon">Is<wbr>Zero</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="Vector3d.html#Length" class="tsd-kind-icon">Length</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#Add" class="tsd-kind-icon">Add</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#CrossProduct" class="tsd-kind-icon">Cross<wbr>Product</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#DistanceTo" class="tsd-kind-icon">Distance<wbr>To</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#Divide" class="tsd-kind-icon">Divide</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#DotProduct" class="tsd-kind-icon">Dot<wbr>Product</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#Equals" class="tsd-kind-icon">Equals</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#GetPerpendicularVector" class="tsd-kind-icon">Get<wbr>Perpendicular<wbr>Vector</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#IsParallelTo" class="tsd-kind-icon">Is<wbr>Parallel<wbr>To</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#IsPerpendicularTo" class="tsd-kind-icon">Is<wbr>Perpendicular<wbr>To</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#Multiply" class="tsd-kind-icon">Multiply</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#Reverse" class="tsd-kind-icon">Reverse</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#Subtract" class="tsd-kind-icon">Subtract</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#Transform" class="tsd-kind-icon">Transform</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#Unitize" class="tsd-kind-icon">Unitize</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#VectorAngle" class="tsd-kind-icon">Vector<wbr>Angle</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#VectorRotate" class="tsd-kind-icon">Vector<wbr>Rotate</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="Vector3d.html#toString" class="tsd-kind-icon">to<wbr>String</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#Add-1" class="tsd-kind-icon">Add</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#CrossProduct-1" class="tsd-kind-icon">Cross<wbr>Product</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#Distance" class="tsd-kind-icon">Distance</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#Divide-1" class="tsd-kind-icon">Divide</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#DotProduct-1" class="tsd-kind-icon">Dot<wbr>Product</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#Equals-1" class="tsd-kind-icon">Equals</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#Interpolate" class="tsd-kind-icon">Interpolate</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#IsParallel" class="tsd-kind-icon">Is<wbr>Parallel</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#IsPerpendicular" class="tsd-kind-icon">Is<wbr>Perpendicular</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#Multiply-1" class="tsd-kind-icon">Multiply</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#Reverse-1" class="tsd-kind-icon">Reverse</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#Subtract-1" class="tsd-kind-icon">Subtract</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#Unitize-1" class="tsd-kind-icon">Unitize</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="Vector3d.html#VectorAngle-1" class="tsd-kind-icon">Vector<wbr>Angle</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="../assets/js/main.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Vector3d | open3d</title><meta name="description" content="Documentation for open3d"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script async src="../assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base=".."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="../index.html" class="title">open3d</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><ul class="tsd-breadcrumb"><li><a href="../modules.html">open3d</a></li><li><a href="Vector3d.html">Vector3d</a></li></ul><h1>Class Vector3d </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><section class="tsd-panel tsd-comment"><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Represents the 3d vector in three-dimensional space.</p>
+</div></div></section><section class="tsd-panel tsd-hierarchy"><h3>Hierarchy</h3><ul class="tsd-hierarchy"><li><span class="target">Vector3d</span></li></ul></section><section class="tsd-panel-group tsd-index-group"><h2>Index</h2><section class="tsd-panel tsd-index-panel"><div class="tsd-index-content"><section class="tsd-index-section "><h3>Constructors</h3><ul class="tsd-index-list"><li class="tsd-kind-constructor tsd-parent-kind-class"><a href="Vector3d.html#constructor" class="tsd-kind-icon">constructor</a></li></ul></section><section class="tsd-index-section "><h3>Properties</h3><ul class="tsd-index-list"><li class="tsd-kind-property tsd-parent-kind-class"><a href="Vector3d.html#X" class="tsd-kind-icon">X</a></li><li class="tsd-kind-property tsd-parent-kind-class"><a href="Vector3d.html#Y" class="tsd-kind-icon">Y</a></li><li class="tsd-kind-property tsd-parent-kind-class"><a href="Vector3d.html#Z" class="tsd-kind-icon">Z</a></li><li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#XAxis" class="tsd-kind-icon">XAxis</a></li><li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#YAxis" class="tsd-kind-icon">YAxis</a></li><li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#ZAxis" class="tsd-kind-icon">ZAxis</a></li><li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Zero" class="tsd-kind-icon">Zero</a></li></ul></section><section class="tsd-index-section "><h3>Accessors</h3><ul class="tsd-index-list"><li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="Vector3d.html#IsUnitVector" class="tsd-kind-icon">Is<wbr/>Unit<wbr/>Vector</a></li><li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="Vector3d.html#IsZero" class="tsd-kind-icon">Is<wbr/>Zero</a></li><li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="Vector3d.html#Length" class="tsd-kind-icon">Length</a></li></ul></section><section class="tsd-index-section "><h3>Methods</h3><ul class="tsd-index-list"><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Add" class="tsd-kind-icon">Add</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#AddToPoint" class="tsd-kind-icon">Add<wbr/>To<wbr/>Point</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#CrossProduct" class="tsd-kind-icon">Cross<wbr/>Product</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#DistanceTo" class="tsd-kind-icon">Distance<wbr/>To</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Divide" class="tsd-kind-icon">Divide</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#DotProduct" class="tsd-kind-icon">Dot<wbr/>Product</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Equals" class="tsd-kind-icon">Equals</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#GetPerpendicularVector" class="tsd-kind-icon">Get<wbr/>Perpendicular<wbr/>Vector</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#IsParallelTo" class="tsd-kind-icon">Is<wbr/>Parallel<wbr/>To</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#IsPerpendicularTo" class="tsd-kind-icon">Is<wbr/>Perpendicular<wbr/>To</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Multiply" class="tsd-kind-icon">Multiply</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Reverse" class="tsd-kind-icon">Reverse</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Subtract" class="tsd-kind-icon">Subtract</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Transform" class="tsd-kind-icon">Transform</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Unitize" class="tsd-kind-icon">Unitize</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#VectorAngle" class="tsd-kind-icon">Vector<wbr/>Angle</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#VectorRotate" class="tsd-kind-icon">Vector<wbr/>Rotate</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#toString" class="tsd-kind-icon">to<wbr/>String</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Add-1" class="tsd-kind-icon">Add</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#AddToPoint-1" class="tsd-kind-icon">Add<wbr/>To<wbr/>Point</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#CreateFromPoint3d" class="tsd-kind-icon">Create<wbr/>From<wbr/>Point3d</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#CreateFromVector" class="tsd-kind-icon">Create<wbr/>From<wbr/>Vector</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#CrossProduct-1" class="tsd-kind-icon">Cross<wbr/>Product</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Distance" class="tsd-kind-icon">Distance</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Divide-1" class="tsd-kind-icon">Divide</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#DotProduct-1" class="tsd-kind-icon">Dot<wbr/>Product</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Equals-1" class="tsd-kind-icon">Equals</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Interpolate" class="tsd-kind-icon">Interpolate</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#IsParallel" class="tsd-kind-icon">Is<wbr/>Parallel</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#IsPerpendicular" class="tsd-kind-icon">Is<wbr/>Perpendicular</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Multiply-1" class="tsd-kind-icon">Multiply</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Reverse-1" class="tsd-kind-icon">Reverse</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Subtract-1" class="tsd-kind-icon">Subtract</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Unitize-1" class="tsd-kind-icon">Unitize</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#VectorAngle-1" class="tsd-kind-icon">Vector<wbr/>Angle</a></li></ul></section></div></section></section><section class="tsd-panel-group tsd-member-group "><h2>Constructors</h2><section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class"><a id="constructor" class="tsd-anchor"></a><h3 class="tsd-anchor-link">constructor<a href="#constructor" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">new <wbr/>Vector3d<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L16">Vector3d.ts:16</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Initializes a new instance of a vector, using its three components.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>x: <span class="tsd-signature-type">number</span></h5></li><li><h5>y: <span class="tsd-signature-type">number</span></h5></li><li><h5>z: <span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4></li></ul></section></section><section class="tsd-panel-group tsd-member-group "><h2>Properties</h2><section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="X" class="tsd-anchor"></a><h3 class="tsd-anchor-link">X<a href="#X" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><div class="tsd-signature tsd-kind-icon">X<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L44">Vector3d.ts:44</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Gets or sets the X (first) component of the vector.</p>
+</div></div></section><section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="Y" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Y<a href="#Y" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><div class="tsd-signature tsd-kind-icon">Y<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L49">Vector3d.ts:49</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Gets or sets the Y (second) component of the vector.</p>
+</div></div></section><section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="Z" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Z<a href="#Z" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><div class="tsd-signature tsd-kind-icon">Z<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L54">Vector3d.ts:54</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Gets or sets the Z (third) component of the vector.</p>
+</div></div></section><section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static"><a id="XAxis" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> XAxis<a href="#XAxis" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><div class="tsd-signature tsd-kind-icon">XAxis<span class="tsd-signature-symbol">:</span> <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L80">Vector3d.ts:80</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Gets the value of the vector with components 1,0,0.</p>
+</div></div></section><section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static"><a id="YAxis" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> YAxis<a href="#YAxis" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><div class="tsd-signature tsd-kind-icon">YAxis<span class="tsd-signature-symbol">:</span> <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L85">Vector3d.ts:85</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Gets the value of the vector with components 0,1,0.</p>
+</div></div></section><section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static"><a id="ZAxis" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> ZAxis<a href="#ZAxis" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><div class="tsd-signature tsd-kind-icon">ZAxis<span class="tsd-signature-symbol">:</span> <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L90">Vector3d.ts:90</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Gets the value of the vector with components 0,0,1.</p>
+</div></div></section><section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static"><a id="Zero" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Zero<a href="#Zero" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><div class="tsd-signature tsd-kind-icon">Zero<span class="tsd-signature-symbol">:</span> <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L95">Vector3d.ts:95</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Gets the value of the vector with components 0,0,0.</p>
+</div></div></section></section><section class="tsd-panel-group tsd-member-group "><h2>Accessors</h2><section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class"><a id="IsUnitVector" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Is<wbr/>Unit<wbr/>Vector<a href="#IsUnitVector" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> IsUnitVector<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L59">Vector3d.ts:59</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Gets a value indicating whether or not this is a unit vector. A unit vector has length 1.</p>
+</div></div><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class"><a id="IsZero" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Is<wbr/>Zero<a href="#IsZero" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> IsZero<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L66">Vector3d.ts:66</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Gets a value indicating whether the X, Y, and Z values are all equal to 0.0.</p>
+</div></div><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class"><a id="Length" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Length<a href="#Length" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> Length<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L73">Vector3d.ts:73</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Computes the length (or magnitude, or size) of this vector.</p>
+</div></div><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section></section><section class="tsd-panel-group tsd-member-group "><h2>Methods</h2><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="Add" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Add<a href="#Add" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Add<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L126">Vector3d.ts:126</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Add a vector to this vector and returns a new vector.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4><div><p>A new vector that is the sum of this and vector.</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="AddToPoint" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Add<wbr/>To<wbr/>Point<a href="#AddToPoint" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Add<wbr/>To<wbr/>Point<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Point3d.html" class="tsd-signature-type" data-tsd-kind="Class">Point3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Point3d.html" class="tsd-signature-type" data-tsd-kind="Class">Point3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L135">Vector3d.ts:135</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Add a point to this vector and returns a new point.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>other: <a href="Point3d.html" class="tsd-signature-type" data-tsd-kind="Class">Point3d</a></h5></li></ul><h4 class="tsd-returns-title">Returns <a href="Point3d.html" class="tsd-signature-type" data-tsd-kind="Class">Point3d</a></h4><div><p>A new point that is the sum of this and vector.</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="CrossProduct" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Cross<wbr/>Product<a href="#CrossProduct" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Cross<wbr/>Product<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L241">Vector3d.ts:241</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>cross product of this vector and other vector</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Another vector to cross product with.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="DistanceTo" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Distance<wbr/>To<a href="#DistanceTo" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Distance<wbr/>To<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L259">Vector3d.ts:259</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Computes distance to another point.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="Divide" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Divide<a href="#Divide" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Divide<span class="tsd-signature-symbol">(</span>factor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L194">Vector3d.ts:194</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Divides this vector by a factor and returns a new vector.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>factor: <span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>the factor to divide this vector by.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4><div><p>A new vector</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="DotProduct" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Dot<wbr/>Product<a href="#DotProduct" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Dot<wbr/>Product<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L222">Vector3d.ts:222</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>dot product of this vector and other vector</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Another vector to dot product with.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="Equals" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Equals<a href="#Equals" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Equals<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L277">Vector3d.ts:277</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Determines whether it equials to other vector.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Another vector to compare.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="GetPerpendicularVector" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Get<wbr/>Perpendicular<wbr/>Vector<a href="#GetPerpendicularVector" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Get<wbr/>Perpendicular<wbr/>Vector<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L393">Vector3d.ts:393</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Get an arbitrary vector perpendicular to this vector</p>
+</div></div><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="IsParallelTo" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Is<wbr/>Parallel<wbr/>To<a href="#IsParallelTo" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Is<wbr/>Parallel<wbr/>To<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/Open3d.ParallelIndicator.html" class="tsd-signature-type" data-tsd-kind="Enumeration">ParallelIndicator</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L354">Vector3d.ts:354</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Determines whether a vector is parallel to another vector</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Another vector to compare.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="../enums/Open3d.ParallelIndicator.html" class="tsd-signature-type" data-tsd-kind="Enumeration">ParallelIndicator</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="IsPerpendicularTo" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Is<wbr/>Perpendicular<wbr/>To<a href="#IsPerpendicularTo" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Is<wbr/>Perpendicular<wbr/>To<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L376">Vector3d.ts:376</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Determines whether a vector is perpendicular to another vector</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Another vector to compare.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="Multiply" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Multiply<a href="#Multiply" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Multiply<span class="tsd-signature-symbol">(</span>factor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L173">Vector3d.ts:173</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Multiplies this vector by a factor and returns a new vector.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>factor: <span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>the factor to multiply this vector by.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4><div><p>A new vector</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="Reverse" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Reverse<a href="#Reverse" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Reverse<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L313">Vector3d.ts:313</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>return a reversed vector</p>
+</div></div><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="Subtract" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Subtract<a href="#Subtract" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Subtract<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L154">Vector3d.ts:154</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Subtract a vector from this vector and returns a new vector.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4><div><p>A new vector</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="Transform" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Transform<a href="#Transform" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Transform<span class="tsd-signature-symbol">(</span>transformation<span class="tsd-signature-symbol">: </span><a href="Transform.html" class="tsd-signature-type" data-tsd-kind="Class">Transform</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L456">Vector3d.ts:456</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Transforms the vector and return a new vector
+The transformation matrix acts on the left of the vector; i.e.,
+result = transformation * vector</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>transformation: <a href="Transform.html" class="tsd-signature-type" data-tsd-kind="Class">Transform</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Transformation matrix to apply.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="Unitize" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Unitize<a href="#Unitize" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Unitize<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L330">Vector3d.ts:330</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>return a unitized vector</p>
+</div></div><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="VectorAngle" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Vector<wbr/>Angle<a href="#VectorAngle" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Vector<wbr/>Angle<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L299">Vector3d.ts:299</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Compute the angle between two vectors.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>other: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Another vector to compare.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><div><p>The angle between this and other in radians.</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="VectorRotate" class="tsd-anchor"></a><h3 class="tsd-anchor-link">Vector<wbr/>Rotate<a href="#VectorRotate" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">Vector<wbr/>Rotate<span class="tsd-signature-symbol">(</span>angle<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, axis<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L385">Vector3d.ts:385</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Rotates this vector around a given axis.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>angle: <span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Angle of rotation (in radians).</p>
+</div></div></li><li><h5>axis: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Axis of rotation.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="toString" class="tsd-anchor"></a><h3 class="tsd-anchor-link">to<wbr/>String<a href="#toString" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class"><li class="tsd-signature tsd-kind-icon">to<wbr/>String<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L473">Vector3d.ts:473</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>override toString</p>
+</div></div><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="Add-1" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Add<a href="#Add-1" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Add<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L107">Vector3d.ts:107</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Sums up two vectors.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A vector.</p>
+</div></div></li><li><h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A second vector.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4><div><p>A sum vector.</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="AddToPoint-1" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Add<wbr/>To<wbr/>Point<a href="#AddToPoint-1" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Add<wbr/>To<wbr/>Point<span class="tsd-signature-symbol">(</span>vector<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, point<span class="tsd-signature-symbol">: </span><a href="Point3d.html" class="tsd-signature-type" data-tsd-kind="Class">Point3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Point3d.html" class="tsd-signature-type" data-tsd-kind="Class">Point3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L117">Vector3d.ts:117</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Sums up a vector to a point and returns a new point.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>vector: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A vector.</p>
+</div></div></li><li><h5>point: <a href="Point3d.html" class="tsd-signature-type" data-tsd-kind="Class">Point3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A point.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Point3d.html" class="tsd-signature-type" data-tsd-kind="Class">Point3d</a></h4><div><p>The new point from the addition of vector and point.</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="CreateFromPoint3d" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Create<wbr/>From<wbr/>Point3d<a href="#CreateFromPoint3d" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Create<wbr/>From<wbr/>Point3d<span class="tsd-signature-symbol">(</span>point<span class="tsd-signature-symbol">: </span><a href="Point3d.html" class="tsd-signature-type" data-tsd-kind="Class">Point3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L35">Vector3d.ts:35</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Initializes a new instance of a vector, copying the three components from the three coordinates of a point.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>point: <a href="Point3d.html" class="tsd-signature-type" data-tsd-kind="Class">Point3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A point3d.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="CreateFromVector" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Create<wbr/>From<wbr/>Vector<a href="#CreateFromVector" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Create<wbr/>From<wbr/>Vector<span class="tsd-signature-symbol">(</span>vector<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L27">Vector3d.ts:27</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Initializes a new instance of a vector, copying the three components from a vector.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>vector: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A vector.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="CrossProduct-1" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Cross<wbr/>Product<a href="#CrossProduct-1" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Cross<wbr/>Product<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L233">Vector3d.ts:233</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Computes the cross product (or vector product, or exterior product) of two vectors.
+This operation is not commutative.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>First vector.</p>
+</div></div></li><li><h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Second vector.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4><div><p>A new vector that is perpendicular to both a and b, has Length == a.Length * b.Length * sin(theta) where theta is the angle between a and b. The resulting vector is oriented according to the right hand rule.</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="Distance" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Distance<a href="#Distance" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Distance<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L250">Vector3d.ts:250</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Computes distance between two points.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>First vector.</p>
+</div></div></li><li><h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Second vector.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="Divide-1" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Divide<a href="#Divide-1" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Divide<span class="tsd-signature-symbol">(</span>vector<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, t<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L183">Vector3d.ts:183</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Divides a Vector3d by a number, having the effect of shrinking it.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>vector: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A vector.</p>
+</div></div></li><li><h5>t: <span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A number.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4><div><p>A new vector that is componentwise divided by t.</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="DotProduct-1" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Dot<wbr/>Product<a href="#DotProduct-1" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Dot<wbr/>Product<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L214">Vector3d.ts:214</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>returning the dot product of two vectors</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A vector.</p>
+</div></div></li><li><h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A second vector.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="Equals-1" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Equals<a href="#Equals-1" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Equals<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L269">Vector3d.ts:269</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Determines whether two vectors have the same value.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A vector.</p>
+</div></div></li><li><h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A second vector.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><div><p>true if vector has the same coordinates as this; otherwise false.</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="Interpolate" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Interpolate<a href="#Interpolate" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Interpolate<span class="tsd-signature-symbol">(</span>v1<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, v2<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, t<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L205">Vector3d.ts:205</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Interpolate between two points/vectors.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>v1: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5></li><li><h5>v2: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5></li><li><h5>t: <span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A number in the range [0,1].</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4><div><p>A new vector that is the linear interpolation between a and b at t.</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="IsParallel" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Is<wbr/>Parallel<a href="#IsParallel" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Is<wbr/>Parallel<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/Open3d.ParallelIndicator.html" class="tsd-signature-type" data-tsd-kind="Enumeration">ParallelIndicator</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L342">Vector3d.ts:342</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Determines whether a vector is parallel to another vector</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>First vector for angle.</p>
+</div></div></li><li><h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Second vector for angle.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="../enums/Open3d.ParallelIndicator.html" class="tsd-signature-type" data-tsd-kind="Enumeration">ParallelIndicator</a></h4><div><p>ParallelIndicator</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="IsPerpendicular" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Is<wbr/>Perpendicular<a href="#IsPerpendicular" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Is<wbr/>Perpendicular<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L364">Vector3d.ts:364</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Determines whether a vector is perpendicular to another vector</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>First vector for angle.</p>
+</div></div></li><li><h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Second vector for angle.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><div><p>true if vectors form Pi-radians (90-degree) angles with each other; otherwise false.</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="Multiply-1" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Multiply<a href="#Multiply-1" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Multiply<span class="tsd-signature-symbol">(</span>vector<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, t<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L164">Vector3d.ts:164</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Multiplies a vector by a number, having the effect of scaling it.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>vector: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A vector.</p>
+</div></div></li><li><h5>t: <span class="tsd-signature-type">number</span></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A number.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4><div><p>A new vector that is the original vector coordinatewise multiplied by t.</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="Reverse-1" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Reverse<a href="#Reverse-1" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Reverse<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L306">Vector3d.ts:306</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Reverse a vector.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>v: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="Subtract-1" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Subtract<a href="#Subtract-1" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Subtract<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L145">Vector3d.ts:145</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Subtracts the second vector from the first one.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A vector.</p>
+</div></div></li><li><h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>A second vector.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4><div><p>A subtract vector.</p>
+</div></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="Unitize-1" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Unitize<a href="#Unitize-1" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Unitize<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L320">Vector3d.ts:320</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Unitize a vector.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>v: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5></li></ul><h4 class="tsd-returns-title">Returns <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static"><a id="VectorAngle-1" class="tsd-anchor"></a><h3 class="tsd-anchor-link"><span class="tsd-flag ts-flagStatic">Static</span> Vector<wbr/>Angle<a href="#VectorAngle-1" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static"><li class="tsd-signature tsd-kind-icon">Vector<wbr/>Angle<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/ccc159/open3d/blob/8b08c52/src/Vector3d.ts#L287">Vector3d.ts:287</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Compute the angle between two vectors.</p>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>a: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>First vector for angle.</p>
+</div></div></li><li><h5>b: <a href="Vector3d.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3d</a></h5><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Second vector for angle.</p>
+</div></div></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><div><p>The angle between a and b in radians.</p>
+</div></li></ul></section></section></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class=""><a href="../modules.html">Exports</a></li><li class=" tsd-kind-namespace"><a href="../modules/Open3d.html">Open3d</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="current tsd-kind-class"><a href="Vector3d.html" class="tsd-kind-icon">Vector3d</a><ul><li class="tsd-kind-constructor tsd-parent-kind-class"><a href="Vector3d.html#constructor" class="tsd-kind-icon">constructor</a></li><li class="tsd-kind-property tsd-parent-kind-class"><a href="Vector3d.html#X" class="tsd-kind-icon">X</a></li><li class="tsd-kind-property tsd-parent-kind-class"><a href="Vector3d.html#Y" class="tsd-kind-icon">Y</a></li><li class="tsd-kind-property tsd-parent-kind-class"><a href="Vector3d.html#Z" class="tsd-kind-icon">Z</a></li><li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#XAxis" class="tsd-kind-icon">XAxis</a></li><li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#YAxis" class="tsd-kind-icon">YAxis</a></li><li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#ZAxis" class="tsd-kind-icon">ZAxis</a></li><li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Zero" class="tsd-kind-icon">Zero</a></li><li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="Vector3d.html#IsUnitVector" class="tsd-kind-icon">Is<wbr/>Unit<wbr/>Vector</a></li><li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="Vector3d.html#IsZero" class="tsd-kind-icon">Is<wbr/>Zero</a></li><li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="Vector3d.html#Length" class="tsd-kind-icon">Length</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Add" class="tsd-kind-icon">Add</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#AddToPoint" class="tsd-kind-icon">Add<wbr/>To<wbr/>Point</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#CrossProduct" class="tsd-kind-icon">Cross<wbr/>Product</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#DistanceTo" class="tsd-kind-icon">Distance<wbr/>To</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Divide" class="tsd-kind-icon">Divide</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#DotProduct" class="tsd-kind-icon">Dot<wbr/>Product</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Equals" class="tsd-kind-icon">Equals</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#GetPerpendicularVector" class="tsd-kind-icon">Get<wbr/>Perpendicular<wbr/>Vector</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#IsParallelTo" class="tsd-kind-icon">Is<wbr/>Parallel<wbr/>To</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#IsPerpendicularTo" class="tsd-kind-icon">Is<wbr/>Perpendicular<wbr/>To</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Multiply" class="tsd-kind-icon">Multiply</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Reverse" class="tsd-kind-icon">Reverse</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Subtract" class="tsd-kind-icon">Subtract</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Transform" class="tsd-kind-icon">Transform</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#Unitize" class="tsd-kind-icon">Unitize</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#VectorAngle" class="tsd-kind-icon">Vector<wbr/>Angle</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#VectorRotate" class="tsd-kind-icon">Vector<wbr/>Rotate</a></li><li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector3d.html#toString" class="tsd-kind-icon">to<wbr/>String</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Add-1" class="tsd-kind-icon">Add</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#AddToPoint-1" class="tsd-kind-icon">Add<wbr/>To<wbr/>Point</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#CreateFromPoint3d" class="tsd-kind-icon">Create<wbr/>From<wbr/>Point3d</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#CreateFromVector" class="tsd-kind-icon">Create<wbr/>From<wbr/>Vector</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#CrossProduct-1" class="tsd-kind-icon">Cross<wbr/>Product</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Distance" class="tsd-kind-icon">Distance</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Divide-1" class="tsd-kind-icon">Divide</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#DotProduct-1" class="tsd-kind-icon">Dot<wbr/>Product</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Equals-1" class="tsd-kind-icon">Equals</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Interpolate" class="tsd-kind-icon">Interpolate</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#IsParallel" class="tsd-kind-icon">Is<wbr/>Parallel</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#IsPerpendicular" class="tsd-kind-icon">Is<wbr/>Perpendicular</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Multiply-1" class="tsd-kind-icon">Multiply</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Reverse-1" class="tsd-kind-icon">Reverse</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Subtract-1" class="tsd-kind-icon">Subtract</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#Unitize-1" class="tsd-kind-icon">Unitize</a></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="Vector3d.html#VectorAngle-1" class="tsd-kind-icon">Vector<wbr/>Angle</a></li></ul></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li><li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="../assets/main.js"></script></body></html>

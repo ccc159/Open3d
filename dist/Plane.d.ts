@@ -1,6 +1,7 @@
 import { Transform } from './Transform';
 import { Line } from './Line';
 import { Vector3d } from './Vector3d';
+import { Point3d } from './Point3d';
 /**
  * Represents the value of a center point and two axes in a plane in three dimensions.
  */
@@ -8,7 +9,7 @@ export declare class Plane {
     /**
      * Origin point of this plane.
      */
-    Origin: Vector3d;
+    Origin: Point3d;
     /**
      * X axis vector of this plane.
      */
@@ -28,7 +29,7 @@ export declare class Plane {
      * @param yAxis The Y axis vector of the plane.
      * @returns The plane created from the given point and vectors.
      */
-    constructor(origin: Vector3d, xAxis: Vector3d, yAxis: Vector3d);
+    constructor(origin: Point3d, xAxis: Vector3d, yAxis: Vector3d);
     /**
      * Gets the normal of this plane. This is essentially the ZAxis of the plane.
      */
@@ -67,25 +68,25 @@ export declare class Plane {
      * @param v The v parameter of the point on the plane.
      * @returns The point at the specified parameter.
      */
-    PointAt(u: number, v: number): Vector3d;
+    PointAt(u: number, v: number): Point3d;
     /**
      * Gets the parameters of the point on the plane closest to a test point.
      * @param point The point to test.
      * @returns The [u,v] parameters of the point on the plane closest to the test point.
      */
-    ClosestParameter(testPoint: Vector3d): [number, number];
+    ClosestParameter(testPoint: Point3d): [number, number];
     /**
      * Gets the point on the plane closest to a test point.
      * @param point Point to get close to..
      * @returns The point on the plane that is closest to testPoint.
      */
-    ClosestPoint(testPoint: Vector3d): Vector3d;
+    ClosestPoint(testPoint: Point3d): Point3d;
     /**
      * Returns the signed distance from testPoint to its projection onto this plane. If the point is below the plane, a negative distance is returned.
      * @param testPoint The point to test.
      * @returns The signed distance
      */
-    DistanceTo(testPoint: Vector3d): number;
+    DistanceTo(testPoint: Point3d): number;
     /**
      * Make a copy of this plane by creating again from origin, XAxis and YAxis.
      */
@@ -100,7 +101,7 @@ export declare class Plane {
      * @param point The point to check.
      * @returns True if the point is coplanar to this plane.
      */
-    IsPointCoplanar(point: Vector3d): boolean;
+    IsPointCoplanar(point: Point3d): boolean;
     /**
      * Checks if a line is coplanar to this plane.
      * @param line The line to check.
@@ -113,7 +114,7 @@ export declare class Plane {
      * @param normal The normal vector of the plane.
      * @returns The plane created from the given point and normal.
      */
-    static CreateFromNormal(origin: Vector3d, normal: Vector3d): Plane;
+    static CreateFromNormal(origin: Point3d, normal: Vector3d): Plane;
     /**
      * Constructs a plane from a point and two vectors in the plane.
      * @param origin The origin point of the plane.
@@ -121,7 +122,7 @@ export declare class Plane {
      * @param yAxis The Y axis vector of the plane.
      * @returns The plane created from the given point and vectors.
      */
-    static CreateFromFrame(origin: Vector3d, xAxis: Vector3d, yAxis: Vector3d): Plane;
+    static CreateFromFrame(origin: Point3d, xAxis: Vector3d, yAxis: Vector3d): Plane;
     /**
      * Transform the plane using a Transformation matrix.
      * @param transformation Transformation matrix to apply.

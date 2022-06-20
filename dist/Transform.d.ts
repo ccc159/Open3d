@@ -1,26 +1,10 @@
 import { Plane } from './Plane';
+import { Point3d } from './Point3d';
 import { Vector3d } from './Vector3d';
 /**
  * a type that has an array of 16 numbers
  */
-export declare type Array16Number = [
-    number,
-    number,
-    number,
-    number,
-    number,
-    number,
-    number,
-    number,
-    number,
-    number,
-    number,
-    number,
-    number,
-    number,
-    number,
-    number
-];
+export declare type Array16Number = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
 /**
  * Represents the values in a 4x4 transform matrix.
  */
@@ -100,7 +84,7 @@ export declare class Transform {
      * @param rotationAxis The axis to ratate around, default Vector3D.ZAxis
      * @param rotationCenter The center of the rotation, default (0,0,0).
      */
-    static Rotation(angle: number, rotationAxis?: Vector3d, rotationCenter?: Vector3d): Transform;
+    static Rotation(angle: number, rotationAxis?: Vector3d, rotationCenter?: Point3d): Transform;
     /**
      * Constructs a new rotation transformation with specified angle and rotation axis.
      * This function assume the rotation origin is the world origin.
@@ -151,7 +135,7 @@ export declare class Transform {
      * @param scalar The scaling factor
      * @returns The scaled transform
      */
-    static Scale(location: Vector3d, scalar: number): Transform;
+    static Scale(location: Point3d, scalar: number): Transform;
     /**
      * Constructs a new transform by combining given transforms in order
      * Note: as transforms multiplication is not commutative, the order matters.

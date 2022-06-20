@@ -1,4 +1,5 @@
 import { Open3d } from './Open3d';
+import { Point3d } from './Point3d';
 import { Transform } from './Transform';
 /**
  * Represents the 3d vector in three-dimensional space.
@@ -11,6 +12,17 @@ export declare class Vector3d {
      * @param z
      */
     constructor(x: number, y: number, z: number);
+    /**
+     *
+  Initializes a new instance of a vector, copying the three components from a vector.
+     * @param vector A vector.
+     */
+    static CreateFromVector(vector: Vector3d): Vector3d;
+    /**
+     * Initializes a new instance of a vector, copying the three components from the three coordinates of a point.
+     * @param point A point3d.
+     */
+    static CreateFromPoint3d(point: Point3d): Vector3d;
     /**
      * Gets or sets the X (first) component of the vector.
      */
@@ -59,11 +71,24 @@ export declare class Vector3d {
      */
     static Add(a: Vector3d, b: Vector3d): Vector3d;
     /**
+     * Sums up a vector to a point and returns a new point.
+     * @param vector A vector.
+     * @param point A point.
+     * @returns The new point from the addition of vector and point.
+     */
+    static AddToPoint(vector: Vector3d, point: Point3d): Point3d;
+    /**
      * Add a vector to this vector and returns a new vector.
      * @param vector A vector.
      * @returns A new vector that is the sum of this and vector.
      */
     Add(other: Vector3d): Vector3d;
+    /**
+     * Add a point to this vector and returns a new point.
+     * @param point A point.
+     * @returns A new point that is the sum of this and vector.
+     */
+    AddToPoint(other: Point3d): Point3d;
     /**
      * Subtracts the second vector from the first one.
      * @param a A vector.
@@ -225,11 +250,10 @@ export declare class Vector3d {
     /**
      * Transforms the vector and return a new vector
      * The transformation matrix acts on the left of the vector; i.e.,
-     * result = transformation*vector
+     * result = transformation * vector
      * @param transformation Transformation matrix to apply.
-     * @param asVector If true, the transform will not apply its translation part (a vector being translated is equal to itself), otherwise, the translation will be applied like transforming a point. default: false.
      */
-    Transform(transformation: Transform, asVector?: boolean): Vector3d;
+    Transform(transformation: Transform): Vector3d;
     /**
      * override toString
      */

@@ -1,6 +1,6 @@
 import { Line } from './Line';
 import { Plane } from './Plane';
-import { Vector3d } from './Vector3d';
+import { Point3d } from './Point3d';
 /**
  * Provides static methods for the computation of intersections, projections, sections and similar.
  */
@@ -15,7 +15,7 @@ export declare class Intersection {
      * @param tolerance Tolerance used to determine if the lines are intersecting, default: Open3d.EPSILON
      * @returns The intersection point, or null if there's no intersection.
      */
-    static LineLine(firstLine: Line, secondLine: Line, limitToFiniteSegment?: boolean, tolerance?: number): Vector3d | null;
+    static LineLine(firstLine: Line, secondLine: Line, limitToFiniteSegment?: boolean, tolerance?: number): Point3d | null;
     /**
      * Intersects a line and a plane. This function only returns a single intersection point or null (i.e. if the line is coincident with the plane then no intersection is assumed).
      * @param line The line to intersect with.
@@ -23,7 +23,7 @@ export declare class Intersection {
      * @param limitToFiniteSegment If true, the intersection is limited to the finite line segment. default: false
      * @returns The intersection point.
      */
-    static LinePlane(line: Line, plane: Plane, limitToFiniteSegment?: boolean): Vector3d | null;
+    static LinePlane(line: Line, plane: Plane, limitToFiniteSegment?: boolean): Point3d | null;
     /**
      * Intersects two planes and return the intersection line. If the planes are parallel or coincident, no intersection is assumed.
      * @param planeA First plane for intersection.
@@ -38,5 +38,5 @@ export declare class Intersection {
      * @param planeC Third plane for intersection.
      * @returns The intersection point or null.
      */
-    static PlanePlanePlane(planeA: Plane, planeB: Plane, planeC: Plane): Vector3d | null;
+    static PlanePlanePlane(planeA: Plane, planeB: Plane, planeC: Plane): Point3d | null;
 }
