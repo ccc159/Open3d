@@ -37,6 +37,39 @@ test('CreateFromNormal', () => {
   expect(p2.ZAxis.IsPerpendicularTo(p2.YAxis)).toBe(true);
 });
 
+test('CreateFromNormalSpecialCase', () => {
+  const v0 = new Vector3d(0, 0, 3.14159);
+  const v1 = new Vector3d(0, 0, -3.14159);
+  const v2 = new Vector3d(0, 3.14159, 0);
+  const v3 = new Vector3d(0, -3.14159, 0);
+  const v4 = new Vector3d(3.14159, 0, 0);
+  const v5 = new Vector3d(-3.14159, 0, 0);
+
+  const p0 = Plane.CreateFromNormal(o, v0);
+  expect(p0.XAxis.Equals(Vector3d.XAxis)).toBe(true);
+  expect(p0.YAxis.Equals(Vector3d.YAxis)).toBe(true);
+
+  const p1 = Plane.CreateFromNormal(o, v1);
+  expect(p1.XAxis.Equals(Vector3d.XAxis.Multiply(-1))).toBe(true);
+  expect(p1.YAxis.Equals(Vector3d.YAxis)).toBe(true);
+
+  const p2 = Plane.CreateFromNormal(o, v2);
+  expect(p2.XAxis.Equals(Vector3d.ZAxis)).toBe(true);
+  expect(p2.YAxis.Equals(Vector3d.XAxis)).toBe(true);
+
+  const p3 = Plane.CreateFromNormal(o, v3);
+  expect(p3.XAxis.Equals(Vector3d.ZAxis.Multiply(-1))).toBe(true);
+  expect(p3.YAxis.Equals(Vector3d.XAxis)).toBe(true);
+
+  const p4 = Plane.CreateFromNormal(o, v4);
+  expect(p4.XAxis.Equals(Vector3d.YAxis)).toBe(true);
+  expect(p4.YAxis.Equals(Vector3d.ZAxis)).toBe(true);
+
+  const p5 = Plane.CreateFromNormal(o, v5);
+  expect(p5.XAxis.Equals(Vector3d.YAxis.Multiply(-1))).toBe(true);
+  expect(p5.YAxis.Equals(Vector3d.ZAxis)).toBe(true);
+})
+
 test('Axis, Normal, AxisLine', () => {
   expect(p1.YAxisLine.Length).toBeCloseTo(1);
   expect(p1.ZAxisLine.To.X).toBeCloseTo(-0.408, 3);
