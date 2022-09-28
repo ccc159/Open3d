@@ -40,6 +40,8 @@ test('Length', () => {
   expect(vec.Length).toBe(5);
   vec = new Vector3d(0, 0, 0);
   expect(vec.Length).toBe(0);
+  vec = new Vector3d(0, 0.009999, 0);
+  expect(vec.Length).toBe(0.009999);
 });
 
 test('XAxis, YAxis, ZAxis, Zero', () => {
@@ -187,6 +189,18 @@ test('Unitize', () => {
   expect(v1.Unitize().X).toBeCloseTo(0.267, 3);
   expect(v1.Unitize().Y).toBeCloseTo(0.535, 3);
   expect(v1.Unitize().Z).toBeCloseTo(0.802, 3);
+
+  v1 = new Vector3d(0, 0.009999, 0);
+  expect(v1.Unitize()).toMatchObject(new Vector3d(0, 1, 0));
+  v1 = new Vector3d(1.334456, 0, 0);
+  expect(v1.Unitize()).toMatchObject(new Vector3d(1, 0, 0));
+  v1 = new Vector3d(0, 0, 1.334456);
+  expect(v1.Unitize()).toMatchObject(new Vector3d(0, 0, 1));
+  v1 = new Vector3d(0, 0.000000000000000000012, 1.334456);
+  expect(v1.Unitize()).toMatchObject(new Vector3d(0, 0, 1));
+  v1 = new Vector3d(0, 0.00000000012, .09999);
+  console.log(v1.Unitize());
+  expect(v1.Unitize()).toMatchObject(new Vector3d(0, 0, 1));
 
   v1 = new Vector3d(0, 0, 0);
   expect(() => v1.Unitize()).toThrowError();
