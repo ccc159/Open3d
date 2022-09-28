@@ -199,7 +199,6 @@ test('Unitize', () => {
   v1 = new Vector3d(0, 0.000000000000000000012, 1.334456);
   expect(v1.Unitize()).toMatchObject(new Vector3d(0, 0, 1));
   v1 = new Vector3d(0, 0.00000000012, .09999);
-  console.log(v1.Unitize());
   expect(v1.Unitize()).toMatchObject(new Vector3d(0, 0, 1));
 
   v1 = new Vector3d(0, 0, 0);
