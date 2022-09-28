@@ -7,6 +7,7 @@ import { Transform } from './Transform';
  * Represents the 3d vector in three-dimensional space.
  */
 export class Vector3d {
+  static UNITIZE_TOLERANCE = 1e-9;
   /**
    * Initializes a new instance of a vector, using its three components.
    * @param x
@@ -320,7 +321,11 @@ Initializes a new instance of a vector, copying the three components from a vect
   public static Unitize(v: Vector3d): Vector3d {
     var length = v.Length;
     if (length === 0) throw new Error('Cannot unitize a zero-length vector.');
-    const unit = new Vector3d(v.X / length, v.Y / length, v.Z / length);
+    const unit = new Vector3d(
+      (Math.abs(v.X) < this.UNITIZE_TOLERANCE  / length ? 0 : v.X) / length,
+      (Math.abs(v.Y) < this.UNITIZE_TOLERANCE  / length ? 0 : v.Y) / length,
+      (Math.abs(v.Z) < this.UNITIZE_TOLERANCE  / length ? 0 : v.Z) / length
+    );
     return unit;
   }
 
