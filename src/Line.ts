@@ -181,10 +181,11 @@ export class Line {
    * Creates a line from start point and span vector
    * @param origin A point on the line.
    * @param direction A direction vector. 
+   * @param length (optional) the length of the line. If not provided, the length will be the length of the direction vector.
    * @returns A line.
    */
-  public static CreateFromOriginAndDirection(origin: Point3d, direction: Vector3d): Line {
-    return new Line(origin, origin.Add(direction));
+  public static CreateFromOriginAndDirection(origin: Point3d, direction: Vector3d, length?: number): Line {
+    return new Line(origin, origin.Add( length ? direction.Unitize().Multiply(length) : direction));
   }
 
   /**

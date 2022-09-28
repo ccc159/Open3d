@@ -139,6 +139,11 @@ test('LineFromOriginAndDirection', () => {
   lA = new Line(new Point3d(1,1,1), new Point3d(-1,2,3));
   lB = Line.CreateFromOriginAndDirection(new Point3d(1,1,1), new Vector3d(-2,1,2));
   expect(lA).toMatchObject(lB);
+  lA = new Line(new Point3d(0,0,0), new Point3d(10, 0, 0));
+  lB = Line.CreateFromOriginAndDirection(new Point3d(0,0,0), new Vector3d(1, 0, 0), 10);
+  expect(lA).toMatchObject(lB);
+  lB = Line.CreateFromOriginAndDirection(new Point3d(0,0,0), new Vector3d(1, 0, 0), 5);
+  expect(lA.To.DistanceTo(lB.To)).toEqual(5);
 });
 
 test('Transform', () => {
