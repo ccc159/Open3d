@@ -178,6 +178,16 @@ export class Line {
   }
 
   /**
+   * Creates a line from start point and span vector
+   * @param origin A point on the line.
+   * @param direction A direction vector. 
+   * @returns A line.
+   */
+  public static CreateFromOriginAndDirection(origin: Point3d, direction: Vector3d): Line {
+    return new Line(origin, origin.Add(direction));
+  }
+
+  /**
    * Transform the line using a Transformation matrix.
    * @param transformation Transformation matrix to apply.
    * @returns A new transformed line.
