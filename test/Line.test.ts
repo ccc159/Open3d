@@ -132,6 +132,15 @@ test('Flip', () => {
   expect(l1.Flip().To.Equals(v1)).toBe(true);
 });
 
+test('LineFromOriginAndDirection', () => {
+  let lA = new Line(new Point3d(1, 0, 0), new Point3d(10, 0, 0));
+  let lB = Line.CreateFromOriginAndDirection(new Point3d(1, 0, 0), new Vector3d(9, 0, 0));
+  expect(lA).toMatchObject(lB);
+  lA = new Line(new Point3d(1,1,1), new Point3d(-1,2,3));
+  lB = Line.CreateFromOriginAndDirection(new Point3d(1,1,1), new Vector3d(-2,1,2));
+  expect(lA).toMatchObject(lB);
+});
+
 test('Transform', () => {
   // test rotation
   const rotation = Transform.Rotation(Math.PI / 2, new Vector3d(0, 0, 1), new Point3d(0, 0, 0));
