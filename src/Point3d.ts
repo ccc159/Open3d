@@ -249,4 +249,30 @@ export class Point3d {
   public toString(): string {
     return `Point3d [${this.X}, ${this.Y}, ${this.Z}]`;
   }
+
+  /**
+   * Static method to calculate the angle between three given points [previous, corner, next]
+   * @param previous The previous point
+   * @param corner The corner point
+   * @param next The next point
+   * @returns The angle in radians
+   */
+  public static Angle(previous: Point3d, corner: Point3d, next: Point3d): number {
+    const v1 = previous.SubtractPoint(corner);
+    const v2 = next.SubtractPoint(corner);
+    return Vector3d.VectorAngle(v1, v2);
+  }
+
+  /**
+   * Static method to calculate the positive angle between three given 2D (parallel to WorldXY) points [previous, corner, next]
+   * @param previous The previous point
+   * @param corner The corner point
+   * @param next The next point
+   * @returns The angle in radians
+   */
+  public static Angle2D(previous: Point3d, corner: Point3d, next: Point3d): number {
+    const v1 = previous.SubtractPoint(corner);
+    const v2 = next.SubtractPoint(corner);
+    return Vector3d.VectorAngle2D(v1, v2);
+  }
 }
