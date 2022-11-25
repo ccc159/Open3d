@@ -138,13 +138,24 @@ export class Plane {
   }
 
   /**
+   * Returns the distance from other geometry to its projection onto this plane.
+   * @param other The point to test.
+   * @returns The signed distance
+   */
+  public DistanceTo(other: Point3d | Line | Plane, limitToFiniteSegment?: boolean): number {
+    if (other instanceof Line) return Line.LinePlaneDistance(other, this, limitToFiniteSegment);
+    if (other instanceof Plane) return Plane.PlanePlaneDistance(this, other);
+    return Plane.PlanePointDistance(this, other);
+  }
+
+  /**
    * Returns the signed distance from testPoint to its projection onto this plane. If the point is below the plane, a negative distance is returned.
    * @param testPoint The point to test.
    * @returns The signed distance
    */
-  public DistanceTo(testPoint: Point3d): number {
-    const vec = testPoint.SubtractPoint(this.Origin);
-    const distance = testPoint.DistanceTo(this.ClosestPoint(testPoint));
+  public SignedDistanceTo(otherPoint: Point3d): number {
+    const vec = otherPoint.SubtractPoint(this.Origin);
+    const distance = otherPoint.DistanceTo(this.ClosestPoint(otherPoint));
     return vec.DotProduct(this.ZAxis) > 0 ? distance : -distance;
   }
 
