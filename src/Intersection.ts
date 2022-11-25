@@ -3,7 +3,6 @@ import { Open3d } from './Open3d';
 import { Open3dMath } from './Open3dMath';
 import { Plane } from './Plane';
 import { Point3d } from './Point3d';
-import { Vector3d } from './Vector3d';
 
 /**
  * Provides static methods for the computation of intersections, projections, sections and similar.
@@ -11,6 +10,124 @@ import { Vector3d } from './Vector3d';
 export class Intersection {
   private constructor() {
     throw new Error('Cannot initialize an intersection instance.');
+  }
+
+  static unsafeTParametersOpen3d(line1: Line, line2: Line): [number, number] {
+    const n0 = line1.Direction.CrossProduct(line2.Direction);
+    const n1 = line1.Direction.CrossProduct(n0);
+    const n2 = line2.Direction.CrossProduct(n0);
+
+    let t1 = line2.From.SubtractPoint(line1.From).DotProduct(n2) / line1.Direction.DotProduct(n2);
+    let t2 = line1.From.SubtractPoint(line2.From).DotProduct(n1) / line2.Direction.DotProduct(n1);
+
+    return [t1, t2];
+  }
+
+  public static unsafeTParametersRaw(line1: Line, line2: Line): [number, number] {
+    const p1 = line1.From;
+    const p2 = line1.To;
+    const p3 = line2.From;
+    const p4 = line2.To;
+
+    const p13 = p1.SubtractPoint(p3);
+    const p43 = p4.SubtractPoint(p3);
+    const p21 = p2.SubtractPoint(p1);
+
+    const d1343 = p13.X * p43.X + p13.Y * p43.Y + p13.Z * p43.Z;
+    const d4321 = p43.X * p21.X + p43.Y * p21.Y + p43.Z * p21.Z;
+    const d1321 = p13.X * p21.X + p13.Y * p21.Y + p13.Z * p21.Z;
+    const d4343 = p43.X * p43.X + p43.Y * p43.Y + p43.Z * p43.Z;
+    const d2121 = p21.X * p21.X + p21.Y * p21.Y + p21.Z * p21.Z;
+
+    const denom = d2121 * d4343 - d4321 * d4321;
+    const numer = d1343 * d4321 - d1321 * d4343;
+
+    const mua = numer / denom;
+    const mub = (d1343 + d4321 * mua) / d4343;
+
+    return [mua, mub];
+  }
+
+  public static LineLineTParameters(line1: Line, line2: Line): [number, number] | null {
+    if (line1.Direction.IsParallelTo(line2.Direction) !== Open3d.ParallelIndicator.Parallel) return null;
+    if (!line1.IsValid) return [0, Line.LinePointClosestParameter(line2, line1.From)];
+    if (!line2.IsValid) return [Line.LinePointClosestParameter(line1, line2.From), 0];
+
+    const n0 = line1.Direction.CrossProduct(line2.Direction);
+    const n1 = line1.Direction.CrossProduct(n0);
+    const n2 = line2.Direction.CrossProduct(n0);
+
+    let t1 = line2.From.SubtractPoint(line1.From).DotProduct(n2) / line1.Direction.DotProduct(n2);
+    let t2 = line1.From.SubtractPoint(line2.From).DotProduct(n1) / line2.Direction.DotProduct(n1);
+
+    return [t1, t2];
+  }
+
+  public static LineLineCrossing(
+    firstLine: Line,
+    secondLine: Line,
+    limitFirstToFinite: boolean = false,
+    limitSecondToFinite: boolean = false
+  ): [Point3d, Point3d] | null {
+    const result = Intersection.LineLineTParameters(firstLine, secondLine);
+    if (!result) return null;
+    const [t1, t2] = result;
+
+    if (limitFirstToFinite && limitSecondToFinite) {
+      if (t1 >= 0 && t1 <= 1 && t2 >= 0 && t2 <= 1) return [firstLine.PointAt(t1), secondLine.PointAt(t2)];
+      const t0A = Line.LinePointClosestParameter(firstLine, secondLine.From);
+      const t0B = Line.LinePointClosestParameter(firstLine, secondLine.To);
+      const t1A = Line.LinePointClosestParameter(secondLine, firstLine.From);
+      const t1B = Line.LinePointClosestParameter(secondLine, firstLine.To);
+
+      const validPairs: Line[] = [];
+      if (t0A >= 0 && t0A <= 1) validPairs.push(new Line(firstLine.PointAt(t0A), secondLine.From));
+      if (t0B >= 0 && t0B <= 1) validPairs.push(new Line(firstLine.PointAt(t0B), secondLine.To));
+      if (t1A >= 0 && t1A <= 1) validPairs.push(new Line(firstLine.From, secondLine.PointAt(t1A)));
+      if (t1B >= 0 && t1B <= 1) validPairs.push(new Line(firstLine.To, secondLine.PointAt(t1B)));
+
+      if (validPairs.length === 0) {
+        validPairs.push(new Line(firstLine.From, secondLine.From));
+        validPairs.push(new Line(firstLine.From, secondLine.To));
+        validPairs.push(new Line(firstLine.To, secondLine.From));
+        validPairs.push(new Line(firstLine.To, secondLine.To));
+      }
+
+      const shortestLine = validPairs.sort((a, b) => a.Length - b.Length)[0];
+      return [shortestLine.From, shortestLine.To];
+    } else if (limitSecondToFinite) {
+      if (t2 >= 0 && t2 <= 1) return [firstLine.PointAt(t1), secondLine.PointAt(t2)];
+      const p2A = secondLine.PointAt(Line.LinePointClosestParameter(firstLine, secondLine.From));
+      const p2B = secondLine.PointAt(Line.LinePointClosestParameter(firstLine, secondLine.To));
+      if (p2A.DistanceTo(secondLine.From) < p2B.DistanceTo(secondLine.To)) return [p2A, secondLine.From];
+      return [p2B, secondLine.To];
+    } else if (limitFirstToFinite) {
+      if (t1 >= 0 && t1 <= 1) return [firstLine.PointAt(t1), secondLine.PointAt(t2)];
+      const p1A = firstLine.PointAt(Line.LinePointClosestParameter(secondLine, firstLine.From));
+      const p1B = firstLine.PointAt(Line.LinePointClosestParameter(secondLine, firstLine.To));
+      if (p1A.DistanceTo(firstLine.From) < p1B.DistanceTo(firstLine.To)) return [firstLine.From, p1A];
+      return [firstLine.To, p1B];
+    }
+
+    return [firstLine.PointAt(t1), secondLine.PointAt(t2)];
+  }
+
+  public static LineLineDistance(firstLine: Line, secondLine: Line, limitFirstToFinite: boolean = false, limitSecondToFinite: boolean = false): number | null {
+    const result = Intersection.LineLineCrossing(firstLine, secondLine, limitFirstToFinite, limitSecondToFinite);
+    if (!result) return null;
+    return result[0].DistanceTo(result[1]);
+  }
+
+  public static LineLineIntersectionCrossing(
+    firstLine: Line,
+    secondLine: Line,
+    limitFirstToFinite: boolean = false,
+    limitSecondToFinite: boolean = false,
+    tolerance: number = Open3d.EPSILON
+  ): Point3d | null {
+    const result = Intersection.LineLineCrossing(firstLine, secondLine, limitFirstToFinite, limitSecondToFinite);
+    if (!result) return null;
+    return result[0].DistanceTo(result[1]) < tolerance ? result[0] : null;
   }
 
   /**
