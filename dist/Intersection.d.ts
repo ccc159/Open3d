@@ -6,6 +6,12 @@ import { Point3d } from './Point3d';
  */
 export declare class Intersection {
     private constructor();
+    static unsafeTParametersOpen3d(line1: Line, line2: Line): [number, number];
+    static unsafeTParametersRaw(line1: Line, line2: Line): [number, number];
+    static LineLineTParameters(line1: Line, line2: Line): [number, number] | null;
+    static LineLineCrossing(firstLine: Line, secondLine: Line, limitFirstToFinite?: boolean, limitSecondToFinite?: boolean): [Point3d, Point3d] | null;
+    static LineLineDistance(firstLine: Line, secondLine: Line, limitFirstToFinite?: boolean, limitSecondToFinite?: boolean): number | null;
+    static LineLineIntersectionCrossing(firstLine: Line, secondLine: Line, limitFirstToFinite?: boolean, limitSecondToFinite?: boolean, tolerance?: number): Point3d | null;
     /**
      * Try to get an intersection point between this line and another line.
      * If there's no intersection, null is returned.

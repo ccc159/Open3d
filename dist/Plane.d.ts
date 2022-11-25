@@ -82,11 +82,17 @@ export declare class Plane {
      */
     ClosestPoint(testPoint: Point3d): Point3d;
     /**
+     * Returns the distance from other geometry to its projection onto this plane.
+     * @param other The point to test.
+     * @returns The signed distance
+     */
+    DistanceTo(other: Point3d | Line | Plane, limitToFiniteSegment?: boolean): number;
+    /**
      * Returns the signed distance from testPoint to its projection onto this plane. If the point is below the plane, a negative distance is returned.
      * @param testPoint The point to test.
      * @returns The signed distance
      */
-    DistanceTo(testPoint: Point3d): number;
+    SignedDistanceTo(otherPoint: Point3d): number;
     /**
      * Make a copy of this plane by creating again from origin, XAxis and YAxis.
      */
@@ -109,6 +115,12 @@ export declare class Plane {
      */
     IsLineCoplanar(line: Line): boolean;
     /**
+     * Transform the plane using a Transformation matrix.
+     * @param transformation Transformation matrix to apply.
+     * @returns A new transformed plane.
+     */
+    Transform(transformation: Transform): Plane;
+    /**
      * Constructs a plane from a point and a normal vector.
      * @param origin The origin point of the plane.
      * @param normal The normal vector of the plane.
@@ -124,9 +136,17 @@ export declare class Plane {
      */
     static CreateFromFrame(origin: Point3d, xAxis: Vector3d, yAxis: Vector3d): Plane;
     /**
-     * Transform the plane using a Transformation matrix.
-     * @param transformation Transformation matrix to apply.
-     * @returns A new transformed plane.
+     * Static method to find the closest distance between two planes.
+     * @param plane1
+     * @param plane2
+     * @returns number - if planes intersect, return 0.0, otherwise return the distance between the two planes.
      */
-    Transform(transformation: Transform): Plane;
+    static PlanePlaneDistance(plane1: Plane, plane2: Plane): number;
+    /**
+     * Static method for finding the distance between a plane and a point.
+     * @param plane
+     * @param point
+     * @returns number
+     */
+    static PlanePointDistance(plane: Plane, point: Point3d): number;
 }

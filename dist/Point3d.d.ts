@@ -1,3 +1,5 @@
+import { Line } from './Line';
+import { Plane } from './Plane';
 import { Transform } from './Transform';
 import { Vector3d } from './Vector3d';
 /**
@@ -40,7 +42,7 @@ export declare class Point3d {
     /**
      * Sums up a point and a vector, and returns a new point.
      * @param point A point.
-     * @param vecotr A vector.
+     * @param vector A vector.
      * @returns A new point that results from the addition of point and vector.
      */
     static Add(point: Point3d, vector: Vector3d): Point3d;
@@ -56,7 +58,7 @@ export declare class Point3d {
      * @param vector A vector.
      * @returns A new point that results from the addition of point and vector.
      */
-    Add(vecotr: Vector3d): Point3d;
+    Add(vector: Vector3d): Point3d;
     /**
      * Sums up a point and a point, and returns a new point.
      * @param point A point.
@@ -66,7 +68,7 @@ export declare class Point3d {
     /**
      * Subtracts a vector from a point.
      * @param point A point.
-     * @param vecotr A vector.
+     * @param vector A vector.
      * @returns A new point that is the difference of point minus vector.
      */
     static Subtract(point: Point3d, vector: Vector3d): Point3d;
@@ -79,10 +81,10 @@ export declare class Point3d {
     static SubtractPoint(point1: Point3d, point2: Point3d): Vector3d;
     /**
      * Subtracts a vector from a point.
-     * @param vecotr A vector.
+     * @param vector A vector.
      * @returns A new point that is the difference of point minus vector.
      */
-    Subtract(vecotr: Vector3d): Point3d;
+    Subtract(vector: Vector3d): Point3d;
     /**
      * Subtracts a point from a point.
      * @param point A point.
@@ -135,7 +137,7 @@ export declare class Point3d {
      * @param b Second point.
      * @returns The length of the line between this and the other point; or 0 if any of the points is not valid.
      */
-    DistanceTo(other: Point3d): number;
+    DistanceTo(other: Point3d | Line | Plane): number;
     /**
      * Determines whether two points have the same value.
      * @param a A point.
@@ -159,4 +161,20 @@ export declare class Point3d {
      * override toString
      */
     toString(): string;
+    /**
+     * Static method to calculate the angle between three given points [previous, corner, next]
+     * @param previous The previous point
+     * @param corner The corner point
+     * @param next The next point
+     * @returns The angle in radians
+     */
+    static Angle(previous: Point3d, corner: Point3d, next: Point3d): number;
+    /**
+     * Static method to calculate the positive angle between three given 2D (parallel to WorldXY) points [previous, corner, next]
+     * @param previous The previous point
+     * @param corner The corner point
+     * @param next The next point
+     * @returns The angle in radians
+     */
+    static Angle2D(previous: Point3d, corner: Point3d, next: Point3d): number;
 }

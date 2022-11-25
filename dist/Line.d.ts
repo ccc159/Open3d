@@ -1,4 +1,6 @@
+import { Open3d } from './Open3d';
 import { Point3d } from './Point3d';
+import { Plane } from './Plane';
 import { Transform } from './Transform';
 import { Vector3d } from './Vector3d';
 /**
@@ -72,17 +74,23 @@ export declare class Line {
     ClosestPoint(testPoint: Point3d, limitToFiniteSegment?: boolean): Point3d;
     /**
      * Compute the shortest distance between this line segment and a test point.
-     * @param testPoint Point for distance computation.
+     * @param other Other geometry to calculate the distance to.
      * @param limitToFiniteSegment If true, the distance is limited to the finite line segment. default: false
      * @returns The shortest distance between this line segment and testPoint.
      */
-    DistanceTo(testPoint: Point3d, limitToFiniteSegment?: boolean): number;
+    DistanceTo(other: Point3d | Line | Plane, limitToFiniteSegment?: boolean): number;
     /**
      * Determines whether a line has the same value as this line.
      * @param other A line.
      * @returns true if other has the same coordinates as this; otherwise false.
      */
     Equals(other: Line): boolean;
+    /**
+     * Determines whether a plane is parallel to another object
+     * @param other Another vector to compare.
+     * @returns ParallelIndicator of the relation between the two objects.
+     */
+    IsParallelTo(other: Vector3d | Line | Plane): Open3d.ParallelIndicator;
     /**
      * Extend the line by custom distances on both sides.
      * @param startLength Distance to extend the line at the start point. Positive distance result in longer lines.
@@ -101,4 +109,68 @@ export declare class Line {
      * @returns A new transformed line.
      */
     Transform(transformation: Transform): Line;
+    /**
+     * Creates a line from start point and span vector
+     * @param origin A point on the line.
+     * @param direction A direction vector.
+     * @param length (optional) the length of the line. If not provided, the length will be the length of the direction vector.
+     * @returns A line.
+     */
+    static CreateFromOriginAndDirection(origin: Point3d, direction: Vector3d, length?: number): Line;
+    /**
+     * Private static method to compute the parameter value t of the closest point on a line segment to a given point.
+     * @param line
+     * @param point
+     * @returns number (t Parameter)
+     */
+    static LinePointClosestParameter(line: Line, point: Point3d): number;
+    /**
+     * Static method for computing the closest point on a line to a given point
+     * @param line given line
+     * @param point given point
+     * @param limitToFiniteSegment whether the line is considered infinite or not
+     * @returns Point3d
+     */
+    static LinePointClosestPoint(line: Line, point: Point3d, limitToFiniteSegment?: boolean): Point3d;
+    /**
+     * Static method for computing the closest distance of a point to a line
+     * @param line given line
+     * @param point testPoint
+     * @param limitToFiniteSegment whether the line is considered infinite or not
+     * @returns number
+     */
+    static LinePointDistance(line: Line, point: Point3d, limitToFiniteSegment?: boolean): number;
+    /**
+     * Static method to find the points closest to two lines given (crossing or intersecting) lines
+     * @param line1
+     * @param line2
+     * @param limitToFiniteSegments whether the points need to be part of the line segments
+     * @returns [point1, point2] | null if the lines are parallel
+     */
+    static LineLineClosestPoints: (line1: Line, line2: Line, limitToFiniteSegments: boolean) => [Point3d, Point3d] | null;
+    /**
+     * Static method to find the points closest to two lines given (crossing or intersecting) lines
+     * @param line1
+     * @param line2
+     * @param limitFirst whether the points need to be part of the first line segments
+     * @param limitSecond whether the points need to be part of the secind line segments
+     * @returns [point1, point2] | null if the lines are parallel
+     */
+    static LineLineClosestPointsFinite: (line1: Line, line2: Line, limitFirst?: boolean, limitSecond?: boolean) => [Point3d, Point3d] | null;
+    /**
+     * Static method for computing the closest distance of two lines
+     * @param line1
+     * @param line2
+     * @param limitToFiniteSegments
+     * @returns
+     */
+    static LineLineDistance: (line1: Line, line2: Line, limitToFiniteSegments: boolean) => number;
+    /**
+     * Static method to calculate the distance between a line and a plane
+     * @param line
+     * @param plane
+     * @param limitToFiniteSegment - only applies to the line
+     * @returns
+     */
+    static LinePlaneDistance: (line: Line, plane: Plane, limitToFiniteSegment?: boolean) => number;
 }

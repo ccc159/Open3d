@@ -1,10 +1,13 @@
+import { Line } from './Line';
 import { Open3d } from './Open3d';
+import { Plane } from './Plane';
 import { Point3d } from './Point3d';
 import { Transform } from './Transform';
 /**
  * Represents the 3d vector in three-dimensional space.
  */
 export declare class Vector3d {
+    static UNITIZE_TOLERANCE: number;
     /**
      * Initializes a new instance of a vector, using its three components.
      * @param x
@@ -192,6 +195,13 @@ export declare class Vector3d {
      */
     static VectorAngle(a: Vector3d, b: Vector3d): number;
     /**
+     * Computes the positive angle between two vectors assuming they lay in the WORLD XY plane.
+     * @param a First vector for angle.
+     * @param b Second vector for angle.
+     * @returns The angle between a and b in radians.
+     */
+    static VectorAngle2D(a: Vector3d, b: Vector3d): number;
+    /**
      * Compute the angle between two vectors.
      * @param other Another vector to compare.
      * @returns The angle between this and other in radians.
@@ -224,7 +234,7 @@ export declare class Vector3d {
      * Determines whether a vector is parallel to another vector
      * @param other Another vector to compare.
      */
-    IsParallelTo(other: Vector3d): Open3d.ParallelIndicator;
+    IsParallelTo(other: Vector3d | Line | Plane): Open3d.ParallelIndicator;
     /**
      * Determines whether a vector is perpendicular to another vector
      * @param a First vector for angle.
