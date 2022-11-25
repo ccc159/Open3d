@@ -2,6 +2,8 @@ import { Transform } from './Transform';
 import { Line } from './Line';
 import { Vector3d } from './Vector3d';
 import { Point3d } from './Point3d';
+import { Open3d } from './Open3d';
+import { Intersection } from './Intersection';
 
 /**
  * Represents the value of a center point and two axes in a plane in three dimensions.
@@ -193,6 +195,23 @@ export class Plane {
   }
 
   /**
+   * Transform the plane using a Transformation matrix.
+   * @param transformation Transformation matrix to apply.
+   * @returns A new transformed plane.
+   */
+   public Transform(transformation: Transform): Plane {
+    const origin = this.Origin.Transform(transformation);
+    const xAxis = this.XAxis.Transform(transformation);
+    const yAxis = this.YAxis.Transform(transformation);
+
+    return new Plane(origin, xAxis, yAxis);
+  }
+
+  // #endregion
+
+  // #region Static Methods
+
+  /**
    * Constructs a plane from a point and a normal vector.
    * @param origin The origin point of the plane.
    * @param normal The normal vector of the plane.
@@ -218,17 +237,23 @@ export class Plane {
   }
 
   /**
-   * Transform the plane using a Transformation matrix.
-   * @param transformation Transformation matrix to apply.
-   * @returns A new transformed plane.
+   * Static method to find the closest distance between two planes.
+   * @param plane1 
+   * @param plane2 
+   * @returns number - if planes intersect, return 0.0, otherwise return the distance between the two planes.
    */
-  public Transform(transformation: Transform): Plane {
-    const origin = this.Origin.Transform(transformation);
-    const xAxis = this.XAxis.Transform(transformation);
-    const yAxis = this.YAxis.Transform(transformation);
-
-    return new Plane(origin, xAxis, yAxis);
+  public static PlanePlaneDistance(plane1: Plane, plane2: Plane): number {
+    return (Intersection.PlanePlane(plane1, plane2)) ? 0 : Plane.PlanePointDistance(plane1, plane2.Origin);
   }
 
+  /**
+   * Static method for finding the distance between a plane and a point.
+   * @param plane 
+   * @param point 
+   * @returns number
+   */
+  public static PlanePointDistance(plane: Plane, point: Point3d): number {
+    return point.DistanceTo(plane.ClosestPoint(point));
+  }
   // #endregion
 }
