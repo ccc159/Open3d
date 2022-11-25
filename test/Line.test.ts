@@ -135,15 +135,28 @@ test('Flip', () => {
 test('LineFromOriginAndDirection', () => {
   let lA = new Line(new Point3d(1, 0, 0), new Point3d(10, 0, 0));
   let lB = Line.CreateFromOriginAndDirection(new Point3d(1, 0, 0), new Vector3d(9, 0, 0));
-  expect(lA).toMatchObject(lB);
+  expect({From: lA.From, To: lA.To}).toMatchObject({From: lB.From, To: lB.To});
   lA = new Line(new Point3d(1,1,1), new Point3d(-1,2,3));
   lB = Line.CreateFromOriginAndDirection(new Point3d(1,1,1), new Vector3d(-2,1,2));
-  expect(lA).toMatchObject(lB);
+  expect({From: lA.From, To: lA.To}).toMatchObject({From: lB.From, To: lB.To});
   lA = new Line(new Point3d(0,0,0), new Point3d(10, 0, 0));
   lB = Line.CreateFromOriginAndDirection(new Point3d(0,0,0), new Vector3d(1, 0, 0), 10);
-  expect(lA).toMatchObject(lB);
+  expect({From: lA.From, To: lA.To}).toMatchObject({From: lB.From, To: lB.To});
   lB = Line.CreateFromOriginAndDirection(new Point3d(0,0,0), new Vector3d(1, 0, 0), 5);
   expect(lA.To.DistanceTo(lB.To)).toEqual(5);
+});
+
+test('LineLineDistance', () => {
+  let lA = new Line(new Point3d(0, 0, 0), new Point3d(1, 1, 0));
+  let lB = new Line(new Point3d(0, 1, 1), new Point3d(1, 0, 1));
+  expect(lA.DistanceTo(lB)).toBeCloseTo(1);
+  lA = new Line(new Point3d(0, 0, 0), new Point3d(1, 1, 0));
+  lB = new Line(new Point3d(0, 1, 0), new Point3d(1, 0, 1));
+  expect(lA.DistanceTo(lB)).toBeCloseTo(0.4082482);
+  lA = new Line(new Point3d(0, 0, 0), new Point3d(1000, 1000, 0));
+  lB = new Line(new Point3d(0, 1000, 0), new Point3d(1000, 0, 0));
+  expect(Line.LineLineClosestPoints(lA, lB, false)?.every(p => p.Equals(new Point3d(500, 500, 0)))).toBe(true);
+  expect(lA.DistanceTo(lB)).toBeCloseTo(0, 3);
 });
 
 test('Transform', () => {

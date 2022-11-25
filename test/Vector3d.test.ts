@@ -170,6 +170,26 @@ test('VectorAngle', () => {
   expect(() => v1.VectorAngle(v2)).toThrowError();
 });
 
+test('VectorAngle2D', () => {
+  v1 = new Vector3d(1, 0, 0);
+  v2 = new Vector3d(0, 1, 0);
+  expect(Vector3d.VectorAngle2D(v1, v2)).toBeCloseTo((.5 * Math.PI), 3);
+  expect(Vector3d.VectorAngle2D(v2, v1)).toBeCloseTo((1.5 * Math.PI), 3);
+
+  v1 = new Vector3d(1, 0, 0);
+  v2 = new Vector3d(0, -1, 0);
+  expect(Vector3d.VectorAngle2D(v1, v2)).toBeCloseTo((1.5 * Math.PI), 3);
+  expect(Vector3d.VectorAngle2D(v2, v1)).toBeCloseTo((.5 * Math.PI), 3);
+
+  v1 = new Vector3d(0, 0, 0);
+  v2 = new Vector3d(1, 1, 1);
+  expect(() => Vector3d.VectorAngle2D(v1, v2)).toThrowError();
+
+  v1 = new Vector3d(0, 0, 1);
+  v2 = new Vector3d(0, 1, 1);
+  expect(() =>Vector3d.VectorAngle2D(v1, v2)).toThrowError();
+});
+
 test('Reverse', () => {
   v1 = new Vector3d(1, 2, 3);
   expect(v1.Reverse()).toMatchObject(new Vector3d(-1, -2, -3));

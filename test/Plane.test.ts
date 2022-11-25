@@ -112,7 +112,8 @@ test('DistanceTo', () => {
   const testPt1 = new Point3d(-3, 2, 5);
   expect(p1.DistanceTo(testPt1)).toBeCloseTo(0.816, 3);
 
-  expect(p1.DistanceTo(new Point3d(3, -2, -3))).toBeCloseTo(-1.633, 3);
+  expect(p1.DistanceTo(new Point3d(3, -2, -3))).toBeCloseTo(1.633, 3);
+  expect(p1.SignedDistanceTo(new Point3d(3, -2, -3))).toBeCloseTo(-1.633, 3);
 
   const testPt2 = new Point3d(0, 0, 0);
   expect(p1.DistanceTo(testPt2)).toBeCloseTo(0);
