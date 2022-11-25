@@ -88,7 +88,7 @@ export class Line {
    */
   public PointAt(param: number): Point3d {
     if (!this.IsValid) throw new Error('Cannot evaluate an invalid line.');
-    return this.Direction.Multiply(param).AddToPoint(this.From);
+    return this.From.Add(this.Direction.Multiply(param));
   }
 
   /**
