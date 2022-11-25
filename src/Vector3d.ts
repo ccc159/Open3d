@@ -295,6 +295,22 @@ Initializes a new instance of a vector, copying the three components from a vect
   }
 
   /**
+   * Computes the positive angle between two vectors assuming they lay in the WORLD XY plane.
+   * @param a First vector for angle.
+   * @param b Second vector for angle.
+   * @returns The angle between a and b in radians.
+   */
+   public static VectorAngle2D(a: Vector3d, b: Vector3d): number {
+    if (a.IsZero || b.IsZero) throw new Error('Cannot compute angle of zero-length vector.');
+    a = new Vector3d(a.X, a.Y, 0);
+    b = new Vector3d(b.X, b.Y, 0);
+    if (a.IsZero || b.IsZero) throw new Error('After projecting vectors zero-length vectors were created, no angle can be calculated.');
+    const rawAngle = Vector3d.VectorAngle(a, b);
+    if (Vector3d.CrossProduct(a, b).Z < 0) return 2 * Math.PI - rawAngle;
+    else return rawAngle;
+  }
+
+  /**
    * Compute the angle between two vectors.
    * @param other Another vector to compare.
    * @returns The angle between this and other in radians.
