@@ -1,5 +1,7 @@
+import { Line } from './Line';
 import { Open3d } from './Open3d';
 import { Open3dMath } from './Open3dMath';
+import { Plane } from './Plane';
 import { Transform } from './Transform';
 import { Vector3d } from './Vector3d';
 
@@ -205,7 +207,9 @@ export class Point3d {
    * @param b Second point.
    * @returns The length of the line between this and the other point; or 0 if any of the points is not valid.
    */
-  public DistanceTo(other: Point3d): number {
+  public DistanceTo(other: Point3d | Line | Plane): number {
+    if (other instanceof Line) return Line.LinePointDistance(other, this);
+    if (other instanceof Plane) return Plane.PlanePointDistance(other, this);
     return Point3d.Distance(this, other);
   }
 
