@@ -1,5 +1,7 @@
+import { Line } from './Line';
 import { Open3d } from './Open3d';
 import { Open3dMath } from './Open3dMath';
+import { Plane } from './Plane';
 import { Point3d } from './Point3d';
 import { Transform } from './Transform';
 
@@ -356,7 +358,9 @@ Initializes a new instance of a vector, copying the three components from a vect
    * Determines whether a vector is parallel to another vector
    * @param other Another vector to compare.
    */
-  public IsParallelTo(other: Vector3d): Open3d.ParallelIndicator {
+  public IsParallelTo(other: Vector3d | Line | Plane): Open3d.ParallelIndicator {
+    if (other instanceof Line) return Vector3d.IsParallel(this, other.Direction);
+    if (other instanceof Plane) return Vector3d.IsPerpendicular(this, other.Normal) ? Open3d.ParallelIndicator.Parallel : Open3d.ParallelIndicator.NotParallel;
     return Vector3d.IsParallel(this, other);
   }
 
