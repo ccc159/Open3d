@@ -1,6 +1,8 @@
+import { Intersection } from './Intersection';
 import { Open3d } from './Open3d';
 import { Open3dMath } from './Open3dMath';
 import { Point3d } from './Point3d';
+import { Plane } from './Plane';
 import { Transform } from './Transform';
 import { Vector3d } from './Vector3d';
 
@@ -138,13 +140,19 @@ export class Line {
 
   /**
    * Compute the shortest distance between this line segment and a test point.
-   * @param testPoint Point for distance computation.
+   * @param other Other geometry to calculate the distance to.
    * @param limitToFiniteSegment If true, the distance is limited to the finite line segment. default: false
    * @returns The shortest distance between this line segment and testPoint.
    */
-  public DistanceTo(testPoint: Point3d, limitToFiniteSegment: boolean = false): number {
-    const closestPt = this.ClosestPoint(testPoint, limitToFiniteSegment);
-    return closestPt.DistanceTo(testPoint);
+  public DistanceTo(
+    other: Point3d | Line | Plane,
+    limitToFiniteSegment: boolean = false
+  ): number {
+    if (other instanceof Line)
+      return Line.LineLineDistance(this, other, limitToFiniteSegment);
+    if (other instanceof Plane)
+      return Line.LinePlaneDistance(this, other, limitToFiniteSegment);
+    return Line.LinePointDistance(this, other, limitToFiniteSegment);
   }
 
   /**
@@ -154,6 +162,22 @@ export class Line {
    */
   public Equals(other: Line): boolean {
     return this.From.Equals(other.From) && this.To.Equals(other.To);
+  }
+
+  /**
+   * Determines whether a plane is parallel to another object
+   * @param other Another vector to compare.
+   * @returns ParallelIndicator of the relation between the two objects.
+   */
+  public IsParallelTo(
+    other: Vector3d | Line | Plane
+  ): Open3d.ParallelIndicator {
+    if (other instanceof Line) return this.Direction.IsParallelTo(other);
+    if (other instanceof Plane)
+      return other.Normal.IsPerpendicularTo(this.Direction)
+        ? Open3d.ParallelIndicator.Parallel
+        : Open3d.ParallelIndicator.NotParallel;
+    return other.IsParallelTo(this);
   }
 
   /**
@@ -178,6 +202,21 @@ export class Line {
   }
 
   /**
+   * Transform the line using a Transformation matrix.
+   * @param transformation Transformation matrix to apply.
+   * @returns A new transformed line.
+   */
+  public Transform(transformation: Transform): Line {
+    const start = this.From.Transform(transformation);
+    const end = this.To.Transform(transformation);
+    return new Line(start, end);
+  }
+
+  // endregion
+
+  // #region Static Methods
+
+  /**
    * Creates a line from start point and span vector
    * @param origin A point on the line.
    * @param direction A direction vector. 
@@ -189,14 +228,139 @@ export class Line {
   }
 
   /**
-   * Transform the line using a Transformation matrix.
-   * @param transformation Transformation matrix to apply.
-   * @returns A new transformed line.
+   * Private static method to compute the parameter value t of the closest point on a line segment to a given point.
+   * @param line
+   * @param point
+   * @returns number (t Parameter)
    */
-  public Transform(transformation: Transform): Line {
-    const start = this.From.Transform(transformation);
-    const end = this.To.Transform(transformation);
-    return new Line(start, end);
+  public static LinePointClosestParameter(line: Line, point: Point3d): number {
+    if (!line.IsValid) return 0;
+    const startToP = point.SubtractPoint(line.From);
+    const startToEnd = line.To.SubtractPoint(line.From);
+
+    const startEnd2 = startToEnd.DotProduct(startToEnd);
+    const startEnd_startP = startToEnd.DotProduct(startToP);
+
+    const t = startEnd_startP / startEnd2;
+    return t;
   }
+
+  /**
+   * Static method for computing the closest point on a line to a given point
+   * @param line given line
+   * @param point given point
+   * @param limitToFiniteSegment whether the line is considered infinite or not
+   * @returns Point3d
+   */
+  public static LinePointClosestPoint(
+    line: Line,
+    point: Point3d,
+    limitToFiniteSegment?: boolean
+  ): Point3d {
+    let t = Line.LinePointClosestParameter(line, point);
+    if (limitToFiniteSegment) t = Open3dMath.Clamp(t, 0, 1);
+    return line.PointAt(t);
+  }
+
+  /**
+   * Static method for computing the closest distance of a point to a line
+   * @param line given line
+   * @param point testPoint
+   * @param limitToFiniteSegment whether the line is considered infinite or not
+   * @returns number
+   */
+  public static LinePointDistance(
+    line: Line,
+    point: Point3d,
+    limitToFiniteSegment?: boolean
+  ): number {
+    const closestPoint = Line.LinePointClosestPoint(
+      line,
+      point,
+      limitToFiniteSegment
+    );
+    return point.DistanceTo(closestPoint);
+  }
+
+  /**
+   * Static method to find the points closest to two lines given (crossing or intersecting) lines
+   * @param line1
+   * @param line2
+   * @param limitToFiniteSegments whether the points need to be part of the line segments
+   * @returns [point1, point2] | null if the lines are parallel
+   */
+  public static LineLineClosestPoints = (
+    line1: Line,
+    line2: Line,
+    limitToFiniteSegments: boolean
+  ): [Point3d, Point3d] | null => {
+    return Intersection.LineLineCrossing(
+      line1,
+      line2,
+      limitToFiniteSegments,
+      limitToFiniteSegments
+    );
+  };
+
+  /**
+   * Static method to find the points closest to two lines given (crossing or intersecting) lines
+   * @param line1
+   * @param line2
+   * @param limitFirst whether the points need to be part of the first line segments
+   * @param limitSecond whether the points need to be part of the secind line segments
+   * @returns [point1, point2] | null if the lines are parallel
+   */
+  public static LineLineClosestPointsFinite = (
+    line1: Line,
+    line2: Line,
+    limitFirst: boolean = false,
+    limitSecond: boolean = false
+  ): [Point3d, Point3d] | null => {
+    return Intersection.LineLineCrossing(line1, line2, limitFirst, limitSecond);
+  };
+
+  /**
+   * Static method for computing the closest distance of two lines
+   * @param line1
+   * @param line2
+   * @param limitToFiniteSegments
+   * @returns
+   */
+  public static LineLineDistance = (
+    line1: Line,
+    line2: Line,
+    limitToFiniteSegments: boolean
+  ): number => {
+    const result = Intersection.LineLineCrossing(line1, line2, limitToFiniteSegments, limitToFiniteSegments);
+    if (!result)
+      return limitToFiniteSegments
+        ? Math.min(
+            // parallel case
+            Line.LinePointDistance(line2, line1.From),
+            Line.LinePointDistance(line2, line1.To),
+            Line.LinePointDistance(line1, line2.From),
+            Line.LinePointDistance(line1, line2.To)
+          )
+        : Line.LinePointDistance(line1, line2.From);
+    return result[0].DistanceTo(result[1]);
+  };
+
+  /**
+   * Static method to calculate the distance between a line and a plane
+   * @param line
+   * @param plane
+   * @param limitToFiniteSegment - only applies to the line
+   * @returns
+   */
+  public static LinePlaneDistance = (
+    line: Line,
+    plane: Plane,
+    limitToFiniteSegment?: boolean
+  ): number => {
+    if (Intersection.LinePlane(line, plane, limitToFiniteSegment)) return 0; // intersecting
+    if (limitToFiniteSegment)
+      return Math.min(plane.DistanceTo(line.From), plane.DistanceTo(line.To)); // not intersecting but maybe not parallel
+    return plane.DistanceTo(line.From); // just parallel
+  };
   // #endregion
 }
