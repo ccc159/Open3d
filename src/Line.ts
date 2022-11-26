@@ -294,29 +294,13 @@ export class Line {
     line2: Line,
     limitToFiniteSegments: boolean
   ): [Point3d, Point3d] | null => {
-    return Intersection.LineLineCrossing(
+    const result = Intersection.CrossingLineLine(
       line1,
       line2,
-      limitToFiniteSegments,
       limitToFiniteSegments
     );
-  };
-
-  /**
-   * Static method to find the points closest to two lines given (crossing or intersecting) lines
-   * @param line1
-   * @param line2
-   * @param limitFirst whether the points need to be part of the first line segments
-   * @param limitSecond whether the points need to be part of the secind line segments
-   * @returns [point1, point2] | null if the lines are parallel
-   */
-  public static LineLineClosestPointsFinite = (
-    line1: Line,
-    line2: Line,
-    limitFirst: boolean = false,
-    limitSecond: boolean = false
-  ): [Point3d, Point3d] | null => {
-    return Intersection.LineLineCrossing(line1, line2, limitFirst, limitSecond);
+    if (result) return [result.PointA, result.PointB];
+    return null;
   };
 
   /**
@@ -331,7 +315,7 @@ export class Line {
     line2: Line,
     limitToFiniteSegments: boolean
   ): number => {
-    const result = Intersection.LineLineCrossing(line1, line2, limitToFiniteSegments, limitToFiniteSegments);
+    const result = Intersection.CrossingLineLine(line1, line2, limitToFiniteSegments);
     if (!result)
       return limitToFiniteSegments
         ? Math.min(
@@ -342,7 +326,7 @@ export class Line {
             Line.LinePointDistance(line1, line2.To)
           )
         : Line.LinePointDistance(line1, line2.From);
-    return result[0].DistanceTo(result[1]);
+    return result.PointA.DistanceTo(result.PointB);
   };
 
   /**
