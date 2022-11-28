@@ -47,6 +47,10 @@ export declare class Plane {
      */
     get ZAxisLine(): Line;
     /**
+     * Gets tParameter along normal
+     */
+    get TPArameter(): number;
+    /**
      * Gets plane equation in the form Ax + By + Cz + D = 0.
      */
     get Equation(): [number, number, number, number];

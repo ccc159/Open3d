@@ -149,15 +149,6 @@ export declare class Line {
      */
     static LineLineClosestPoints: (line1: Line, line2: Line, limitToFiniteSegments: boolean) => [Point3d, Point3d] | null;
     /**
-     * Static method to find the points closest to two lines given (crossing or intersecting) lines
-     * @param line1
-     * @param line2
-     * @param limitFirst whether the points need to be part of the first line segments
-     * @param limitSecond whether the points need to be part of the secind line segments
-     * @returns [point1, point2] | null if the lines are parallel
-     */
-    static LineLineClosestPointsFinite: (line1: Line, line2: Line, limitFirst?: boolean, limitSecond?: boolean) => [Point3d, Point3d] | null;
-    /**
      * Static method for computing the closest distance of two lines
      * @param line1
      * @param line2
