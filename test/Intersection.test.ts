@@ -94,23 +94,3 @@ test('PlanePlanePlane', () => {
   expect(Intersection.PlanePlanePlane(p1, p2, p3)?.Equals(new Point3d(2.9622641509433913, 6.603773584905657, 10.245283018867923))).toBe(true);
   expect(Intersection.PlanePlanePlane(Plane.PlaneXY, Plane.PlaneXY, p1)).toBe(null);
 });
-
-test('benchmarking tParameters', () => {
-  const ln1s: Line[] = [];
-  const ln2s: Line[] = [];
-
-  for (let i = 0; i < 100000; i++) {
-    ln1s.push(new Line(new Point3d(Math.random(), Math.random(), Math.random()), new Point3d(Math.random(), Math.random(), Math.random())));
-    ln2s.push(new Line(new Point3d(Math.random(), Math.random(), Math.random()), new Point3d(Math.random(), Math.random(), Math.random())));
-  }
-  
-  const d = new Date();
-
-  let startTime = d.getTime()
-  const tsOpen3d = ln1s.map((ln1, i) => Intersection.unsafeTParametersOpen3d(ln1, ln2s[i]));
-  console.log(`Open3d: ${new Date().getTime() - startTime}ms`);
-  startTime = d.getTime()
-  const tsRaw = ln1s.map((ln1, i) => Intersection.unsafeTParametersRaw(ln1, ln2s[i]));
-  console.log(`tsRaw: ${new Date().getTime() - startTime}ms`);
-  expect(tsOpen3d.map(([v1, v2]) => [v1.toPrecision(5), v2.toPrecision(5)])).toMatchObject(tsRaw.map(([v1, v2]) => [v1.toPrecision(5), v2.toPrecision(5)]));
-})
