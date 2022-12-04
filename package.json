@@ -7,9 +7,10 @@
   "homepage": "https://github.com/ccc159/open3d",
   "scripts": {
     "doc": "typedoc&&serve docs -l 8081",
-    "lint": "eslint src/**/*.ts test/**/*.ts",
-    "format": "eslint src/**/*.ts test/**/*.ts --fix",
-    "style": "prettier --check src/**/*.ts test/**/*.ts",
+    "lint:check": "eslint src/**/*.ts test/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts test/**/*.ts --fix",
+    "style:check": "prettier --check src/**/*.ts test/**/*.ts",
+    "style:fix": "prettier --write src/**/*.ts test/**/*.ts",
     "build": "webpack&&typedoc",
     "test": "jest",
     "prepare": "husky install"

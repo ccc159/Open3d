@@ -25,13 +25,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          cache: "yarn"
+          cache: 'yarn'
 
       - name: Yarn Install
         run: yarn install --frozen-lockfile
 
-      - name: Lint
-        run: yarn lint
+      - name: Fix Formatting
+        run: yarn style:fix & yarn lint:fix
 
-      - name: Test
+      - name: Check Codestyle and Quality
+        run: yarn style:check & yarn lint:check
+
+      - name: Run Tests
         run: yarn test
