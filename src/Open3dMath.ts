@@ -1,4 +1,4 @@
-import { Open3d } from "./Open3d";
+import { Open3d } from './Open3d';
 
 /**
  * Provides constants and static methods that are additional to Math.
@@ -43,11 +43,7 @@ export class Open3dMath {
   /**
    * the function to compare if two floating point numbers are equal.
    */
-  public static EpsilonEquals = (
-    a: number,
-    b: number,
-    epsilon = Open3d.EPSILON
-  ): boolean => {
+  public static EpsilonEquals = (a: number, b: number, epsilon = Open3d.EPSILON): boolean => {
     return Math.abs(a - b) < epsilon;
   };
 }

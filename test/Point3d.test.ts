@@ -1,4 +1,3 @@
-import { Open3d } from '../src/Open3d';
 import { Plane } from '../src/Plane';
 import { Point3d } from '../src/Point3d';
 import { Transform } from '../src/Transform';
@@ -75,7 +74,7 @@ test('Multiply', () => {
 test('Divide', () => {
   pt = new Point3d(2, 4, 6);
   expect(pt.Divide(2)).toMatchObject(new Point3d(1, 2, 3));
-  expect(() => pt.Divide(0)).toThrowError();
+  expect(() => pt.Divide(0)).toThrow();
   expect(pt.Divide(-3)).toMatchObject(new Point3d(-2 / 3, -4 / 3, -2));
 });
 
@@ -125,19 +124,39 @@ test('Transform', () => {
   // test rotation
   p1 = new Point3d(-5, 3, 0);
   const rotation = Transform.Rotation(Math.PI / 3, new Vector3d(1, 2, 3), new Point3d(1, 2, 3));
-  expect(p1.Transform(rotation).Equals(new Point3d(-4.54738093877396, -1.9003968027185, 3.11605818140365))).toBe(true);
+  expect(
+    p1
+      .Transform(rotation)
+      .Equals(new Point3d(-4.54738093877396, -1.9003968027185, 3.11605818140365)),
+  ).toBe(true);
 
   // test projection
   p1 = new Point3d(-5, 3, 0);
-  const pplane = new Plane(Point3d.Origin, new Vector3d(8.66, 2.5, -4.33), new Vector3d(0, 8.66, 5));
+  const pplane = new Plane(
+    Point3d.Origin,
+    new Vector3d(8.66, 2.5, -4.33),
+    new Vector3d(0, 8.66, 5),
+  );
 
   const projection = Transform.PlanarProjection(pplane);
-  expect(p1.Transform(projection).Equals(new Point3d(-3.10045052477886, 1.35491777084041, 2.84928242090441))).toBe(true);
+  expect(
+    p1
+      .Transform(projection)
+      .Equals(new Point3d(-3.10045052477886, 1.35491777084041, 2.84928242090441)),
+  ).toBe(true);
 
   // test mirror
   p1 = new Point3d(-5, 3, 0);
-  const mplane = new Plane(Point3d.Origin, new Vector3d(8.66, 2.5, -4.33), new Vector3d(0, 8.66, 5));
+  const mplane = new Plane(
+    Point3d.Origin,
+    new Vector3d(8.66, 2.5, -4.33),
+    new Vector3d(0, 8.66, 5),
+  );
 
   const mirror = Transform.Mirror(mplane);
-  expect(p1.Transform(mirror).Equals(new Point3d(-1.20090104955773, -0.290164458319175, 5.69856484180881))).toBe(true);
+  expect(
+    p1
+      .Transform(mirror)
+      .Equals(new Point3d(-1.20090104955773, -0.290164458319175, 5.69856484180881)),
+  ).toBe(true);
 });

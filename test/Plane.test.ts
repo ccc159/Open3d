@@ -103,8 +103,8 @@ test('IsPointCoplanar', () => {
 });
 
 test('IsLineCoplanar', () => {
-  let pt1 = new Point3d(1, 2, 3);
-  let pt2 = new Point3d(4, 5, 6);
+  const pt1 = new Point3d(1, 2, 3);
+  const pt2 = new Point3d(4, 5, 6);
   expect(p1.IsLineCoplanar(new Line(pt1, pt2))).toBe(true);
   expect(p1.IsLineCoplanar(new Line(pt1, o))).toBe(true);
   expect(p1.IsLineCoplanar(new Line(pt1, new Point3d(12, 5, 5)))).toBe(false);

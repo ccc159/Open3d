@@ -10,14 +10,11 @@ let l1: Line;
 let l2: Line;
 let p1: Plane;
 let p2: Plane;
-let lInvalid: Line;
 
 beforeEach(() => {
   v1 = new Point3d(-2, 6, 4);
   v2 = new Point3d(4, 8, -2);
   l1 = new Line(v1, v2);
-  lInvalid = new Line(new Point3d(0, 0, 0), new Point3d(0, 0, 0));
-
   p1 = new Plane(Point3d.Origin, new Vector3d(1, 2, 3), new Vector3d(4, 5, 6));
 });
 
@@ -73,9 +70,13 @@ test('PlanePlane', () => {
   p1 = new Plane(Point3d.Origin, new Vector3d(1, 2, 3), new Vector3d(4, 5, 6));
   p2 = new Plane(new Point3d(-4, 1, 6), new Vector3d(5, 5, 3), new Vector3d(2, 6, 1));
 
-  let line = Intersection.PlanePlane(p1, p2);
-  expect(line?.From.Equals(new Point3d(-4.114727540500736, 0.9076583210603815, 5.9300441826215025))).toBe(true);
-  expect(line?.To.Equals(new Point3d(-4.818389328318404, 0.341296394280307, 5.500982116879022))).toBe(true);
+  const line = Intersection.PlanePlane(p1, p2);
+  expect(
+    line?.From.Equals(new Point3d(-4.114727540500736, 0.9076583210603815, 5.9300441826215025)),
+  ).toBe(true);
+  expect(
+    line?.To.Equals(new Point3d(-4.818389328318404, 0.341296394280307, 5.500982116879022)),
+  ).toBe(true);
 
   expect(Intersection.PlanePlane(Plane.PlaneXY, Plane.PlaneXY)).toBe(null);
 });
@@ -83,8 +84,12 @@ test('PlanePlane', () => {
 test('PlanePlanePlane', () => {
   p1 = new Plane(Point3d.Origin, new Vector3d(1, 2, 3), new Vector3d(4, 5, 6));
   p2 = new Plane(new Point3d(-4, 1, 6), new Vector3d(5, 5, 3), new Vector3d(2, 6, 1));
-  let p3 = new Plane(new Point3d(2, 5, 7), new Vector3d(7, 1, -4), new Vector3d(-3, 2, 8));
+  const p3 = new Plane(new Point3d(2, 5, 7), new Vector3d(7, 1, -4), new Vector3d(-3, 2, 8));
 
-  expect(Intersection.PlanePlanePlane(p1, p2, p3)?.Equals(new Point3d(2.9622641509433913, 6.603773584905657, 10.245283018867923))).toBe(true);
+  expect(
+    Intersection.PlanePlanePlane(p1, p2, p3)?.Equals(
+      new Point3d(2.9622641509433913, 6.603773584905657, 10.245283018867923),
+    ),
+  ).toBe(true);
   expect(Intersection.PlanePlanePlane(Plane.PlaneXY, Plane.PlaneXY, p1)).toBe(null);
 });

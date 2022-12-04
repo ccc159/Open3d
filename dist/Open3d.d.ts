@@ -12,9 +12,9 @@ export declare namespace Open3d {
     /**
      * The default number epsilon used in floating point comparisons.
      */
-    const EPSILON: number;
+    const EPSILON = 0.000001;
     /**
      * The default angle epsilon.
      */
-    const ANGLE_EPSILON: number;
+    const ANGLE_EPSILON = 0.001;
 }

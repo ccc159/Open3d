@@ -1,6 +1,6 @@
-import { Open3dMath } from "./Open3dMath";
-import { Transform } from "./Transform";
-import { Vector3d } from "./Vector3d";
+import { Open3dMath } from './Open3dMath';
+import { Transform } from './Transform';
+import { Vector3d } from './Vector3d';
 
 /**
  * Represents the three coordinates of a point in three-dimensional space, using floating point values.
@@ -69,11 +69,7 @@ export class Point3d {
    * @returns A new point that results from the addition of point and vector.
    */
   public static Add(point: Point3d, vector: Vector3d): Point3d {
-    return new Point3d(
-      point.X + vector.X,
-      point.Y + vector.Y,
-      point.Z + vector.Z
-    );
+    return new Point3d(point.X + vector.X, point.Y + vector.Y, point.Z + vector.Z);
   }
 
   /**
@@ -83,11 +79,7 @@ export class Point3d {
    * @returns A new point that results from the addition of point1 and point2.
    */
   public static AddPoint(point1: Point3d, point2: Point3d): Point3d {
-    return new Point3d(
-      point1.X + point2.X,
-      point1.Y + point2.Y,
-      point1.Z + point2.Z
-    );
+    return new Point3d(point1.X + point2.X, point1.Y + point2.Y, point1.Z + point2.Z);
   }
 
   /**
@@ -115,11 +107,7 @@ export class Point3d {
    * @returns A new point that is the difference of point minus vector.
    */
   public static Subtract(point: Point3d, vector: Vector3d): Point3d {
-    return new Point3d(
-      point.X - vector.X,
-      point.Y - vector.Y,
-      point.Z - vector.Z
-    );
+    return new Point3d(point.X - vector.X, point.Y - vector.Y, point.Z - vector.Z);
   }
 
   /**
@@ -129,11 +117,7 @@ export class Point3d {
    * @returns A new point that is the difference of point minus vector.
    */
   public static SubtractPoint(point1: Point3d, point2: Point3d): Vector3d {
-    return new Vector3d(
-      point1.X - point2.X,
-      point1.Y - point2.Y,
-      point1.Z - point2.Z
-    );
+    return new Vector3d(point1.X - point2.X, point1.Y - point2.Y, point1.Z - point2.Z);
   }
 
   /**
@@ -180,13 +164,9 @@ export class Point3d {
    * @returns A new point that is coordinate-wise divided by t.
    */
   public static Divide(point: Point3d, t: number): Point3d {
-    if (t === 0) throw new Error("Division by zero");
+    if (t === 0) throw new Error('Division by zero');
     const one_over_d = 1.0 / t;
-    return new Point3d(
-      point.X * one_over_d,
-      point.Y * one_over_d,
-      point.Z * one_over_d
-    );
+    return new Point3d(point.X * one_over_d, point.Y * one_over_d, point.Z * one_over_d);
   }
 
   /**
@@ -209,7 +189,7 @@ export class Point3d {
     return new Point3d(
       v1.X + (v2.X - v1.X) * t,
       v1.Y + (v2.Y - v1.Y) * t,
-      v1.Z + (v2.Z - v1.Z) * t
+      v1.Z + (v2.Z - v1.Z) * t,
     );
   }
 

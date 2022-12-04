@@ -1,7 +1,7 @@
-import { Open3d } from "./Open3d";
-import { Open3dMath } from "./Open3dMath";
-import { Point3d } from "./Point3d";
-import { Transform } from "./Transform";
+import { Open3d } from './Open3d';
+import { Open3dMath } from './Open3dMath';
+import { Point3d } from './Point3d';
+import { Transform } from './Transform';
 
 /**
  * Represents the 3d vector in three-dimensional space.
@@ -119,11 +119,7 @@ Initializes a new instance of a vector, copying the three components from a vect
    * @returns The new point from the addition of vector and point.
    */
   public static AddToPoint(vector: Vector3d, point: Point3d): Point3d {
-    return new Point3d(
-      vector.X + point.X,
-      vector.Y + point.Y,
-      vector.Z + point.Z
-    );
+    return new Point3d(vector.X + point.X, vector.Y + point.Y, vector.Z + point.Z);
   }
 
   /**
@@ -189,13 +185,9 @@ Initializes a new instance of a vector, copying the three components from a vect
    * @returns A new vector that is componentwise divided by t.
    */
   public static Divide(vector: Vector3d, t: number): Vector3d {
-    if (t === 0) throw new Error("Division by zero");
+    if (t === 0) throw new Error('Division by zero');
     const one_over_d = 1.0 / t;
-    return new Vector3d(
-      vector.X * one_over_d,
-      vector.Y * one_over_d,
-      vector.Z * one_over_d
-    );
+    return new Vector3d(vector.X * one_over_d, vector.Y * one_over_d, vector.Z * one_over_d);
   }
 
   /**
@@ -218,7 +210,7 @@ Initializes a new instance of a vector, copying the three components from a vect
     return new Vector3d(
       v1.X + (v2.X - v1.X) * t,
       v1.Y + (v2.Y - v1.Y) * t,
-      v1.Z + (v2.Z - v1.Z) * t
+      v1.Z + (v2.Z - v1.Z) * t,
     );
   }
 
@@ -247,11 +239,7 @@ Initializes a new instance of a vector, copying the three components from a vect
    * @returns A new vector that is perpendicular to both a and b, has Length == a.Length * b.Length * sin(theta) where theta is the angle between a and b. The resulting vector is oriented according to the right hand rule.
    */
   public static CrossProduct(a: Vector3d, b: Vector3d): Vector3d {
-    return new Vector3d(
-      a.Y * b.Z - b.Y * a.Z,
-      a.Z * b.X - b.Z * a.X,
-      a.X * b.Y - b.X * a.Y
-    );
+    return new Vector3d(a.Y * b.Z - b.Y * a.Z, a.Z * b.X - b.Z * a.X, a.X * b.Y - b.X * a.Y);
   }
 
   /**
@@ -309,8 +297,7 @@ Initializes a new instance of a vector, copying the three components from a vect
    * @returns The angle between a and b in radians.
    */
   public static VectorAngle(a: Vector3d, b: Vector3d): number {
-    if (a.IsZero || b.IsZero)
-      throw new Error("Cannot compute angle of zero-length vector.");
+    if (a.IsZero || b.IsZero) throw new Error('Cannot compute angle of zero-length vector.');
     let cos = Vector3d.DotProduct(a, b) / (a.Length * b.Length);
     cos = Open3dMath.Clamp(cos, -1, 1);
     return Math.acos(cos);
@@ -344,7 +331,7 @@ Initializes a new instance of a vector, copying the three components from a vect
    */
   public static Unitize(v: Vector3d): Vector3d {
     const length = v.Length;
-    if (length === 0) throw new Error("Cannot unitize a zero-length vector.");
+    if (length === 0) throw new Error('Cannot unitize a zero-length vector.');
     const unit = new Vector3d(v.X / length, v.Y / length, v.Z / length);
     return unit;
   }
@@ -391,10 +378,8 @@ Initializes a new instance of a vector, copying the three components from a vect
   public static IsPerpendicular(a: Vector3d, b: Vector3d): boolean {
     if (a.IsZero || b.IsZero) return true;
     const angle = Vector3d.VectorAngle(a, b);
-    if (Open3dMath.EpsilonEquals(angle, Math.PI / 2, Open3d.ANGLE_EPSILON))
-      return true;
-    if (Open3dMath.EpsilonEquals(angle, -Math.PI / 2, Open3d.ANGLE_EPSILON))
-      return true;
+    if (Open3dMath.EpsilonEquals(angle, Math.PI / 2, Open3d.ANGLE_EPSILON)) return true;
+    if (Open3dMath.EpsilonEquals(angle, -Math.PI / 2, Open3d.ANGLE_EPSILON)) return true;
     return false;
   }
 

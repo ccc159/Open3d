@@ -7,8 +7,9 @@
   "homepage": "https://github.com/ccc159/open3d",
   "scripts": {
     "doc": "typedoc&&serve docs -l 8081",
-    "lint": "eslint src/**/*.ts",
-    "format": "eslint src/**/*.ts --fix",
+    "lint": "eslint src/**/*.ts test/**/*.ts",
+    "format": "eslint src/**/*.ts test/**/*.ts --fix",
+    "style": "prettier --check src/**/*.ts test/**/*.ts",
     "build": "webpack&&typedoc",
     "test": "jest"
   },
@@ -37,7 +38,9 @@
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "eslint": "^8.29.0",
+    "eslint-plugin-jest": "^27.1.6",
     "jest": "^28.1.1",
+    "prettier": "^2.8.0",
     "serve": "^13.0.2",
     "ts-jest": "^28.0.4",
     "ts-loader": "^9.3.0",

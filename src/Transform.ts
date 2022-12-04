@@ -1,7 +1,7 @@
-import { Open3dMath } from "./Open3dMath";
-import { Plane } from "./Plane";
-import { Point3d } from "./Point3d";
-import { Vector3d } from "./Vector3d";
+import { Open3dMath } from './Open3dMath';
+import { Plane } from './Plane';
+import { Point3d } from './Point3d';
+import { Vector3d } from './Vector3d';
 
 /**
  * a type that has an array of 16 numbers
@@ -22,7 +22,7 @@ export type Array16Number = [
   number,
   number,
   number,
-  number
+  number,
 ];
 
 /**
@@ -45,24 +45,7 @@ export class Transform {
    * The determinant of this 4x4 matrix.
    */
   public get Determinant(): number {
-    const [
-      n11,
-      n21,
-      n31,
-      n41,
-      n12,
-      n22,
-      n32,
-      n42,
-      n13,
-      n23,
-      n33,
-      n43,
-      n14,
-      n24,
-      n34,
-      n44,
-    ] = this.m;
+    const [n11, n21, n31, n41, n12, n22, n32, n42, n13, n23, n33, n43, n14, n24, n34, n44] = this.m;
 
     return (
       n41 *
@@ -174,42 +157,8 @@ export class Transform {
     const ae = a.m;
     const be = b.m;
 
-    const [
-      a11,
-      a12,
-      a13,
-      a14,
-      a21,
-      a22,
-      a23,
-      a24,
-      a31,
-      a32,
-      a33,
-      a34,
-      a41,
-      a42,
-      a43,
-      a44,
-    ] = ae;
-    const [
-      b11,
-      b12,
-      b13,
-      b14,
-      b21,
-      b22,
-      b23,
-      b24,
-      b31,
-      b32,
-      b33,
-      b34,
-      b41,
-      b42,
-      b43,
-      b44,
-    ] = be;
+    const [a11, a12, a13, a14, a21, a22, a23, a24, a31, a32, a33, a34, a41, a42, a43, a44] = ae;
+    const [b11, b12, b13, b14, b21, b22, b23, b24, b31, b32, b33, b34, b41, b42, b43, b44] = be;
 
     const n11 = a11 * b11 + a12 * b21 + a13 * b31 + a14 * b41;
     const n12 = a11 * b12 + a12 * b22 + a13 * b32 + a14 * b42;
@@ -296,7 +245,7 @@ export class Transform {
   public static Rotation(
     angle: number,
     rotationAxis: Vector3d = Vector3d.ZAxis,
-    rotationCenter: Point3d = Point3d.Origin
+    rotationCenter: Point3d = Point3d.Origin,
   ): Transform {
     // convert point to vector
     const vec = Vector3d.CreateFromPoint3d(rotationCenter);
@@ -325,8 +274,7 @@ export class Transform {
     const s = Math.sin(angle);
     const t = 1 - c;
 
-    if (axis.IsZero)
-      throw new Error("Rotation axis should not be zero vector.");
+    if (axis.IsZero) throw new Error('Rotation axis should not be zero vector.');
     axis = axis.Unitize();
 
     const x = axis.X,
@@ -409,24 +357,7 @@ export class Transform {
    * @returns The translated transform
    */
   public static Translation(v: Vector3d) {
-    return new Transform([
-      1,
-      0,
-      0,
-      v.X,
-      0,
-      1,
-      0,
-      v.Y,
-      0,
-      0,
-      1,
-      v.Z,
-      0,
-      0,
-      0,
-      1,
-    ]);
+    return new Transform([1, 0, 0, v.X, 0, 1, 0, v.Y, 0, 0, 1, v.Z, 0, 0, 0, 1]);
   }
 
   /**
@@ -611,30 +542,18 @@ export class Transform {
    */
   public static PlaneToPlane(fromPlane: Plane, toPlane: Plane) {
     // move fromPlane to world origin
-    const translation1 = Transform.Translation(
-      Point3d.Origin.SubtractPoint(fromPlane.Origin)
-    );
+    const translation1 = Transform.Translation(Point3d.Origin.SubtractPoint(fromPlane.Origin));
 
     const rotationX = Transform.VectorToVector(fromPlane.XAxis, toPlane.XAxis);
 
     const tranformedFromPlaneYAxis = fromPlane.YAxis.Transform(rotationX);
 
-    const rotationY = Transform.VectorToVector(
-      tranformedFromPlaneYAxis,
-      toPlane.YAxis
-    );
+    const rotationY = Transform.VectorToVector(tranformedFromPlaneYAxis, toPlane.YAxis);
 
     // move from world origin to toPlane
-    const translation2 = Transform.Translation(
-      Vector3d.CreateFromPoint3d(toPlane.Origin)
-    );
+    const translation2 = Transform.Translation(Vector3d.CreateFromPoint3d(toPlane.Origin));
 
-    return Transform.CombineTransforms([
-      translation1,
-      rotationX,
-      rotationY,
-      translation2,
-    ]);
+    return Transform.CombineTransforms([translation1, rotationX, rotationY, translation2]);
   }
 
   /**
@@ -673,24 +592,7 @@ export class Transform {
   public TryGetInverse(): Transform | null {
     const te = this.M;
 
-    const [
-      n11,
-      n21,
-      n31,
-      n41,
-      n12,
-      n22,
-      n32,
-      n42,
-      n13,
-      n23,
-      n33,
-      n43,
-      n14,
-      n24,
-      n34,
-      n44,
-    ] = this.m;
+    const [n11, n21, n31, n41, n12, n22, n32, n42, n13, n23, n33, n43, n14, n24, n34, n44] = this.m;
 
     const t11 =
         n23 * n34 * n42 -
@@ -838,24 +740,7 @@ export class Transform {
    * override toString
    */
   public toString(): string {
-    const [
-      n11,
-      n21,
-      n31,
-      n41,
-      n12,
-      n22,
-      n32,
-      n42,
-      n13,
-      n23,
-      n33,
-      n43,
-      n14,
-      n24,
-      n34,
-      n44,
-    ] = this.m;
+    const [n11, n21, n31, n41, n12, n22, n32, n42, n13, n23, n33, n43, n14, n24, n34, n44] = this.m;
     return `R0=(${n11}, ${n12}, ${n13}, ${n14}), R1=(${n21}, ${n22}, ${n23}, ${n24}), R2=(${n31}, ${n32}, ${n33}, ${n34}), R3=(${n41}, ${n42}, ${n43}, ${n44})`;
   }
 }

@@ -77,7 +77,7 @@ test('Multiply', () => {
 test('Divide', () => {
   vec = new Vector3d(2, 4, 6);
   expect(vec.Divide(2)).toMatchObject(new Vector3d(1, 2, 3));
-  expect(() => vec.Divide(0)).toThrowError();
+  expect(() => vec.Divide(0)).toThrow();
   expect(vec.Divide(-3)).toMatchObject(new Vector3d(-2 / 3, -4 / 3, -2));
 });
 
@@ -165,7 +165,7 @@ test('VectorAngle', () => {
 
   v1 = new Vector3d(0, 0, 0);
   v2 = new Vector3d(0, 0, 0);
-  expect(() => v1.VectorAngle(v2)).toThrowError();
+  expect(() => v1.VectorAngle(v2)).toThrow();
 });
 
 test('Reverse', () => {
@@ -189,7 +189,7 @@ test('Unitize', () => {
   expect(v1.Unitize().Z).toBeCloseTo(0.802, 3);
 
   v1 = new Vector3d(0, 0, 0);
-  expect(() => v1.Unitize()).toThrowError();
+  expect(() => v1.Unitize()).toThrow();
 });
 
 test('IsParallelTo', () => {
@@ -249,7 +249,7 @@ test('VectorRotate', () => {
   expect(rotated.Z).toBeCloseTo(6.714, 3);
 
   v1 = new Vector3d(1, 2, 0);
-  expect(() => v1.VectorRotate(Math.PI, new Vector3d(0, 0, 0))).toThrowError();
+  expect(() => v1.VectorRotate(Math.PI, new Vector3d(0, 0, 0))).toThrow();
 });
 
 test('Transform', () => {
@@ -261,19 +261,39 @@ test('Transform', () => {
   // test rotation
   v1 = new Vector3d(-5, 3, 0);
   const rotation = Transform.Rotation(Math.PI / 3, new Vector3d(1, 2, 3), new Point3d(1, 2, 3));
-  expect(v1.Transform(rotation).Equals(new Vector3d(-4.54738093877396, -1.9003968027185, 3.11605818140365))).toBe(true);
+  expect(
+    v1
+      .Transform(rotation)
+      .Equals(new Vector3d(-4.54738093877396, -1.9003968027185, 3.11605818140365)),
+  ).toBe(true);
 
   // test projection
   v1 = new Vector3d(-5, 3, 0);
-  const pplane = new Plane(Point3d.Origin, new Vector3d(8.66, 2.5, -4.33), new Vector3d(0, 8.66, 5));
+  const pplane = new Plane(
+    Point3d.Origin,
+    new Vector3d(8.66, 2.5, -4.33),
+    new Vector3d(0, 8.66, 5),
+  );
 
   const projection = Transform.PlanarProjection(pplane);
-  expect(v1.Transform(projection).Equals(new Vector3d(-3.10045052477886, 1.35491777084041, 2.84928242090441))).toBe(true);
+  expect(
+    v1
+      .Transform(projection)
+      .Equals(new Vector3d(-3.10045052477886, 1.35491777084041, 2.84928242090441)),
+  ).toBe(true);
 
   // test mirror
   v1 = new Vector3d(-5, 3, 0);
-  const mplane = new Plane(Point3d.Origin, new Vector3d(8.66, 2.5, -4.33), new Vector3d(0, 8.66, 5));
+  const mplane = new Plane(
+    Point3d.Origin,
+    new Vector3d(8.66, 2.5, -4.33),
+    new Vector3d(0, 8.66, 5),
+  );
 
   const mirror = Transform.Mirror(mplane);
-  expect(v1.Transform(mirror).Equals(new Vector3d(-1.20090104955773, -0.290164458319175, 5.69856484180881))).toBe(true);
+  expect(
+    v1
+      .Transform(mirror)
+      .Equals(new Vector3d(-1.20090104955773, -0.290164458319175, 5.69856484180881)),
+  ).toBe(true);
 });
