@@ -11,7 +11,8 @@
     "format": "eslint src/**/*.ts test/**/*.ts --fix",
     "style": "prettier --check src/**/*.ts test/**/*.ts",
     "build": "webpack&&typedoc",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
