@@ -1,7 +1,7 @@
-import { Transform } from './Transform';
-import { Line } from './Line';
-import { Vector3d } from './Vector3d';
-import { Point3d } from './Point3d';
+import { Transform } from "./Transform";
+import { Line } from "./Line";
+import { Vector3d } from "./Vector3d";
+import { Point3d } from "./Point3d";
 
 /**
  * Represents the value of a center point and two axes in a plane in three dimensions.
@@ -79,7 +79,12 @@ export class Plane {
    */
   public get Equation(): [number, number, number, number] {
     const { X, Y, Z } = this.Normal;
-    return [X, Y, Z, -X * this.Origin.X - Y * this.Origin.Y - Z * this.Origin.Z];
+    return [
+      X,
+      Y,
+      Z,
+      -X * this.Origin.X - Y * this.Origin.Y - Z * this.Origin.Z,
+    ];
   }
 
   /**
@@ -178,7 +183,10 @@ export class Plane {
    * @returns True if the line is coplanar to this plane.
    */
   public IsLineCoplanar(line: Line): boolean {
-    return this.ClosestPoint(line.From).Equals(line.From) && this.ClosestPoint(line.To).Equals(line.To);
+    return (
+      this.ClosestPoint(line.From).Equals(line.From) &&
+      this.ClosestPoint(line.To).Equals(line.To)
+    );
   }
 
   /**
@@ -202,7 +210,11 @@ export class Plane {
    * @param yAxis The Y axis vector of the plane.
    * @returns The plane created from the given point and vectors.
    */
-  public static CreateFromFrame(origin: Point3d, xAxis: Vector3d, yAxis: Vector3d): Plane {
+  public static CreateFromFrame(
+    origin: Point3d,
+    xAxis: Vector3d,
+    yAxis: Vector3d
+  ): Plane {
     return new Plane(origin, xAxis, yAxis);
   }
 

@@ -1,7 +1,6 @@
-import { Open3d } from './Open3d';
-import { Open3dMath } from './Open3dMath';
-import { Transform } from './Transform';
-import { Vector3d } from './Vector3d';
+import { Open3dMath } from "./Open3dMath";
+import { Transform } from "./Transform";
+import { Vector3d } from "./Vector3d";
 
 /**
  * Represents the three coordinates of a point in three-dimensional space, using floating point values.
@@ -70,7 +69,11 @@ export class Point3d {
    * @returns A new point that results from the addition of point and vector.
    */
   public static Add(point: Point3d, vector: Vector3d): Point3d {
-    return new Point3d(point.X + vector.X, point.Y + vector.Y, point.Z + vector.Z);
+    return new Point3d(
+      point.X + vector.X,
+      point.Y + vector.Y,
+      point.Z + vector.Z
+    );
   }
 
   /**
@@ -80,7 +83,11 @@ export class Point3d {
    * @returns A new point that results from the addition of point1 and point2.
    */
   public static AddPoint(point1: Point3d, point2: Point3d): Point3d {
-    return new Point3d(point1.X + point2.X, point1.Y + point2.Y, point1.Z + point2.Z);
+    return new Point3d(
+      point1.X + point2.X,
+      point1.Y + point2.Y,
+      point1.Z + point2.Z
+    );
   }
 
   /**
@@ -108,7 +115,11 @@ export class Point3d {
    * @returns A new point that is the difference of point minus vector.
    */
   public static Subtract(point: Point3d, vector: Vector3d): Point3d {
-    return new Point3d(point.X - vector.X, point.Y - vector.Y, point.Z - vector.Z);
+    return new Point3d(
+      point.X - vector.X,
+      point.Y - vector.Y,
+      point.Z - vector.Z
+    );
   }
 
   /**
@@ -118,7 +129,11 @@ export class Point3d {
    * @returns A new point that is the difference of point minus vector.
    */
   public static SubtractPoint(point1: Point3d, point2: Point3d): Vector3d {
-    return new Vector3d(point1.X - point2.X, point1.Y - point2.Y, point1.Z - point2.Z);
+    return new Vector3d(
+      point1.X - point2.X,
+      point1.Y - point2.Y,
+      point1.Z - point2.Z
+    );
   }
 
   /**
@@ -165,9 +180,13 @@ export class Point3d {
    * @returns A new point that is coordinate-wise divided by t.
    */
   public static Divide(point: Point3d, t: number): Point3d {
-    if (t === 0) throw new Error('Division by zero');
+    if (t === 0) throw new Error("Division by zero");
     const one_over_d = 1.0 / t;
-    return new Point3d(point.X * one_over_d, point.Y * one_over_d, point.Z * one_over_d);
+    return new Point3d(
+      point.X * one_over_d,
+      point.Y * one_over_d,
+      point.Z * one_over_d
+    );
   }
 
   /**
@@ -187,7 +206,11 @@ export class Point3d {
    * @returns A new point that is the linear interpolation between a and b at t.
    */
   public static Interpolate(v1: Point3d, v2: Point3d, t: number): Point3d {
-    return new Point3d(v1.X + (v2.X - v1.X) * t, v1.Y + (v2.Y - v1.Y) * t, v1.Z + (v2.Z - v1.Z) * t);
+    return new Point3d(
+      v1.X + (v2.X - v1.X) * t,
+      v1.Y + (v2.Y - v1.Y) * t,
+      v1.Z + (v2.Z - v1.Z) * t
+    );
   }
 
   /**
@@ -216,7 +239,11 @@ export class Point3d {
    * @returns true if point has the same coordinates as this; otherwise false.
    */
   public static Equals(a: Point3d, b: Point3d): boolean {
-    return Open3dMath.EpsilonEquals(a.X, b.X) && Open3dMath.EpsilonEquals(a.Y, b.Y) && Open3dMath.EpsilonEquals(a.Z, b.Z);
+    return (
+      Open3dMath.EpsilonEquals(a.X, b.X) &&
+      Open3dMath.EpsilonEquals(a.Y, b.Y) &&
+      Open3dMath.EpsilonEquals(a.Z, b.Z)
+    );
   }
 
   /**
@@ -234,12 +261,11 @@ export class Point3d {
    * @param transformation Transformation matrix to apply.
    */
   public Transform(transformation: Transform): Point3d {
-    let xx, yy, zz;
     const m = transformation.M;
 
-    xx = m[0] * this.X + m[1] * this.Y + m[2] * this.Z + m[3];
-    yy = m[4] * this.X + m[5] * this.Y + m[6] * this.Z + m[7];
-    zz = m[8] * this.X + m[9] * this.Y + m[10] * this.Z + m[11];
+    const xx = m[0] * this.X + m[1] * this.Y + m[2] * this.Z + m[3];
+    const yy = m[4] * this.X + m[5] * this.Y + m[6] * this.Z + m[7];
+    const zz = m[8] * this.X + m[9] * this.Y + m[10] * this.Z + m[11];
     return new Point3d(xx, yy, zz);
   }
 

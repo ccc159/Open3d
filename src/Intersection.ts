@@ -1,16 +1,15 @@
-import { Line } from './Line';
-import { Open3d } from './Open3d';
-import { Open3dMath } from './Open3dMath';
-import { Plane } from './Plane';
-import { Point3d } from './Point3d';
-import { Vector3d } from './Vector3d';
+import { Line } from "./Line";
+import { Open3d } from "./Open3d";
+import { Open3dMath } from "./Open3dMath";
+import { Plane } from "./Plane";
+import { Point3d } from "./Point3d";
 
 /**
  * Provides static methods for the computation of intersections, projections, sections and similar.
  */
 export class Intersection {
   private constructor() {
-    throw new Error('Cannot initialize an intersection instance.');
+    throw new Error("Cannot initialize an intersection instance.");
   }
 
   /**
@@ -22,7 +21,12 @@ export class Intersection {
    * @param tolerance Tolerance used to determine if the lines are intersecting, default: Open3d.EPSILON
    * @returns The intersection point, or null if there's no intersection.
    */
-  public static LineLine(firstLine: Line, secondLine: Line, limitToFiniteSegment: boolean = false, tolerance: number = Open3d.EPSILON): Point3d | null {
+  public static LineLine(
+    firstLine: Line,
+    secondLine: Line,
+    limitToFiniteSegment = false,
+    tolerance: number = Open3d.EPSILON
+  ): Point3d | null {
     // http://paulbourke.net/geometry/pointlineplane/
     if (!firstLine.IsValid || !secondLine.IsValid) return null;
     const p1 = firstLine.From;
@@ -49,8 +53,16 @@ export class Intersection {
     const mua = numer / denom;
     const mub = (d1343 + d4321 * mua) / d4343;
 
-    const pointA = new Point3d(p1.X + mua * p21.X, p1.Y + mua * p21.Y, p1.Z + mua * p21.Z);
-    const pointB = new Point3d(p3.X + mub * p43.X, p3.Y + mub * p43.Y, p3.Z + mub * p43.Z);
+    const pointA = new Point3d(
+      p1.X + mua * p21.X,
+      p1.Y + mua * p21.Y,
+      p1.Z + mua * p21.Z
+    );
+    const pointB = new Point3d(
+      p3.X + mub * p43.X,
+      p3.Y + mub * p43.Y,
+      p3.Z + mub * p43.Z
+    );
 
     const distance = pointA.DistanceTo(pointB);
 
@@ -63,7 +75,8 @@ export class Intersection {
     const paramA = firstLine.ClosestParameter(intersecPt, false);
     const paramB = secondLine.ClosestParameter(intersecPt, false);
 
-    if (paramA >= 0 && paramA <= 1 && paramB >= 0 && paramB <= 1) return intersecPt;
+    if (paramA >= 0 && paramA <= 1 && paramB >= 0 && paramB <= 1)
+      return intersecPt;
 
     return null;
   }
@@ -75,7 +88,11 @@ export class Intersection {
    * @param limitToFiniteSegment If true, the intersection is limited to the finite line segment. default: false
    * @returns The intersection point.
    */
-  public static LinePlane(line: Line, plane: Plane, limitToFiniteSegment: boolean = false): Point3d | null {
+  public static LinePlane(
+    line: Line,
+    plane: Plane,
+    limitToFiniteSegment = false
+  ): Point3d | null {
     const diff = line.From.SubtractPoint(plane.Origin);
     const projectLine = diff.DotProduct(plane.Normal);
     const projectNormal = line.UnitDirection.DotProduct(plane.Normal);
@@ -120,7 +137,11 @@ export class Intersection {
    * @param planeC Third plane for intersection.
    * @returns The intersection point or null.
    */
-  public static PlanePlanePlane(planeA: Plane, planeB: Plane, planeC: Plane): Point3d | null {
+  public static PlanePlanePlane(
+    planeA: Plane,
+    planeB: Plane,
+    planeC: Plane
+  ): Point3d | null {
     // see https://www.mathsisfun.com/algebra/systems-linear-equations-matrices.html for solving a system of linear equations
 
     const ea = planeA.Equation;
@@ -133,7 +154,10 @@ export class Intersection {
 
     const [a11, a12, a13, a21, a22, a23, a31, a32, a33] = mA;
 
-    const det = a11 * (a22 * a33 - a23 * a32) - a12 * (a21 * a33 - a23 * a31) + a13 * (a21 * a32 - a22 * a31);
+    const det =
+      a11 * (a22 * a33 - a23 * a32) -
+      a12 * (a21 * a33 - a23 * a31) +
+      a13 * (a21 * a32 - a22 * a31);
 
     if (Open3dMath.EpsilonEquals(det, 0)) return null;
 
