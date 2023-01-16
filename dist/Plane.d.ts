@@ -49,7 +49,7 @@ export declare class Plane {
     /**
      * Gets tParameter along normal
      */
-    get TPArameter(): number;
+    get TParameter(): number;
     /**
      * Gets plane equation in the form Ax + By + Cz + D = 0.
      */

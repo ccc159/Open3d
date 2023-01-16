@@ -78,7 +78,7 @@ export class Plane {
   /**
    * Gets tParameter along normal
    */
-  public get TPArameter(): number {
+  public get TParameter(): number {
     return -this.Normal.DotProduct(Vector3d.CreateFromPoint3d(this.Origin));
   }
 
@@ -87,7 +87,7 @@ export class Plane {
    */
   public get Equation(): [number, number, number, number] {
     const { X, Y, Z } = this.Normal;
-    return [X, Y, Z, this.TPArameter];
+    return [X, Y, Z, this.TParameter];
   }
 
   /**
