@@ -1,5 +1,4 @@
 import { Line } from './Line';
-import { Open3d } from './Open3d';
 import { Open3dMath } from './Open3dMath';
 import { Plane } from './Plane';
 import { Transform } from './Transform';

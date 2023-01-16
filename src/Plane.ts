@@ -2,7 +2,6 @@ import { Transform } from './Transform';
 import { Line } from './Line';
 import { Vector3d } from './Vector3d';
 import { Point3d } from './Point3d';
-import { Open3d } from './Open3d';
 import { Intersection } from './Intersection';
 
 /**

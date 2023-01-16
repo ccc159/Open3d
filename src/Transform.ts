@@ -1,4 +1,3 @@
-import { Open3d } from './Open3d';
 import { Open3dMath } from './Open3dMath';
 import { Plane } from './Plane';
 import { Point3d } from './Point3d';
