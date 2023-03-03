@@ -1,11 +1,13 @@
 import { Open3d } from './Open3d';
 import { Transform } from './Transform';
 import { Vector3d } from './Vector3d';
+import { Point3d } from './Point3d';
+import { Open3dMath } from './Open3dMath';
 
 /**
  * a type that has an array of 8 points
  */
-export type Array8Points = [Vector3d, Vector3d, Vector3d, Vector3d, Vector3d, Vector3d, Vector3d, Vector3d];
+export type Array8Points = [Point3d, Point3d, Point3d, Point3d, Point3d, Point3d, Point3d, Point3d];
 
 /**
  * Represents the value of two points in a bounding box defined by the two extreme corner points.
@@ -64,14 +66,14 @@ export class BoundingBox {
   /**
    * Gets or sets the point in the minimal corner.
    */
-  public get Min(): Vector3d {
-    return new Vector3d(this.minX, this.minY, this.minZ);
+  public get Min(): Point3d {
+    return new Point3d(this.minX, this.minY, this.minZ);
   }
 
   /**
    * Gets or sets the point in the minimal corner.
    */
-  public set Min(min: Vector3d) {
+  public set Min(min: Point3d) {
     this.minX = min.X;
     this.minY = min.Y;
     this.minZ = min.Z;
@@ -80,14 +82,14 @@ export class BoundingBox {
   /**
    * Gets or sets the point in the maximal corner.
    */
-  public get Max(): Vector3d {
-    return new Vector3d(this.maxX, this.maxY, this.maxZ);
+  public get Max(): Point3d {
+    return new Point3d(this.maxX, this.maxY, this.maxZ);
   }
 
   /**
    * Gets or sets the point in the maximal corner.
    */
-  public set Max(max: Vector3d) {
+  public set Max(max: Point3d) {
     this.maxX = max.X;
     this.maxY = max.Y;
     this.maxZ = max.Z;
@@ -96,15 +98,15 @@ export class BoundingBox {
   /**
    * Gets the point in the center of the bounding box.
    */
-  public get Center(): Vector3d {
-    return new Vector3d((this.maxX + this.minX) / 2, (this.maxY + this.minY) / 2, (this.maxZ + this.minZ) / 2);
+  public get Center(): Point3d {
+    return new Point3d((this.maxX + this.minX) / 2, (this.maxY + this.minY) / 2, (this.maxZ + this.minZ) / 2);
   }
 
   /**
    * Gets the diagonal vector of this BoundingBox. The diagonal connects the Min and Max points.
    */
   public get Diagonal(): Vector3d {
-    return this.Max.Subtract(this.Min);
+    return this.Max.SubtractPoint(this.Min);
   }
 
   /**
@@ -126,9 +128,9 @@ export class BoundingBox {
   public get IsDegenerate(): number {
     if (!this.IsValid) return 4;
     let degenerate = 0;
-    if (Open3d.equals(this.minX, this.maxX)) degenerate++;
-    if (Open3d.equals(this.minY, this.maxY)) degenerate++;
-    if (Open3d.equals(this.minZ, this.maxZ)) degenerate++;
+    if (Open3dMath.EpsilonEquals(this.minX, this.maxX)) degenerate++;
+    if (Open3dMath.EpsilonEquals(this.minY, this.maxY)) degenerate++;
+    if (Open3dMath.EpsilonEquals(this.minZ, this.maxZ)) degenerate++;
     return degenerate;
   }
 
@@ -204,14 +206,14 @@ export class BoundingBox {
    * [7] Min.X, Max.Y, Max.Z
    */
   public GetCorners(): Array8Points {
-    const c0 = new Vector3d(this.minX, this.minY, this.minZ);
-    const c1 = new Vector3d(this.maxX, this.minY, this.minZ);
-    const c2 = new Vector3d(this.maxX, this.maxY, this.minZ);
-    const c3 = new Vector3d(this.minX, this.maxY, this.minZ);
-    const c4 = new Vector3d(this.minX, this.minY, this.maxZ);
-    const c5 = new Vector3d(this.maxX, this.minY, this.maxZ);
-    const c6 = new Vector3d(this.maxX, this.maxY, this.maxZ);
-    const c7 = new Vector3d(this.minX, this.maxY, this.maxZ);
+    const c0 = new Point3d(this.minX, this.minY, this.minZ);
+    const c1 = new Point3d(this.maxX, this.minY, this.minZ);
+    const c2 = new Point3d(this.maxX, this.maxY, this.minZ);
+    const c3 = new Point3d(this.minX, this.maxY, this.minZ);
+    const c4 = new Point3d(this.minX, this.minY, this.maxZ);
+    const c5 = new Point3d(this.maxX, this.minY, this.maxZ);
+    const c6 = new Point3d(this.maxX, this.maxY, this.maxZ);
+    const c7 = new Point3d(this.minX, this.maxY, this.maxZ);
 
     return [c0, c1, c2, c3, c4, c5, c6, c7];
   }
@@ -223,12 +225,12 @@ export class BoundingBox {
    * @param minZ true for the minimum on the Z axis; false for the maximum.
    * @returns The corner point.
    */
-  public GetCorner(minX: boolean, minY: boolean, minZ: boolean): Vector3d {
+  public GetCorner(minX: boolean, minY: boolean, minZ: boolean): Point3d {
     const x = minX ? this.minX : this.maxX;
     const y = minY ? this.minY : this.maxY;
     const z = minZ ? this.minZ : this.maxZ;
 
-    return new Vector3d(x, y, z);
+    return new Point3d(x, y, z);
   }
 
   /**
@@ -237,7 +239,7 @@ export class BoundingBox {
    * @param strict If true, the point needs to be fully on the inside of the BoundingBox. I.e. coincident points will be considered 'outside'.
    * @returns If 'strict' is affirmative, true if the point is inside this bounding box; false if it is on the surface or outside. If 'strict' is negative, true if the point is on the surface or on the inside of the bounding box; otherwise false.
    */
-  public ContainsPoint(testPoint: Vector3d, strict: boolean = true): boolean {
+  public ContainsPoint(testPoint: Point3d, strict: boolean = true): boolean {
     const x = testPoint.X;
     const y = testPoint.Y;
     const z = testPoint.Z;
@@ -304,12 +306,12 @@ export class BoundingBox {
    */
   public Equals(other: BoundingBox): boolean {
     return (
-      Open3d.equals(this.minX, other.minX) &&
-      Open3d.equals(this.minY, other.minY) &&
-      Open3d.equals(this.minZ, other.minZ) &&
-      Open3d.equals(this.maxX, other.maxX) &&
-      Open3d.equals(this.maxY, other.maxY) &&
-      Open3d.equals(this.maxZ, other.maxZ)
+      Open3dMath.EpsilonEquals(this.minX, other.minX) &&
+      Open3dMath.EpsilonEquals(this.minY, other.minY) &&
+      Open3dMath.EpsilonEquals(this.minZ, other.minZ) &&
+      Open3dMath.EpsilonEquals(this.maxX, other.maxX) &&
+      Open3dMath.EpsilonEquals(this.maxY, other.maxY) &&
+      Open3dMath.EpsilonEquals(this.maxZ, other.maxZ)
     );
   }
 
@@ -320,12 +322,12 @@ export class BoundingBox {
    * @param tz Normalized (between 0 and 1 is inside the box) parameter along the Z direction.
    * @returns The point at the {tx, ty, tz} parameters.
    */
-  public PointAt(tx: number, ty: number, tz: number): Vector3d {
+  public PointAt(tx: number, ty: number, tz: number): Point3d {
     const x = this.minX + (this.maxX - this.minX) * tx;
     const y = this.minY + (this.maxY - this.minY) * ty;
     const z = this.minZ + (this.maxZ - this.minZ) * tz;
 
-    return new Vector3d(x, y, z);
+    return new Point3d(x, y, z);
   }
 
   /**
