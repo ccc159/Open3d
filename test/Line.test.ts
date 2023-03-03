@@ -1,20 +1,19 @@
 import { Line } from '../src/Line';
-import { Open3d } from '../src/Open3d';
-import { Plane } from '../src/Plane';
 import { Transform } from '../src/Transform';
+import { Point3d } from '../src/Point3d';
 import { Vector3d } from '../src/Vector3d';
 
-let v1: Vector3d;
-let v2: Vector3d;
+let v1: Point3d;
+let v2: Point3d;
 let l1: Line;
 let l2: Line;
 let lInvalid: Line;
 
 beforeEach(() => {
-  v1 = new Vector3d(-2, 6, 4);
-  v2 = new Vector3d(4, 8, -2);
+  v1 = new Point3d(-2, 6, 4);
+  v2 = new Point3d(4, 8, -2);
   l1 = new Line(v1, v2);
-  lInvalid = new Line(new Vector3d(0, 0, 0), new Vector3d(0, 0, 0));
+  lInvalid = new Line(new Point3d(0, 0, 0), new Point3d(0, 0, 0));
 });
 
 test('Constructor', () => {
@@ -64,8 +63,8 @@ test('Clone', () => {
 test('PointAt', () => {
   expect(l1.PointAt(0).Equals(v1)).toBe(true);
   expect(l1.PointAt(1).Equals(v2)).toBe(true);
-  expect(l1.PointAt(0.5).Equals(new Vector3d(1, 7, 1))).toBe(true);
-  expect(l1.PointAt(-1).Equals(new Vector3d(-8, 4, 10))).toBe(true);
+  expect(l1.PointAt(0.5).Equals(new Point3d(1, 7, 1))).toBe(true);
+  expect(l1.PointAt(-1).Equals(new Point3d(-8, 4, 10))).toBe(true);
 
   expect(() => lInvalid.PointAt(0)).toThrowError();
 });
@@ -83,13 +82,13 @@ test('PointAtLength', () => {
 });
 
 test('ClosestParameter', () => {
-  let p = new Vector3d(0, 0, 0);
+  let p = new Point3d(0, 0, 0);
   expect(l1.ClosestParameter(p)).toBeCloseTo(0.315789, 3);
   expect(l1.ClosestPoint(p).X).toBeCloseTo(-0.105, 3);
   expect(l1.ClosestPoint(p).Y).toBeCloseTo(6.632, 3);
   expect(l1.ClosestPoint(p).Z).toBeCloseTo(2.105, 3);
 
-  p = new Vector3d(-16, 0, 0);
+  p = new Point3d(-16, 0, 0);
   expect(l1.ClosestParameter(p, true)).toBe(0);
   expect(l1.ClosestPoint(p, true).Equals(v1)).toBe(true);
 
@@ -101,11 +100,18 @@ test('ClosestParameter', () => {
   expect(() => lInvalid.ClosestParameter(p)).toThrowError();
 });
 
+test('ClosestPoint', () => {
+  let p = new Point3d(1000, 1000, 0);
+  l1 = new Line(new Point3d(0, 2000, 0), new Point3d(2000, 2000, 0));
+  expect(l1.ClosestParameter(p)).toBeCloseTo(0.5, 3);
+  expect(l1.ClosestPoint(p).Equals(new Point3d(1000, 2000, 0))).toBe(true);
+});
+
 test('DistanceTo', () => {
-  let p = new Vector3d(0, 0, 0);
+  let p = new Point3d(0, 0, 0);
   expect(l1.DistanceTo(p)).toBeCloseTo(6.959, 3);
 
-  p = new Vector3d(-16, 0, 0);
+  p = new Point3d(-16, 0, 0);
   expect(l1.DistanceTo(p, true)).toBeCloseTo(15.748, 3);
   expect(l1.DistanceTo(p)).toBeCloseTo(13.409, 3);
 
@@ -128,6 +134,6 @@ test('Flip', () => {
 
 test('Transform', () => {
   // test rotation
-  const rotation = Transform.Rotation(Math.PI / 2, new Vector3d(0, 0, 1), new Vector3d(0, 0, 0));
-  expect(l1.Transform(rotation).Equals(new Line(new Vector3d(-6, -2, 4), new Vector3d(-8, 4, -2)))).toBe(true);
+  const rotation = Transform.Rotation(Math.PI / 2, new Vector3d(0, 0, 1), new Point3d(0, 0, 0));
+  expect(l1.Transform(rotation).Equals(new Line(new Point3d(-6, -2, 4), new Point3d(-8, 4, -2)))).toBe(true);
 });

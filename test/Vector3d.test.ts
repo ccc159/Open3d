@@ -1,5 +1,6 @@
 import { Open3d } from '../src/Open3d';
 import { Plane } from '../src/Plane';
+import { Point3d } from '../src/Point3d';
 import { Transform } from '../src/Transform';
 import { Vector3d } from '../src/Vector3d';
 
@@ -52,6 +53,12 @@ test('Add', () => {
   v1 = new Vector3d(1, 2, 3);
   v2 = new Vector3d(4, 5, 6);
   expect(v1.Add(v2)).toMatchObject(new Vector3d(5, 7, 9));
+});
+
+test('AddToPoint', () => {
+  const v1 = new Vector3d(1, 2, 3);
+  const p2 = new Point3d(4, 5, 6);
+  expect(v1.AddToPoint(p2)).toMatchObject(new Point3d(5, 7, 9));
 });
 
 test('Subtract', () => {
@@ -249,23 +256,23 @@ test('Transform', () => {
   // test translation
   v1 = new Vector3d(1, 3, 2);
   const translate = Transform.Translation(new Vector3d(1, 2, 3));
-  expect(v1.Transform(translate).Equals(new Vector3d(2, 5, 5))).toBe(true);
+  expect(v1.Transform(translate).Equals(new Vector3d(1, 3, 2))).toBe(true);
 
   // test rotation
   v1 = new Vector3d(-5, 3, 0);
-  const rotation = Transform.Rotation(Math.PI / 3, new Vector3d(1, 2, 3), new Vector3d(1, 2, 3));
+  const rotation = Transform.Rotation(Math.PI / 3, new Vector3d(1, 2, 3), new Point3d(1, 2, 3));
   expect(v1.Transform(rotation).Equals(new Vector3d(-4.54738093877396, -1.9003968027185, 3.11605818140365))).toBe(true);
 
   // test projection
   v1 = new Vector3d(-5, 3, 0);
-  const pplane = new Plane(Vector3d.Zero, new Vector3d(8.66, 2.5, -4.33), new Vector3d(0, 8.66, 5));
+  const pplane = new Plane(Point3d.Origin, new Vector3d(8.66, 2.5, -4.33), new Vector3d(0, 8.66, 5));
 
   const projection = Transform.PlanarProjection(pplane);
   expect(v1.Transform(projection).Equals(new Vector3d(-3.10045052477886, 1.35491777084041, 2.84928242090441))).toBe(true);
 
   // test mirror
   v1 = new Vector3d(-5, 3, 0);
-  const mplane = new Plane(Vector3d.Zero, new Vector3d(8.66, 2.5, -4.33), new Vector3d(0, 8.66, 5));
+  const mplane = new Plane(Point3d.Origin, new Vector3d(8.66, 2.5, -4.33), new Vector3d(0, 8.66, 5));
 
   const mirror = Transform.Mirror(mplane);
   expect(v1.Transform(mirror).Equals(new Vector3d(-1.20090104955773, -0.290164458319175, 5.69856484180881))).toBe(true);

@@ -1,4 +1,6 @@
 import { Open3d } from './Open3d';
+import { Open3dMath } from './Open3dMath';
+import { Point3d } from './Point3d';
 import { Transform } from './Transform';
 import { Vector3d } from './Vector3d';
 
@@ -9,19 +11,19 @@ export class Line {
   /**
    * Start point of line segment.
    */
-  public From: Vector3d;
+  public From: Point3d;
 
   /**
    * End point of line segment.
    */
-  public To: Vector3d;
+  public To: Point3d;
 
   /**
    * Constructs a new line segment between two points.
    * @param from the from point
    * @param to the to point
    */
-  constructor(from: Vector3d, to: Vector3d) {
+  constructor(from: Point3d, to: Point3d) {
     this.From = from;
     this.To = to;
   }
@@ -41,7 +43,7 @@ export class Line {
    */
   public get Direction(): Vector3d {
     if (!this.IsValid) throw new Error('Cannot get direction of an invalid line.');
-    return this.To.Subtract(this.From);
+    return this.To.SubtractPoint(this.From);
   }
 
   /**
@@ -84,9 +86,9 @@ export class Line {
    * @param param Parameter to evaluate line segment at. Line parameters are normalized parameters.
    * @returns The point at the specified parameter.
    */
-  public PointAt(param: number): Vector3d {
+  public PointAt(param: number): Point3d {
     if (!this.IsValid) throw new Error('Cannot evaluate an invalid line.');
-    return this.Direction.Multiply(param).Add(this.From);
+    return this.Direction.Multiply(param).AddToPoint(this.From);
   }
 
   /**
@@ -94,9 +96,9 @@ export class Line {
    * @param distance A positive, 0, or a negative value that will be the distance from From.
    * @returns The newly found point.
    */
-  public PointAtLength(distance: number): Vector3d {
+  public PointAtLength(distance: number): Point3d {
     if (!this.IsValid) throw new Error('Cannot evaluate an invalid line.');
-    return this.UnitDirection.Multiply(distance).Add(this.From);
+    return this.UnitDirection.Multiply(distance).AddToPoint(this.From);
   }
 
   /**
@@ -105,10 +107,10 @@ export class Line {
    * @param limitToFiniteSegment If true, the projection is limited to the finite line segment. default: false
    * @returns The parameter on the line that is closest to testPoint.
    */
-  public ClosestParameter(testPoint: Vector3d, limitToFiniteSegment: boolean = false): number {
+  public ClosestParameter(testPoint: Point3d, limitToFiniteSegment: boolean = false): number {
     if (!this.IsValid) throw new Error('Invalid line does not have a closest point.');
-    const startToP = testPoint.Subtract(this.From);
-    const startToEnd = this.To.Subtract(this.From);
+    const startToP = testPoint.SubtractPoint(this.From);
+    const startToEnd = this.To.SubtractPoint(this.From);
 
     const startEnd2 = startToEnd.DotProduct(startToEnd);
     const startEnd_startP = startToEnd.DotProduct(startToP);
@@ -116,7 +118,7 @@ export class Line {
     let t = startEnd_startP / startEnd2;
 
     if (limitToFiniteSegment) {
-      t = Open3d.clamp(t, 0, 1);
+      t = Open3dMath.Clamp(t, 0, 1);
     }
 
     return t;
@@ -128,7 +130,7 @@ export class Line {
    * @param limitToFiniteSegment If true, the projection is limited to the finite line segment. default: false
    * @returns The point on the (in)finite line that is closest to testPoint.
    */
-  public ClosestPoint(testPoint: Vector3d, limitToFiniteSegment: boolean = false): Vector3d {
+  public ClosestPoint(testPoint: Point3d, limitToFiniteSegment: boolean = false): Point3d {
     const t = this.ClosestParameter(testPoint, limitToFiniteSegment);
 
     return this.PointAt(t);
@@ -140,7 +142,7 @@ export class Line {
    * @param limitToFiniteSegment If true, the distance is limited to the finite line segment. default: false
    * @returns The shortest distance between this line segment and testPoint.
    */
-  public DistanceTo(testPoint: Vector3d, limitToFiniteSegment: boolean = false): number {
+  public DistanceTo(testPoint: Point3d, limitToFiniteSegment: boolean = false): number {
     const closestPt = this.ClosestPoint(testPoint, limitToFiniteSegment);
     return closestPt.DistanceTo(testPoint);
   }
@@ -162,8 +164,8 @@ export class Line {
    */
   public Extend(startLength: number, endLength: number): Line {
     if (!this.IsValid) throw new Error('Cannot extend an invalid line.');
-    const startPt = this.UnitDirection.Multiply(-startLength).Add(this.From);
-    const endPt = this.UnitDirection.Multiply(endLength).Add(this.To);
+    const startPt = this.UnitDirection.Multiply(-startLength).AddToPoint(this.From);
+    const endPt = this.UnitDirection.Multiply(endLength).AddToPoint(this.To);
     return new Line(startPt, endPt);
   }
 

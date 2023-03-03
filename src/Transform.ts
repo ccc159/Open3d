@@ -1,28 +1,13 @@
 import { Open3d } from './Open3d';
+import { Open3dMath } from './Open3dMath';
 import { Plane } from './Plane';
+import { Point3d } from './Point3d';
 import { Vector3d } from './Vector3d';
 
 /**
  * a type that has an array of 16 numbers
  */
-export type Array16Number = [
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number
-];
+export type Array16Number = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
 
 /**
  * Represents the values in a 4x4 transform matrix.
@@ -102,7 +87,7 @@ export class Transform {
     const me = other.M;
 
     for (let i = 0; i < 16; i++) {
-      if (!Open3d.equals(te[i], me[i])) return false;
+      if (!Open3dMath.EpsilonEquals(te[i], me[i])) return false;
     }
 
     return true;
@@ -200,15 +185,18 @@ export class Transform {
    * @param rotationAxis The axis to ratate around, default Vector3D.ZAxis
    * @param rotationCenter The center of the rotation, default (0,0,0).
    */
-  public static Rotation(angle: number, rotationAxis: Vector3d = Vector3d.ZAxis, rotationCenter: Vector3d = Vector3d.Zero): Transform {
+  public static Rotation(angle: number, rotationAxis: Vector3d = Vector3d.ZAxis, rotationCenter: Point3d = Point3d.Origin): Transform {
+    // convert point to vector
+    const vec = Vector3d.CreateFromPoint3d(rotationCenter);
+
     // move location to world origin
-    const m1 = Transform.Translation(rotationCenter.Reverse());
+    const m1 = Transform.Translation(vec.Reverse());
 
     // scale
     const m2 = Transform.RotateAtOrigin(angle, rotationAxis);
 
     // move back
-    const m3 = Transform.Translation(rotationCenter);
+    const m3 = Transform.Translation(vec);
 
     // return m1 * m2 * m3
     return Transform.CombineTransforms([m1, m2, m3]);
@@ -317,15 +305,18 @@ export class Transform {
    * @param scalar The scaling factor
    * @returns The scaled transform
    */
-  public static Scale(location: Vector3d, scalar: number) {
+  public static Scale(location: Point3d, scalar: number) {
+    // convert point to vector
+    const vec = Vector3d.CreateFromPoint3d(location);
+
     // move location to origin
-    const m1 = Transform.Translation(location.Reverse());
+    const m1 = Transform.Translation(vec.Reverse());
 
     // scale
     const m2 = Transform.ScaleAtOrigin(scalar, scalar, scalar);
 
     // move back
-    const m3 = Transform.Translation(location);
+    const m3 = Transform.Translation(vec);
 
     // return m1 * m2 * m3
     return Transform.CombineTransforms([m1, m2, m3]);
@@ -456,7 +447,7 @@ export class Transform {
    */
   public static PlaneToPlane(fromPlane: Plane, toPlane: Plane) {
     // move fromPlane to world origin
-    const translation1 = Transform.Translation(Vector3d.Zero.Subtract(fromPlane.Origin));
+    const translation1 = Transform.Translation(Point3d.Origin.SubtractPoint(fromPlane.Origin));
 
     const rotationX = Transform.VectorToVector(fromPlane.XAxis, toPlane.XAxis);
 
@@ -465,7 +456,7 @@ export class Transform {
     const rotationY = Transform.VectorToVector(tranformedFromPlaneYAxis, toPlane.YAxis);
 
     // move from world origin to toPlane
-    const translation2 = Transform.Translation(toPlane.Origin);
+    const translation2 = Transform.Translation(Vector3d.CreateFromPoint3d(toPlane.Origin));
 
     return Transform.CombineTransforms([translation1, rotationX, rotationY, translation2]);
   }
