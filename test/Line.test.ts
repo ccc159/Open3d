@@ -69,6 +69,15 @@ test('PointAt', () => {
   expect(() => lInvalid.PointAt(0)).toThrowError();
 });
 
+test('IsPointOn', () => {
+  const onpt = l1.PointAt(0.7);
+  const opt = new Point3d(-8, 4, 10);
+  expect(l1.IsPointOn(onpt)).toBe(true);
+  expect(l1.IsPointOn(opt)).toBe(true);
+  expect(l1.IsPointOn(opt, true)).toBe(false);
+  expect(l1.IsPointOn(new Point3d(0, 0, 0))).toBe(false);
+});
+
 test('PointAtLength', () => {
   expect(l1.PointAtLength(0).Equals(v1)).toBe(true);
   expect(l1.PointAtLength(10).X).toBeCloseTo(4.882, 3);
