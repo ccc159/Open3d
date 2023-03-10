@@ -331,6 +331,15 @@ Initializes a new instance of a vector, copying the three components from a vect
     return Vector3d.Unitize(this);
   }
 
+  /**
+   * Determines whether a vector is very short.
+   * @param tolerance A nonzero value used as the coordinate zero tolerance.
+   * @returns
+   */
+  public IsTiny(tolerance: number = Open3d.EPSILON): boolean {
+    return Math.abs(this.X) < tolerance && Math.abs(this.Y) < tolerance && Math.abs(this.Z) < tolerance;
+  }
+
   // #endregion
 
   /**

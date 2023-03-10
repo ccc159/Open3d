@@ -42,6 +42,14 @@ test('Length', () => {
   expect(vec.Length).toBe(0);
 });
 
+test('IsTiny', () => {
+  vec = new Vector3d(0, 0, 0);
+  expect(vec.IsTiny()).toBe(true);
+  vec = new Vector3d(0.001, 0, 0);
+  expect(vec.IsTiny()).toBe(false);
+  expect(vec.IsTiny(0.002)).toBe(true);
+});
+
 test('XAxis, YAxis, ZAxis, Zero', () => {
   expect(Vector3d.XAxis).toMatchObject(new Vector3d(1, 0, 0));
   expect(Vector3d.YAxis).toMatchObject(new Vector3d(0, 1, 0));
