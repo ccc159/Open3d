@@ -2,6 +2,7 @@ import { Transform } from './Transform';
 import { Line } from './Line';
 import { Vector3d } from './Vector3d';
 import { Point3d } from './Point3d';
+import { Open3d } from './Open3d';
 
 /**
  * Represents the value of a center point and two axes in a plane in three dimensions.
@@ -35,6 +36,12 @@ export class Plane {
    * @returns The plane created from the given point and vectors.
    */
   public constructor(origin: Point3d, xAxis: Vector3d, yAxis: Vector3d) {
+    if (xAxis.IsTiny() || yAxis.IsTiny()) {
+      throw new Error('The input axis is not valid.');
+    }
+    if (xAxis.IsParallelTo(yAxis)) {
+      throw new Error('XAxis and YAxis should not be parallel.');
+    }
     xAxis = xAxis.Unitize();
     yAxis = yAxis.Unitize();
     const zAxis = xAxis.CrossProduct(yAxis).Unitize();
@@ -166,19 +173,21 @@ export class Plane {
   /**
    * Checks if a point is coplanar to this plane.
    * @param point The point to check.
+   * @param tolerance The tolerance to use when checking.
    * @returns True if the point is coplanar to this plane.
    */
-  public IsPointCoplanar(point: Point3d): boolean {
-    return this.ClosestPoint(point).Equals(point);
+  public IsPointCoplanar(point: Point3d, tolerance = Open3d.EPSILON): boolean {
+    return this.ClosestPoint(point).DistanceTo(point) < tolerance;
   }
 
   /**
    * Checks if a line is coplanar to this plane.
    * @param line The line to check.
+   * @param tolerance The tolerance to use when checking.
    * @returns True if the line is coplanar to this plane.
    */
-  public IsLineCoplanar(line: Line): boolean {
-    return this.ClosestPoint(line.From).Equals(line.From) && this.ClosestPoint(line.To).Equals(line.To);
+  public IsLineCoplanar(line: Line, tolerance = Open3d.EPSILON): boolean {
+    return this.IsPointCoplanar(line.From, tolerance) && this.IsPointCoplanar(line.To, tolerance);
   }
 
   /**
@@ -204,6 +213,22 @@ export class Plane {
    */
   public static CreateFromFrame(origin: Point3d, xAxis: Vector3d, yAxis: Vector3d): Plane {
     return new Plane(origin, xAxis, yAxis);
+  }
+
+  /**
+   * Constructs a plane from three points in the plane.
+   * @remarks The point 2 to 1 forms XAxis. The point 3 helps determine the ZAxis.
+   * @param point1 Center point of the plane.
+   * @param point2 Point 2 is on the XAxis.
+   * @param point3 Point 3
+   * @returns The plane created from the given points.
+   */
+  public static CreateFrom3Points(point1: Point3d, point2: Point3d, point3: Point3d): Plane {
+    const vx = point2.SubtractPoint(point1);
+    const v2 = point3.SubtractPoint(point1);
+    const vz = vx.CrossProduct(v2);
+    const vy = vz.CrossProduct(vx);
+    return new Plane(point1, vx, vy);
   }
 
   /**
