@@ -222,24 +222,7 @@ export class Transform {
     const tx = t * x,
       ty = t * y;
 
-    return new Transform([
-      tx * x + c,
-      tx * y - s * z,
-      tx * z + s * y,
-      0,
-      tx * y + s * z,
-      ty * y + c,
-      ty * z - s * x,
-      0,
-      tx * z - s * y,
-      ty * z + s * x,
-      t * z * z + c,
-      0,
-      0,
-      0,
-      0,
-      1,
-    ]);
+    return new Transform([tx * x + c, tx * y - s * z, tx * z + s * y, 0, tx * y + s * z, ty * y + c, ty * z - s * x, 0, tx * z - s * y, ty * z + s * x, t * z * z + c, 0, 0, 0, 0, 1]);
   }
 
   /**

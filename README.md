@@ -6,7 +6,7 @@ Open3d is a 3d geometry library for JavaScript/Typescript inspired by [RhinoComm
 
 This library is created because so far there has not been a proper typed 3d geometry library for node environment. It is often necessary to calculate vector math or basic intersections of lines or planes but it is very cumbersome or error-prone to invent the wheel. And Open3d tries to save you from the distress. It is written in Typescript which supports native types for your project without the hassle of installing "@types/xxx". Also, it is a pure package that has zero dependencies.
 
-It currently has `Point3d`, `Vector3d`, `Line`, `Transform (or Matrix4x4)`, `Plane` and `Intersection` definitions.
+It currently has `Point3d`, `Vector3d`, `Line`, `Polyline`, `Transform (or Matrix4x4)`, `Plane` and `Intersection` definitions.
 
 # Install
 
@@ -96,4 +96,4 @@ If you realy find it useful and like to contribute straightforwardly, feel free 
 
 # License
 
-[GPLv3](./LICENSE.md)
+[MIT](https://github.com/ccc159/Open3d/raw/master/LICENSE)

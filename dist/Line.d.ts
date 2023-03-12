@@ -84,6 +84,14 @@ export declare class Line {
      */
     Equals(other: Line): boolean;
     /**
+     * Checks if a point is on the line.
+     * @param point  Point to check.
+     * @param limitToFiniteSegment If true, the check is limited on the finite line. default: false
+     * @param tolerance
+     * @returns
+     */
+    IsPointOn(point: Point3d, limitToFiniteSegment?: boolean, tolerance?: number): boolean;
+    /**
      * Extend the line by custom distances on both sides.
      * @param startLength Distance to extend the line at the start point. Positive distance result in longer lines.
      * @param endLength Distance to extend the line at the end point. Positive distance result in longer lines.

@@ -9,7 +9,7 @@ import { Vector3d } from './Vector3d';
 /**
  * Represents an ordered set of points connected by linear segments.
  * @remarks The polyline is using the Array class as its base class. So you can use all Array methods on a polyline.
- * @remarks Polylines are closed if start and end points coincide.
+ * Polylines are closed if start and end points coincide.
  */
 export class Polyline extends Point3dList {
   /**
@@ -50,7 +50,7 @@ export class Polyline extends Point3dList {
   /**
    * Gets a value that indicates whether this polyline is valid.
    * @remarks Valid polylines have at least one segment, no Invalid points and no zero length segments.
-   * @remarks Closed polylines with only two segments are also not considered valid.
+   * Closed polylines with only two segments are also not considered valid.
    */
   public get IsValid(): boolean {
     if (this.Count < 2) return false;
@@ -73,7 +73,7 @@ export class Polyline extends Point3dList {
   /**
    * Gets a value that indicates whether this polyline is closed.
    * @remarks The polyline is considered to be closed if its start is identical to its endpoint.
-   * @remarks Polylines less than 3 points long are not considered closed.
+   * Polylines less than 3 points long are not considered closed.
    */
   public get IsClosed(): boolean {
     return this.Count > 2 && this.First.Equals(this.Last);
@@ -469,9 +469,9 @@ export class Polyline extends Point3dList {
   /**
    * It checks if a point is inside a Closed Planar polyline.
    * @remarks The polyline must be closed and planar. If not, it throws an exception.
-   * @remarks if the point is on the polyline, it returns false.
-   * @remarks If the point is not on the polyline plane, it returns false.
-   * @remarks It performs the even-odd-rule Algorithm (a raycasting algorithm)
+   * if the point is on the polyline, it returns false.
+   * If the point is not on the polyline plane, it returns false.
+   * It performs the even-odd-rule Algorithm (a raycasting algorithm)
    * see https://en.wikipedia.org/wiki/Point_in_polygon
    * @param point the point to check.
    * @param tolerance
