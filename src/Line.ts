@@ -157,6 +157,18 @@ export class Line {
   }
 
   /**
+   * Checks if a point is on the line.
+   * @param point  Point to check.
+   * @param limitToFiniteSegment If true, the check is limited on the finite line. default: false
+   * @param tolerance
+   * @returns
+   */
+  public IsPointOn(point: Point3d, limitToFiniteSegment: boolean = false, tolerance: number = Open3d.EPSILON): boolean {
+    const d = this.DistanceTo(point, limitToFiniteSegment);
+    return d <= tolerance;
+  }
+
+  /**
    * Extend the line by custom distances on both sides.
    * @param startLength Distance to extend the line at the start point. Positive distance result in longer lines.
    * @param endLength Distance to extend the line at the end point. Positive distance result in longer lines.
