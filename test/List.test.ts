@@ -5,8 +5,8 @@ let v2: List<string>;
 let v3: List<number>;
 
 beforeEach(() => {
-  v1 = new List<number>(...[1, 2, 3]);
-  v2 = new List<string>(...['a', 'b', 'c']);
+  v1 = new List<number>([1, 2, 3]);
+  v2 = new List<string>(['a', 'b', 'c']);
   v3 = new List<number>();
 });
 
@@ -30,7 +30,7 @@ test('Count', () => {
   expect(v1.Count).toBe(3);
   expect(v2.Count).toBe(3);
   expect(v3.Count).toBe(0);
-  v3.push(1);
+  v3.Add(1);
   expect(v3.Count).toBe(1);
 });
 
