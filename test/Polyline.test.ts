@@ -224,3 +224,7 @@ test('IsPointInside', () => {
 
   expect(() => pl.IsPointInside(ptOn)).toThrowError();
 });
+
+test('TryGetArea', () => {
+  expect(pl.TryGetArea()).toBeCloseTo(214.439811057);
+});

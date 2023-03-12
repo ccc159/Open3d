@@ -432,6 +432,21 @@ export class Polyline extends Point3dList {
   }
 
   /**
+   * Try get the area of the polyline if it is planar and closed.
+   * @param tolerance
+   * @returns the area or null if the polyline is not planar.
+   */
+  public TryGetArea(tolerance = Open3d.EPSILON): number | null {
+    if (this.IsPlanar() && this.IsClosed) {
+      // orient the point to the plane
+      const plane = this.TryGetPlane(tolerance)!;
+      const polyline = this.Transform(Transform.PlaneToPlane(plane, Plane.PlaneXY));
+      return Math.abs(Polyline.SignedPolygonArea(polyline));
+    }
+    return null;
+  }
+
+  /**
    * Checks if a point is on the polyline.
    * @param point the point to check.
    * @param tolerance
@@ -546,6 +561,22 @@ export class Polyline extends Point3dList {
     const bz = z === v1.Z ? z : v1.Z + amount * (z - v1.Z);
 
     return new Point3d(bx, by, bz);
+  }
+
+  /**
+   * This assumes the polyline is planar on the XY plane.
+   * @param points
+   */
+  private static SignedPolygonArea(polyline: Polyline): number {
+    // calculate area
+    let area = 0;
+    let count = polyline.Count;
+    for (let i = 0; i < count; i++) {
+      const p1 = polyline.Get(i);
+      const p2 = polyline.Get((i + 1) % count);
+      area += p1.X * p2.Y - p2.X * p1.Y;
+    }
+    return area * 0.5;
   }
 
   //#endregion
