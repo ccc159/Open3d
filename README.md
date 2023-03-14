@@ -90,6 +90,12 @@ The full API reference can be found at [https://open3d.chen.works/](https://open
 
 # Contribute
 
+### Contributors
+
+<a href="https://github.com/ccc159/Open3d/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ccc159/Open3d" />
+</a>
+
 Any form of contributions to fix/optimize or extend the library are welcome! Please take advantage of Github's [issues](https://github.com/ccc159/open3d/issues) or [pull requests](https://github.com/ccc159/open3d/pulls). :)
 
 If you realy find it useful and like to contribute straightforwardly, feel free to [buy me a coffee](https://www.buymeacoffee.com/ccc159) :)
