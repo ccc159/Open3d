@@ -4,7 +4,7 @@ import { Vector3d } from './Vector3d';
 /**
  * a type that has an array of 16 numbers
  */
-export type Array16Number = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+export declare type Array16Number = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
 /**
  * Represents the values in a 4x4 transform matrix.
  */
