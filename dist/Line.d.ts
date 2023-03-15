@@ -93,11 +93,11 @@ export declare class Line {
      */
     Extend(startLength: number, endLength: number): Line;
     /**
-   * Compute the shortest distance between this line segment and a test point.
-   * @param other Other geometry to calculate the distance to.
-   * @param limitToFiniteSegment If true, the distance is limited to the finite line segment. default: false
-   * @returns The shortest distance between this line segment and testPoint.
-   */
+     * Compute the shortest distance between this line segment and a test point.
+     * @param other Other geometry to calculate the distance to.
+     * @param limitToFiniteSegment If true, the distance is limited to the finite line segment. default: false
+     * @returns The shortest distance between this line segment and testPoint.
+     */
     DistanceTo(other: Point3d | Line | Plane, limitToFiniteSegment?: boolean): number;
     /**
      * Flip the endpoints of the line and return a new line.
@@ -110,6 +110,14 @@ export declare class Line {
      * @returns A new transformed line.
      */
     Transform(transformation: Transform): Line;
+    /**
+     * Creates a line from start point and span vector
+     * @param origin A point on the line.
+     * @param direction A direction vector.
+     * @param length (optional) the length of the line. If not provided, the length will be the length of the direction vector.
+     * @returns A line.
+     */
+    static CreateFromOriginAndDirection(origin: Point3d, direction: Vector3d, length?: number): Line;
     /**
      * Private static method to compute the parameter value t of the closest point on a line segment to a given point.
      * @param line
