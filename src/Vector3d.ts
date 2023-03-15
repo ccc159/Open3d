@@ -1,5 +1,6 @@
 import { Open3d } from './Open3d';
 import { Open3dMath } from './Open3dMath';
+import { Plane } from './Plane';
 import { Point3d } from './Point3d';
 import { Transform } from './Transform';
 
@@ -289,6 +290,26 @@ Initializes a new instance of a vector, copying the three components from a vect
     let cos = Vector3d.DotProduct(a, b) / (a.Length * b.Length);
     cos = Open3dMath.Clamp(cos, -1, 1);
     return Math.acos(cos);
+  }
+
+  /**
+   * Compute the positive angle between two vectors based on a reference direction
+   * @param a First vector for angle.
+   * @param b Second vector for angle.
+   * @param reference Reference direction for angle (Plane or Vector3d, default WorldXY.ZAxis).
+   */
+  public static PositiveVectorAngle(a: Vector3d, b: Vector3d, reference?: Vector3d | Plane): number {
+    const r = reference instanceof Plane ? reference : Plane.CreateFromNormal(Point3d.Origin, reference ?? Vector3d.ZAxis);
+    // projecting the vectors on the plane defined by the reference vector / plane
+    const planeToPlane = Transform.PlaneToPlane(r, Plane.PlaneXY);
+    const aProj = a.Transform(planeToPlane);
+    const bProj = b.Transform(planeToPlane);
+    // projection onto the XY plane
+    aProj.Z = 0;
+    bProj.Z = 0;
+    if (aProj.IsZero || bProj.IsZero) throw new Error('Cannot compute angle of zero-length vector.');
+    const angle = Math.atan2(bProj.Y, bProj.X) - Math.atan2(aProj.Y, aProj.X);
+    return angle < 0 ? angle + 2 * Math.PI : angle;
   }
 
   /**
