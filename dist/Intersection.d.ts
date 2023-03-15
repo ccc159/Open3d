@@ -1,3 +1,4 @@
+import { IntersectionEvent } from './IntersectionEvent';
 import { Line } from './Line';
 import { Plane } from './Plane';
 import { Point3d } from './Point3d';
@@ -6,16 +7,31 @@ import { Point3d } from './Point3d';
  */
 export declare class Intersection {
     private constructor();
+    /** tParameter closest tParameter on two lines. Lines can be interesecting or crossing, but not parallel
+     * @param line1 first Line Line to intersect with.
+     * @param line2 second Line to intersect with.
+    */
+    static LineLineTParameters(line1: Line, line2: Line): [number, number] | null;
     /**
      * Try to get an intersection point between this line and another line.
      * If there's no intersection, null is returned.
      * @param firstLine first Line Line to intersect with.
      * @param secondLine second Line to intersect with.
      * @param limitToFiniteSegment If true, the distance is limited to the finite line segment. default: false
-     * @param tolerance Tolerance used to determine if the lines are intersecting, default: Open3d.EPSILON
-     * @returns The intersection point, or null if there's no intersection.
+     * @param distance (default is global tolerance) Distance between two lines to filter intersections. To include crossing lines, increase the distance
+     * @returns The point at the intersetion, or null if there's no intersection.
      */
-    static LineLine(firstLine: Line, secondLine: Line, limitToFiniteSegment?: boolean, tolerance?: number): Point3d | null;
+    static LineLine(firstLine: Line, secondLine: Line, limitToFiniteSegment?: boolean, distance?: number): Point3d | null;
+    /**
+     * Try to closest points between two lines.
+     * If there's no valid crossing, null is returned.
+     * @param firstLine first Line Line to intersect with.
+     * @param secondLine second Line to intersect with.
+     * @param limitToFiniteSegment If true, the distance is limited to the finite line segment. default: false
+     * @param distance (default is Infinity) Distance between two lines to filter intersections. To include crossing lines, increase the distance
+     * @returns The intersection event, or null if there's no intersection.
+     */
+    static CrossingLineLine(firstLine: Line, secondLine: Line, limitToFiniteSegment?: boolean, distance?: number): IntersectionEvent | null;
     /**
      * Intersects a line and a plane. This function only returns a single intersection point or null (i.e. if the line is coincident with the plane then no intersection is assumed).
      * @param line The line to intersect with.
