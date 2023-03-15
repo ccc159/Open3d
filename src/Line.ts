@@ -172,20 +172,15 @@ export class Line {
     return new Line(startPt, endPt);
   }
 
-    /**
+  /**
    * Compute the shortest distance between this line segment and a test point.
    * @param other Other geometry to calculate the distance to.
    * @param limitToFiniteSegment If true, the distance is limited to the finite line segment. default: false
    * @returns The shortest distance between this line segment and testPoint.
    */
-  public DistanceTo(
-    other: Point3d | Line | Plane,
-    limitToFiniteSegment: boolean = false
-  ): number {
-    if (other instanceof Line)
-      return Line.LineLineDistance(this, other, limitToFiniteSegment);
-    if (other instanceof Plane)
-      return Line.LinePlaneDistance(this, other, limitToFiniteSegment);
+  public DistanceTo(other: Point3d | Line | Plane, limitToFiniteSegment: boolean = false): number {
+    if (other instanceof Line) return Line.LineLineDistance(this, other, limitToFiniteSegment);
+    if (other instanceof Plane) return Line.LinePlaneDistance(this, other, limitToFiniteSegment);
     return Line.LinePointDistance(this, other, limitToFiniteSegment);
   }
 
@@ -212,6 +207,17 @@ export class Line {
   // #region Static Methods
 
   /**
+   * Creates a line from start point and span vector
+   * @param origin A point on the line.
+   * @param direction A direction vector.
+   * @param length (optional) the length of the line. If not provided, the length will be the length of the direction vector.
+   * @returns A line.
+   */
+  public static CreateFromOriginAndDirection(origin: Point3d, direction: Vector3d, length?: number): Line {
+    return new Line(origin, origin.Add(length ? direction.Unitize().Multiply(length) : direction));
+  }
+
+  /**
    * Private static method to compute the parameter value t of the closest point on a line segment to a given point.
    * @param line
    * @param point
@@ -236,11 +242,7 @@ export class Line {
    * @param limitToFiniteSegment whether the line is considered infinite or not
    * @returns Point3d
    */
-  public static LinePointClosestPoint(
-    line: Line,
-    point: Point3d,
-    limitToFiniteSegment?: boolean
-  ): Point3d {
+  public static LinePointClosestPoint(line: Line, point: Point3d, limitToFiniteSegment?: boolean): Point3d {
     let t = Line.LinePointClosestParameter(line, point);
     if (limitToFiniteSegment) t = Open3dMath.Clamp(t, 0, 1);
     return line.PointAt(t);
@@ -253,16 +255,8 @@ export class Line {
    * @param limitToFiniteSegment whether the line is considered infinite or not
    * @returns number
    */
-  public static LinePointDistance(
-    line: Line,
-    point: Point3d,
-    limitToFiniteSegment?: boolean
-  ): number {
-    const closestPoint = Line.LinePointClosestPoint(
-      line,
-      point,
-      limitToFiniteSegment
-    );
+  public static LinePointDistance(line: Line, point: Point3d, limitToFiniteSegment?: boolean): number {
+    const closestPoint = Line.LinePointClosestPoint(line, point, limitToFiniteSegment);
     return point.DistanceTo(closestPoint);
   }
 
@@ -273,16 +267,8 @@ export class Line {
    * @param limitToFiniteSegments whether the points need to be part of the line segments
    * @returns [point1, point2] | null if the lines are parallel
    */
-  public static LineLineClosestPoints = (
-    line1: Line,
-    line2: Line,
-    limitToFiniteSegments: boolean
-  ): [Point3d, Point3d] | null => {
-    const result = Intersection.CrossingLineLine(
-      line1,
-      line2,
-      limitToFiniteSegments
-    );
+  public static LineLineClosestPoints = (line1: Line, line2: Line, limitToFiniteSegments: boolean): [Point3d, Point3d] | null => {
+    const result = Intersection.CrossingLineLine(line1, line2, limitToFiniteSegments);
     if (result) return [result.PointA, result.PointB];
     return null;
   };
@@ -294,11 +280,7 @@ export class Line {
    * @param limitToFiniteSegments
    * @returns
    */
-  public static LineLineDistance = (
-    line1: Line,
-    line2: Line,
-    limitToFiniteSegments: boolean
-  ): number => {
+  public static LineLineDistance = (line1: Line, line2: Line, limitToFiniteSegments: boolean): number => {
     const result = Intersection.CrossingLineLine(line1, line2, limitToFiniteSegments);
     if (!result)
       return limitToFiniteSegments
@@ -320,15 +302,11 @@ export class Line {
    * @param limitToFiniteSegment - only applies to the line
    * @returns
    */
-  public static LinePlaneDistance = (
-    line: Line,
-    plane: Plane,
-    limitToFiniteSegment?: boolean
-  ): number => {
+  public static LinePlaneDistance = (line: Line, plane: Plane, limitToFiniteSegment?: boolean): number => {
     if (Intersection.LinePlane(line, plane, limitToFiniteSegment)) return 0; // intersecting
-    if (limitToFiniteSegment)
-      return Math.min(plane.DistanceTo(line.From), plane.DistanceTo(line.To)); // not intersecting but maybe not parallel
+    if (limitToFiniteSegment) return Math.min(plane.DistanceTo(line.From), plane.DistanceTo(line.To)); // not intersecting but maybe not parallel
     return plane.DistanceTo(line.From); // just parallel
   };
+
   // #endregion
 }
