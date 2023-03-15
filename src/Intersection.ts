@@ -13,6 +13,10 @@ export class Intersection {
     throw new Error('Cannot initialize an intersection instance.');
   }
 
+  /** tParameter closest tParameter on two lines. Lines can be interesecting or crossing, but not parallel
+   * @param line1 first Line Line to intersect with.
+   * @param line2 second Line to intersect with.
+  */
   static LineLineTParameters(line1: Line, line2: Line): [number, number] | null {
     // http://paulbourke.net/geometry/pointlineplane/
     const p13 = line1.From.SubtractPoint(line2.From);
