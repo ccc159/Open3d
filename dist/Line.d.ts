@@ -1,3 +1,4 @@
+import { Plane } from './Plane';
 import { Point3d } from './Point3d';
 import { Transform } from './Transform';
 import { Vector3d } from './Vector3d';
@@ -71,13 +72,6 @@ export declare class Line {
      */
     ClosestPoint(testPoint: Point3d, limitToFiniteSegment?: boolean): Point3d;
     /**
-     * Compute the shortest distance between this line segment and a test point.
-     * @param testPoint Point for distance computation.
-     * @param limitToFiniteSegment If true, the distance is limited to the finite line segment. default: false
-     * @returns The shortest distance between this line segment and testPoint.
-     */
-    DistanceTo(testPoint: Point3d, limitToFiniteSegment?: boolean): number;
-    /**
      * Determines whether a line has the same value as this line.
      * @param other A line.
      * @returns true if other has the same coordinates as this; otherwise false.
@@ -99,6 +93,13 @@ export declare class Line {
      */
     Extend(startLength: number, endLength: number): Line;
     /**
+   * Compute the shortest distance between this line segment and a test point.
+   * @param other Other geometry to calculate the distance to.
+   * @param limitToFiniteSegment If true, the distance is limited to the finite line segment. default: false
+   * @returns The shortest distance between this line segment and testPoint.
+   */
+    DistanceTo(other: Point3d | Line | Plane, limitToFiniteSegment?: boolean): number;
+    /**
      * Flip the endpoints of the line and return a new line.
      * @returns A new flipped line.
      */
@@ -109,4 +110,51 @@ export declare class Line {
      * @returns A new transformed line.
      */
     Transform(transformation: Transform): Line;
+    /**
+     * Private static method to compute the parameter value t of the closest point on a line segment to a given point.
+     * @param line
+     * @param point
+     * @returns number (t Parameter)
+     */
+    static LinePointClosestParameter(line: Line, point: Point3d): number;
+    /**
+     * Static method for computing the closest point on a line to a given point
+     * @param line given line
+     * @param point given point
+     * @param limitToFiniteSegment whether the line is considered infinite or not
+     * @returns Point3d
+     */
+    static LinePointClosestPoint(line: Line, point: Point3d, limitToFiniteSegment?: boolean): Point3d;
+    /**
+     * Static method for computing the closest distance of a point to a line
+     * @param line given line
+     * @param point testPoint
+     * @param limitToFiniteSegment whether the line is considered infinite or not
+     * @returns number
+     */
+    static LinePointDistance(line: Line, point: Point3d, limitToFiniteSegment?: boolean): number;
+    /**
+     * Static method to find the points closest to two lines given (crossing or intersecting) lines
+     * @param line1
+     * @param line2
+     * @param limitToFiniteSegments whether the points need to be part of the line segments
+     * @returns [point1, point2] | null if the lines are parallel
+     */
+    static LineLineClosestPoints: (line1: Line, line2: Line, limitToFiniteSegments: boolean) => [Point3d, Point3d] | null;
+    /**
+     * Static method for computing the closest distance of two lines
+     * @param line1
+     * @param line2
+     * @param limitToFiniteSegments
+     * @returns
+     */
+    static LineLineDistance: (line1: Line, line2: Line, limitToFiniteSegments: boolean) => number;
+    /**
+     * Static method to calculate the distance between a line and a plane
+     * @param line
+     * @param plane
+     * @param limitToFiniteSegment - only applies to the line
+     * @returns
+     */
+    static LinePlaneDistance: (line: Line, plane: Plane, limitToFiniteSegment?: boolean) => number;
 }
