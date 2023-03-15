@@ -1,4 +1,5 @@
 import { Open3d } from './Open3d';
+import { Plane } from './Plane';
 import { Point3d } from './Point3d';
 import { Transform } from './Transform';
 /**
@@ -191,6 +192,13 @@ export declare class Vector3d {
      * @returns The angle between a and b in radians.
      */
     static VectorAngle(a: Vector3d, b: Vector3d): number;
+    /**
+     * Compute the positive angle between two vectors based on a reference direction
+     * @param a First vector for angle.
+     * @param b Second vector for angle.
+     * @param reference Reference direction for angle (Plane or Vector3d, default WorldXY.ZAxis).
+     */
+    static PositiveVectorAngle(a: Vector3d, b: Vector3d, reference?: Vector3d | Plane): number;
     /**
      * Compute the angle between two vectors.
      * @param other Another vector to compare.
