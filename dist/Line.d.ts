@@ -109,4 +109,12 @@ export declare class Line {
      * @returns A new transformed line.
      */
     Transform(transformation: Transform): Line;
+    /**
+     * Creates a line from start point and span vector
+     * @param origin A point on the line.
+     * @param direction A direction vector.
+     * @param length (optional) the length of the line. If not provided, the length will be the length of the direction vector.
+     * @returns A line.
+     */
+    static CreateFromOriginAndDirection(origin: Point3d, direction: Vector3d, length?: number): Line;
 }
