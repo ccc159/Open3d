@@ -19,6 +19,7 @@
     "strictPropertyInitialization": false,
     "noImplicitThis": true,
     "alwaysStrict": true,
+    "noPropertyAccessFromIndexSignature": true,
 
     /* Additional Checks */
     "noUnusedLocals": false,

@@ -222,24 +222,7 @@ export class Transform {
     const tx = t * x,
       ty = t * y;
 
-    return new Transform([
-      tx * x + c,
-      tx * y - s * z,
-      tx * z + s * y,
-      0,
-      tx * y + s * z,
-      ty * y + c,
-      ty * z - s * x,
-      0,
-      tx * z - s * y,
-      ty * z + s * x,
-      t * z * z + c,
-      0,
-      0,
-      0,
-      0,
-      1,
-    ]);
+    return new Transform([tx * x + c, tx * y - s * z, tx * z + s * y, 0, tx * y + s * z, ty * y + c, ty * z - s * x, 0, tx * z - s * y, ty * z + s * x, t * z * z + c, 0, 0, 0, 0, 1]);
   }
 
   /**
@@ -440,25 +423,87 @@ export class Transform {
   }
 
   /**
+   * WorldXY to Frame transformation
+   * @param origin origin of the frame
+   * @param xAxis x axis of the frame
+   * @param yAxis y axis of the frame
+   * @param zAxis z axis of the frame
+   * @returns the transformation matrix
+   */
+    static worldXYToFrame(origin: Point3d, xAxis: Vector3d, yAxis: Vector3d, zAxis: Vector3d): Transform {
+    return new Transform([xAxis.X, yAxis.X, zAxis.X, origin.X, xAxis.Y, yAxis.Y, zAxis.Y, origin.Y, xAxis.Z, yAxis.Z, zAxis.Z, origin.Z, 0, 0, 0, 1]);
+  }
+
+  /**
+   * Helper method to map a point through an arbitrary Frame to an arbitray Frame transformation
+   * @param origin1 origin of the frame
+   * @param xAxis1 x axis of the frame
+   * @param yAxis1 y axis of the frame
+   * @param zAxis1 z axis of the frame
+   * @param origin2 origin of the frame
+   * @param xAxis2 x axis of the frame
+   * @param yAxis2 y axis of the frame
+   * @param zAxis2 z axis of the frame
+   * @param point point to be transformed
+   * @returns transformed point
+   */
+  static frameToFramePoint(
+    origin1: Point3d,
+    xAxis1: Vector3d,
+    yAxis1: Vector3d,
+    zAxis1: Vector3d,
+    origin2: Point3d,
+    xAxis2: Vector3d,
+    yAxis2: Vector3d,
+    zAxis2: Vector3d,
+    point: Point3d
+  ) {
+    const locP = point.SubtractPoint(origin1);
+    const xT = locP.DotProduct(xAxis1);
+    const yT = locP.DotProduct(yAxis1);
+    const zT = locP.DotProduct(zAxis1);
+
+    return origin2.Add(xAxis2.Multiply(xT)).Add(yAxis2.Multiply(yT)).Add(zAxis2.Multiply(zT));
+  }
+
+  /**
+   * Helper method for creating the transformation for an arbitrary Frame to an arbitrary Frame by mapping xy plane through the transformation
+   * @param origin1 origin of the frame
+   * @param xAxis1 x axis of the frame
+   * @param yAxis1 y axis of the frame
+   * @param zAxis1 z axis of the frame
+   * @param origin2 origin of the frame
+   * @param xAxis2 x axis of the frame
+   * @param yAxis2 y axis of the frame
+   * @param zAxis2 z axis of the frame
+   * @returns transformation matrix
+   */
+  static frameToFrame(
+    origin1: Point3d,
+    xAxis1: Vector3d,
+    yAxis1: Vector3d,
+    zAxis1: Vector3d,
+    origin2: Point3d,
+    xAxis2: Vector3d,
+    yAxis2: Vector3d,
+    zAxis2: Vector3d
+  ) {
+    const o = Transform.frameToFramePoint(origin1, xAxis1, yAxis1, zAxis1, origin2, xAxis2, yAxis2, zAxis2, new Point3d(0, 0, 0));
+    const x = Transform.frameToFramePoint(origin1, xAxis1, yAxis1, zAxis1, origin2, xAxis2, yAxis2, zAxis2, new Point3d(1, 0, 0));
+    const y = Transform.frameToFramePoint(origin1, xAxis1, yAxis1, zAxis1, origin2, xAxis2, yAxis2, zAxis2, new Point3d(0, 1, 0));
+    const z = Transform.frameToFramePoint(origin1, xAxis1, yAxis1, zAxis1, origin2, xAxis2, yAxis2, zAxis2, new Point3d(0, 0, 1));
+    return Transform.worldXYToFrame(o, x.SubtractPoint(o), y.SubtractPoint(o), z.SubtractPoint(o));
+  }
+
+
+  /**
    * Create a transformation that orients plane0 to plane1. If you want to orient objects from one plane to another, use this form of transformation.
    * @param fromPlane The plane to orient from.
    * @param toPlane the plane to orient to.
    * @returns A transformation matrix which orients from fromPlane to toPlane
    */
   public static PlaneToPlane(fromPlane: Plane, toPlane: Plane) {
-    // move fromPlane to world origin
-    const translation1 = Transform.Translation(Point3d.Origin.SubtractPoint(fromPlane.Origin));
-
-    const rotationX = Transform.VectorToVector(fromPlane.XAxis, toPlane.XAxis);
-
-    const tranformedFromPlaneYAxis = fromPlane.YAxis.Transform(rotationX);
-
-    const rotationY = Transform.VectorToVector(tranformedFromPlaneYAxis, toPlane.YAxis);
-
-    // move from world origin to toPlane
-    const translation2 = Transform.Translation(Vector3d.CreateFromPoint3d(toPlane.Origin));
-
-    return Transform.CombineTransforms([translation1, rotationX, rotationY, translation2]);
+    return Transform.frameToFrame(fromPlane.Origin, fromPlane.XAxis, fromPlane.YAxis, fromPlane.ZAxis, toPlane.Origin, toPlane.XAxis, toPlane.YAxis, toPlane.ZAxis);
   }
 
   /**

@@ -22,11 +22,21 @@ test('Constructor', () => {
   expect(p1.XAxis.IsParallelTo(v1)).toBe(Open3d.ParallelIndicator.Parallel);
   expect(p1.YAxis.IsParallelTo(v2)).toBe(Open3d.ParallelIndicator.NotParallel);
   expect(p1.YAxis.Length).toBeCloseTo(1);
+  expect(() => new Plane(o, new Vector3d(0, 0, 0), v1)).toThrow('The input axis is not valid.');
+  expect(() => new Plane(o, v1, v1)).toThrow('XAxis and YAxis should not be parallel.');
 });
 
 test('CreateFromFrame', () => {
   expect(Plane.CreateFromFrame(o, v1, v2).YAxis.Equals(p1.YAxis)).toBe(true);
   expect(Plane.CreateFromFrame(o, v1, v2).ZAxisLine.Equals(p1.ZAxisLine)).toBe(true);
+});
+
+test('CreateFrom3Points', () => {
+  const p1 = new Point3d(1, 2, 3);
+  const p2 = new Point3d(4, 5, 6);
+  const plane = Plane.CreateFrom3Points(o, p1, p2);
+  expect(plane.ZAxis.Equals(new Vector3d(-0.40824829, 0.816496581, -0.40824829))).toBe(true);
+  expect(plane.YAxis.Equals(new Vector3d(0.872871561, 0.21821789, -0.43643578))).toBe(true);
 });
 
 test('CreateFromNormal', () => {

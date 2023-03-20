@@ -99,15 +99,17 @@ export declare class Plane {
     /**
      * Checks if a point is coplanar to this plane.
      * @param point The point to check.
+     * @param tolerance The tolerance to use when checking.
      * @returns True if the point is coplanar to this plane.
      */
-    IsPointCoplanar(point: Point3d): boolean;
+    IsPointCoplanar(point: Point3d, tolerance?: number): boolean;
     /**
      * Checks if a line is coplanar to this plane.
      * @param line The line to check.
+     * @param tolerance The tolerance to use when checking.
      * @returns True if the line is coplanar to this plane.
      */
-    IsLineCoplanar(line: Line): boolean;
+    IsLineCoplanar(line: Line, tolerance?: number): boolean;
     /**
      * Constructs a plane from a point and a normal vector.
      * @param origin The origin point of the plane.
@@ -123,6 +125,15 @@ export declare class Plane {
      * @returns The plane created from the given point and vectors.
      */
     static CreateFromFrame(origin: Point3d, xAxis: Vector3d, yAxis: Vector3d): Plane;
+    /**
+     * Constructs a plane from three points in the plane.
+     * @remarks The point 2 to 1 forms XAxis. The point 3 helps determine the ZAxis.
+     * @param point1 Center point of the plane.
+     * @param point2 Point 2 is on the XAxis.
+     * @param point3 Point 3
+     * @returns The plane created from the given points.
+     */
+    static CreateFrom3Points(point1: Point3d, point2: Point3d, point3: Point3d): Plane;
     /**
      * Transform the plane using a Transformation matrix.
      * @param transformation Transformation matrix to apply.

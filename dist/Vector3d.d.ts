@@ -214,6 +214,12 @@ export declare class Vector3d {
      */
     Unitize(): Vector3d;
     /**
+     * Determines whether a vector is very short.
+     * @param tolerance A nonzero value used as the coordinate zero tolerance.
+     * @returns
+     */
+    IsTiny(tolerance?: number): boolean;
+    /**
      * Determines whether a vector is parallel to another vector
      * @param a First vector for angle.
      * @param b Second vector for angle.

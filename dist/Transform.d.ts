@@ -177,6 +177,42 @@ export declare class Transform {
      */
     static VectorToVector(fromVector: Vector3d, toVector: Vector3d): Transform;
     /**
+     * WorldXY to Frame transformation
+     * @param origin origin of the frame
+     * @param xAxis x axis of the frame
+     * @param yAxis y axis of the frame
+     * @param zAxis z axis of the frame
+     * @returns the transformation matrix
+     */
+    static worldXYToFrame(origin: Point3d, xAxis: Vector3d, yAxis: Vector3d, zAxis: Vector3d): Transform;
+    /**
+     * Helper method to map a point through an arbitrary Frame to an arbitray Frame transformation
+     * @param origin1 origin of the frame
+     * @param xAxis1 x axis of the frame
+     * @param yAxis1 y axis of the frame
+     * @param zAxis1 z axis of the frame
+     * @param origin2 origin of the frame
+     * @param xAxis2 x axis of the frame
+     * @param yAxis2 y axis of the frame
+     * @param zAxis2 z axis of the frame
+     * @param point point to be transformed
+     * @returns transformed point
+     */
+    static frameToFramePoint(origin1: Point3d, xAxis1: Vector3d, yAxis1: Vector3d, zAxis1: Vector3d, origin2: Point3d, xAxis2: Vector3d, yAxis2: Vector3d, zAxis2: Vector3d, point: Point3d): Point3d;
+    /**
+     * Helper method for creating the transformation for an arbitrary Frame to an arbitrary Frame by mapping xy plane through the transformation
+     * @param origin1 origin of the frame
+     * @param xAxis1 x axis of the frame
+     * @param yAxis1 y axis of the frame
+     * @param zAxis1 z axis of the frame
+     * @param origin2 origin of the frame
+     * @param xAxis2 x axis of the frame
+     * @param yAxis2 y axis of the frame
+     * @param zAxis2 z axis of the frame
+     * @returns transformation matrix
+     */
+    static frameToFrame(origin1: Point3d, xAxis1: Vector3d, yAxis1: Vector3d, zAxis1: Vector3d, origin2: Point3d, xAxis2: Vector3d, yAxis2: Vector3d, zAxis2: Vector3d): Transform;
+    /**
      * Create a transformation that orients plane0 to plane1. If you want to orient objects from one plane to another, use this form of transformation.
      * @param fromPlane The plane to orient from.
      * @param toPlane the plane to orient to.

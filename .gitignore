@@ -7,6 +7,9 @@ build
 # test
 coverage
 
+# docs
+docs
+
 # misc
 .DS_Store
 .env.local
