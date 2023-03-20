@@ -283,9 +283,11 @@ Initializes a new instance of a vector, copying the three components from a vect
    * Compute the angle between two vectors.
    * @param a First vector for angle.
    * @param b Second vector for angle.
+   * @param reference (optional) Reference direction when positive angle is required.
    * @returns The angle between a and b in radians.
    */
-  public static VectorAngle(a: Vector3d, b: Vector3d): number {
+  public static VectorAngle(a: Vector3d, b: Vector3d, reference?: Vector3d): number {
+    if (reference) return Vector3d.PositiveVectorAngle(a, b, Plane.CreateFromNormal(Point3d.Origin, reference));
     if (a.IsZero || b.IsZero) throw new Error('Cannot compute angle of zero-length vector.');
     let cos = Vector3d.DotProduct(a, b) / (a.Length * b.Length);
     cos = Open3dMath.Clamp(cos, -1, 1);
@@ -296,12 +298,11 @@ Initializes a new instance of a vector, copying the three components from a vect
    * Compute the positive angle between two vectors based on a reference direction
    * @param a First vector for angle.
    * @param b Second vector for angle.
-   * @param reference Reference direction for angle (Plane or Vector3d, default WorldXY.ZAxis).
+   * @param reference Reference plane for calculating the angle.
    */
-  public static PositiveVectorAngle(a: Vector3d, b: Vector3d, reference?: Vector3d | Plane): number {
-    const r = reference instanceof Plane ? reference : Plane.CreateFromNormal(Point3d.Origin, reference ?? Vector3d.ZAxis);
+  private static PositiveVectorAngle(a: Vector3d, b: Vector3d, reference: Plane): number {
     // projecting the vectors on the plane defined by the reference vector / plane
-    const planeToPlane = Transform.PlaneToPlane(r, Plane.PlaneXY);
+    const planeToPlane = Transform.PlaneToPlane(reference, Plane.PlaneXY);
     const aProj = a.Transform(planeToPlane);
     const bProj = b.Transform(planeToPlane);
     // projection onto the XY plane
