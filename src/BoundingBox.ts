@@ -1,4 +1,3 @@
-import { Open3d } from './Open3d';
 import { Transform } from './Transform';
 import { Vector3d } from './Vector3d';
 import { Point3d } from './Point3d';
@@ -143,8 +142,34 @@ export class BoundingBox {
    * @param min Point containing all the minimum coordinates (minX, minY, minZ).
    * @param max Point containing all the maximum coordinates (maxX, maxY, maxZ).
    */
-  public static CreateBoundingBoxFromTwoCorners(min: Vector3d, max: Vector3d): BoundingBox {
+  public static CreateBoundingBoxFromTwoCorners(min: Point3d, max: Point3d): BoundingBox {
     return new BoundingBox(min.X, min.Y, min.Z, max.X, max.Y, max.Z);
+  }
+
+  /**
+   * Constructs a boundingbox from a collection of 8 points.
+   * @param points
+   * @returns
+   */
+  public static CreateBoundingBoxFromPoints(points: Array8Points): BoundingBox {
+    let minX = Number.MAX_VALUE;
+    let minY = Number.MAX_VALUE;
+    let minZ = Number.MAX_VALUE;
+    let maxX = Number.MIN_VALUE;
+    let maxY = Number.MIN_VALUE;
+    let maxZ = Number.MIN_VALUE;
+
+    for (let i = 0; i < points.length; i++) {
+      const p = points[i];
+      if (p.X < minX) minX = p.X;
+      if (p.Y < minY) minY = p.Y;
+      if (p.Z < minZ) minZ = p.Z;
+      if (p.X > maxX) maxX = p.X;
+      if (p.Y > maxY) maxY = p.Y;
+      if (p.Z > maxZ) maxZ = p.Z;
+    }
+
+    return new BoundingBox(minX, minY, minZ, maxX, maxY, maxZ);
   }
 
   /**
@@ -153,7 +178,7 @@ export class BoundingBox {
    * @param includeInterior If false, the point is projected onto the boundary faces only, otherwise the interior of the box is also taken into consideration. default true
    * @returns The point on or in the box that is closest to the sample point.
    */
-  public ClosestPoint(testPoint: Vector3d, includeInterior: boolean = true): Vector3d {
+  public ClosestPoint(testPoint: Point3d, includeInterior: boolean = true): Point3d {
     let x = testPoint.X;
     let y = testPoint.Y;
     let z = testPoint.Z;
@@ -178,7 +203,32 @@ export class BoundingBox {
       else z = this.maxZ;
     }
 
-    return new Vector3d(x, y, z);
+    return new Point3d(x, y, z);
+  }
+
+  /**
+   * Finds the furthest point on or in the bounding box.
+   * @param testPoint Sample point.
+   * @returns The point on or in the box that is furthest to the sample point.
+   */
+  public FurthestPoint(testPoint: Point3d): Point3d {
+    let x = testPoint.X;
+    let y = testPoint.Y;
+    let z = testPoint.Z;
+    // Find the mid-point.
+    const xm = 0.5 * (this.minX + this.maxX);
+    const ym = 0.5 * (this.minY + this.maxY);
+    const zm = 0.5 * (this.minZ + this.maxZ);
+
+    let fx = this.minX;
+    let fy = this.minY;
+    let fz = this.minZ;
+
+    if (x < xm) fx = this.maxX;
+    if (y < ym) fy = this.maxY;
+    if (z < zm) fz = this.maxZ;
+
+    return new Point3d(fx, fy, fz);
   }
 
   /**
@@ -267,7 +317,7 @@ export class BoundingBox {
    * Returns a clone of this bounding box.
    */
   public Clone(): BoundingBox {
-    return new BoundingBox(this.minX, this.maxX, this.minY, this.maxY, this.minZ, this.maxZ);
+    return new BoundingBox(this.minX, this.minY, this.minZ, this.maxX, this.maxY, this.maxZ);
   }
 
   /**
@@ -290,13 +340,13 @@ export class BoundingBox {
     if (!this.IsValid) return this.Clone();
 
     const newMinX = this.minX - xAmount;
-    const newMaxX = this.maxX + xAmount;
     const newMinY = this.minY - yAmount;
-    const newMaxY = this.maxY + yAmount;
     const newMinZ = this.minZ - zAmount;
+    const newMaxX = this.maxX + xAmount;
+    const newMaxY = this.maxY + yAmount;
     const newMaxZ = this.maxZ + zAmount;
 
-    return new BoundingBox(newMinX, newMaxX, newMinY, newMaxY, newMinZ, newMaxZ);
+    return new BoundingBox(newMinX, newMinY, newMinZ, newMaxX, newMaxY, newMaxZ);
   }
 
   /**
@@ -331,6 +381,44 @@ export class BoundingBox {
   }
 
   /**
+   * Transforms the bounding box with a given transform.
+   * @param transform
+   * @returns
+   */
+  public Transform(transform: Transform): BoundingBox {
+    const corners = this.GetCorners();
+    const transformedCorners = corners.map((corner) => corner.Transform(transform)) as Array8Points;
+
+    return BoundingBox.CreateBoundingBoxFromPoints(transformedCorners);
+  }
+
+  /**
+   * Creates a bounding box to represent the union of itself and another box.
+   * @param other
+   * @remarks If either this BoundingBox or the other BoundingBox is InValid, the Valid BoundingBox will be the only one included in the union.
+   * @returns
+   */
+  public Union(other: BoundingBox): BoundingBox {
+    return BoundingBox.Union(this, other);
+  }
+
+  /**
+   * Creates a bounding box to represent the intersection of itself and another box.
+   * @param other
+   * @returns
+   */
+  public Intersect(other: BoundingBox): BoundingBox {
+    return BoundingBox.Intersect(this, other);
+  }
+
+  /**
+   * override toString
+   */
+  public toString(): string {
+    return `${this.Min} - ${this.Max}`;
+  }
+
+  /**
    * Computes the intersection of two bounding boxes. Invalid boxes are ignored and will not affect the intersection.
    * If both boxes are invalid, the union will return an empty boundingbox.
    * @param a A BoundingBox.
@@ -349,7 +437,7 @@ export class BoundingBox {
     const maxY = Math.min(a.maxY, b.maxY);
     const maxZ = Math.min(a.maxZ, b.maxZ);
 
-    return new BoundingBox(minX, maxX, minY, maxY, minZ, maxZ);
+    return new BoundingBox(minX, minY, minZ, maxX, maxY, maxZ);
   }
 
   /**
@@ -371,7 +459,7 @@ export class BoundingBox {
     const maxY = Math.max(a.maxY, b.maxY);
     const maxZ = Math.max(a.maxZ, b.maxZ);
 
-    return new BoundingBox(minX, maxX, minY, maxY, minZ, maxZ);
+    return new BoundingBox(minX, minY, minZ, maxX, maxY, maxZ);
   }
 
   // #endregion

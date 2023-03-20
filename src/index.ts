@@ -1,9 +1,10 @@
 export { Vector3d } from './Vector3d';
+export { BoundingBox, Array8Points } from './BoundingBox';
 export { Point3d } from './Point3d';
 export { Line } from './Line';
 export { Polyline } from './Polyline';
 export { Plane } from './Plane';
-export { Transform } from './Transform';
+export { Transform, Array16Number } from './Transform';
 export { Intersection } from './Intersection';
 export { IntersectionEvent } from './IntersectionEvent';
 export { Open3dMath } from './Open3dMath';
