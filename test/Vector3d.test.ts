@@ -261,13 +261,13 @@ test('VectorRotate', () => {
 });
 
 test('PositiveVectorAngle', () => {
-  expect(Vector3d.PositiveVectorAngle(Vector3d.XAxis, Vector3d.YAxis, Vector3d.ZAxis)).toBeCloseTo(Math.PI * .5, 4);
-  expect(Vector3d.PositiveVectorAngle(Vector3d.YAxis, Vector3d.XAxis, Vector3d.ZAxis)).toBeCloseTo(Math.PI * 1.5, 4);
-  expect(Vector3d.PositiveVectorAngle(Vector3d.YAxis, Vector3d.YAxis, Vector3d.XAxis)).toBeCloseTo(0, 4);
-  expect(Vector3d.PositiveVectorAngle(Vector3d.YAxis, Vector3d.ZAxis, Vector3d.XAxis)).toBeCloseTo(Math.PI * .5, 4);
-  expect(Vector3d.PositiveVectorAngle(new Vector3d(1,0,0), new Vector3d(0,1,1), new Vector3d(0,-1,1))).toBeCloseTo(Math.PI * .5, 4);
-  expect(Vector3d.PositiveVectorAngle(new Vector3d(0,1,1), new Vector3d(1,0,0), new Vector3d(0,-1,1))).toBeCloseTo(Math.PI * 1.5, 4);
-  expect(() => Vector3d.PositiveVectorAngle(Vector3d.YAxis, Vector3d.XAxis, Vector3d.XAxis)).toThrow('Cannot compute angle of zero-length vector.');
+  expect(Vector3d.VectorAngle(Vector3d.XAxis, Vector3d.YAxis, Vector3d.ZAxis)).toBeCloseTo(Math.PI * .5, 4);
+  expect(Vector3d.VectorAngle(Vector3d.YAxis, Vector3d.XAxis, Vector3d.ZAxis)).toBeCloseTo(Math.PI * 1.5, 4);
+  expect(Vector3d.VectorAngle(Vector3d.YAxis, Vector3d.YAxis, Vector3d.XAxis)).toBeCloseTo(0, 4);
+  expect(Vector3d.VectorAngle(Vector3d.YAxis, Vector3d.ZAxis, Vector3d.XAxis)).toBeCloseTo(Math.PI * .5, 4);
+  expect(Vector3d.VectorAngle(new Vector3d(1,0,0), new Vector3d(0,1,1), new Vector3d(0,-1,1))).toBeCloseTo(Math.PI * .5, 4);
+  expect(Vector3d.VectorAngle(new Vector3d(0,1,1), new Vector3d(1,0,0), new Vector3d(0,-1,1))).toBeCloseTo(Math.PI * 1.5, 4);
+  expect(() => Vector3d.VectorAngle(Vector3d.YAxis, Vector3d.XAxis, Vector3d.XAxis)).toThrow('Cannot compute angle of zero-length vector.');
 })
 
 test('Transform', () => {
