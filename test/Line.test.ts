@@ -2,6 +2,7 @@ import { Line } from '../src/Line';
 import { Transform } from '../src/Transform';
 import { Point3d } from '../src/Point3d';
 import { Vector3d } from '../src/Vector3d';
+import { BoundingBox } from '../src/BoundingBox';
 
 let v1: Point3d;
 let v2: Point3d;
@@ -58,6 +59,11 @@ test('Equals', () => {
 test('Clone', () => {
   expect(l1.Clone().Equals(l1)).toBe(true);
   expect(lInvalid.Clone().Equals(l1)).toBe(false);
+});
+
+test('BoundingBox', () => {
+  expect(l1.BoundingBox.Equals(new BoundingBox(-2, 6, -2, 4, 8, 4))).toBe(true);
+  expect(lInvalid.BoundingBox.Equals(BoundingBox.Empty)).toBe(true);
 });
 
 test('PointAt', () => {

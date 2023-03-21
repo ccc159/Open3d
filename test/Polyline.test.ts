@@ -30,6 +30,17 @@ test('Count', () => {
   expect(pl.Count).toBe(pl.Count);
 });
 
+test('BoundingBox', () => {
+  const bb = pl.BoundingBox;
+  expect(bb).toBeDefined();
+  expect(bb.Min.Equals(new Point3d(-9.847383153, -9.092637979, -8.103615608))).toBe(true);
+  expect(bb.Max.Equals(new Point3d(4.992788358, 6.176224321, 6.748736056))).toBe(true);
+  expect(bb.Center.Equals(new Point3d(-2.427297397, -1.458206829, -0.677439776))).toBe(true);
+  expect(bb.Diagonal.Equals(new Vector3d(14.840171511, 15.2688623, 14.852351664))).toBe(true);
+  expect(bb.Area).toBeCloseTo(1347.564987468);
+  expect(bb.Volume).toBeCloseTo(3365.432018859);
+});
+
 test('CenterPoint', () => {
   expect(pl.TryGetPlane()).toBeDefined();
   expect(pl.TryGetPlane()?.IsPointCoplanar(pl.CenterPoint)).toBe(true);

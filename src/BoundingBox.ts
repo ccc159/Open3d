@@ -59,7 +59,10 @@ export class BoundingBox {
    */
   public get Area(): number {
     if (!this.IsValid) return 0;
-    return (this.maxX - this.minX) * (this.maxY - this.minY) * (this.maxZ - this.minZ) * 2;
+    const dx = Math.abs(this.maxX - this.minX);
+    const dy = Math.abs(this.maxY - this.minY);
+    const dz = Math.abs(this.maxZ - this.minZ);
+    return 2 * (dx * dy + dy * dz + dz * dx);
   }
 
   /**

@@ -77,6 +77,7 @@ export class Line {
    * Gets the line's 3d axis aligned bounding box.
    */
   public get BoundingBox(): BoundingBox {
+    if (!this.IsValid) return BoundingBox.Empty;
     const bb = BoundingBox.CreateBoundingBoxFromTwoCorners(this.From, this.To);
     bb.MakeValid();
     return bb;
