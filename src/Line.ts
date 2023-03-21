@@ -1,3 +1,4 @@
+import { BoundingBox } from './BoundingBox';
 import { Intersection } from './Intersection';
 import { Open3d } from './Open3d';
 import { Open3dMath } from './Open3dMath';
@@ -70,6 +71,15 @@ export class Line {
     if (l < 0) dir = dir.Reverse();
 
     this.To = this.From.Add(dir.Multiply(Math.abs(l)));
+  }
+
+  /**
+   * Gets the line's 3d axis aligned bounding box.
+   */
+  public get BoundingBox(): BoundingBox {
+    const bb = BoundingBox.CreateBoundingBoxFromTwoCorners(this.From, this.To);
+    bb.MakeValid();
+    return bb;
   }
 
   // #endregion

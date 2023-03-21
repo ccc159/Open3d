@@ -207,6 +207,29 @@ export class BoundingBox {
   }
 
   /**
+   * Ensures that the box is defined in an increasing fashion along X, Y and Z axes.
+   */
+  public MakeValid(): void {
+    if (this.minX > this.maxX) {
+      const t = this.minX;
+      this.minX = this.maxX;
+      this.maxX = t;
+    }
+
+    if (this.minY > this.maxY) {
+      const t = this.minY;
+      this.minY = this.maxY;
+      this.maxY = t;
+    }
+
+    if (this.minZ > this.maxZ) {
+      const t = this.minZ;
+      this.minZ = this.maxZ;
+      this.maxZ = t;
+    }
+  }
+
+  /**
    * Finds the furthest point on or in the bounding box.
    * @param testPoint Sample point.
    * @returns The point on or in the box that is furthest to the sample point.

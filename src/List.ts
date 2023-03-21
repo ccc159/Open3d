@@ -1,4 +1,5 @@
 import { Point3d } from './Point3d';
+import { BoundingBox } from './BoundingBox';
 
 /**
  * Represents a list of generic data. This class is similar to javascript arrays.
@@ -242,4 +243,28 @@ export class List<T> {
  * Represents a list of Point3d objects.
  */
 
-export class Point3dList extends List<Point3d> {}
+export class Point3dList extends List<Point3d> {
+  /**
+   * Even though this is a property, it is not a "fast" calculation. Every point is evaluated in order to get the bounding box of the list.
+   */
+  public get BoundingBox(): BoundingBox {
+    if (this.Count === 0) return BoundingBox.Empty;
+    let minX = Number.MAX_VALUE;
+    let minY = Number.MAX_VALUE;
+    let minZ = Number.MAX_VALUE;
+    let maxX = Number.MIN_VALUE;
+    let maxY = Number.MIN_VALUE;
+    let maxZ = Number.MIN_VALUE;
+
+    for (const p of this.items) {
+      minX = Math.min(minX, p.X);
+      minY = Math.min(minY, p.Y);
+      minZ = Math.min(minZ, p.Z);
+      maxX = Math.max(maxX, p.X);
+      maxY = Math.max(maxY, p.Y);
+      maxZ = Math.max(maxZ, p.Z);
+    }
+
+    return new BoundingBox(minX, minY, minZ, maxX, maxY, maxZ);
+  }
+}
