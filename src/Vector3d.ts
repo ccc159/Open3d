@@ -283,34 +283,28 @@ Initializes a new instance of a vector, copying the three components from a vect
    * Compute the angle between two vectors.
    * @param a First vector for angle.
    * @param b Second vector for angle.
-   * @param reference (optional) Reference direction when positive angle is required.
+   * @param reference (optional) Reference direction when positive angle is required. If not provided, the angle is the smallest one (commutative).
    * @returns The angle between a and b in radians.
    */
-  public static VectorAngle(a: Vector3d, b: Vector3d, reference?: Vector3d): number {
-    if (reference) return Vector3d.PositiveVectorAngle(a, b, Plane.CreateFromNormal(Point3d.Origin, reference));
+  public static VectorAngle(a: Vector3d, b: Vector3d, reference?: Vector3d | Plane): number {
+    if (reference) {
+      const refPlane = reference instanceof Plane ? reference : Plane.CreateFromNormal(Point3d.Origin, reference);
+      a = refPlane.ClosestPoint(Point3d.CreateFromVector(a)).SubtractPoint(refPlane.Origin);
+      b = refPlane.ClosestPoint(Point3d.CreateFromVector(b)).SubtractPoint(refPlane.Origin);
+    }
     if (a.IsZero || b.IsZero) throw new Error('Cannot compute angle of zero-length vector.');
-    let cos = Vector3d.DotProduct(a, b) / (a.Length * b.Length);
-    cos = Open3dMath.Clamp(cos, -1, 1);
-    return Math.acos(cos);
-  }
+    const dotCos = Vector3d.DotProduct(a, b) / (a.Length * b.Length);
+    const angle = Math.acos(Open3dMath.Clamp(dotCos, -1, 1));
 
-  /**
-   * Compute the positive angle between two vectors based on a reference direction
-   * @param a First vector for angle.
-   * @param b Second vector for angle.
-   * @param reference Reference plane for calculating the angle.
-   */
-  private static PositiveVectorAngle(a: Vector3d, b: Vector3d, reference: Plane): number {
-    // projecting the vectors on the plane defined by the reference vector / plane
-    const planeToPlane = Transform.PlaneToPlane(reference, Plane.PlaneXY);
-    const aProj = a.Transform(planeToPlane);
-    const bProj = b.Transform(planeToPlane);
-    // projection onto the XY plane
-    aProj.Z = 0;
-    bProj.Z = 0;
-    if (aProj.IsZero || bProj.IsZero) throw new Error('Cannot compute angle of zero-length vector.');
-    const angle = Math.atan2(bProj.Y, bProj.X) - Math.atan2(aProj.Y, aProj.X);
-    return angle < 0 ? angle + 2 * Math.PI : angle;
+    // avoiding cross product calculations that don't make sense
+    if (Math.abs(angle) < Open3d.ANGLE_EPSILON) return 0;
+    if (Math.abs(Math.PI - angle) < Open3d.ANGLE_EPSILON) return Math.PI;
+
+    // if the reference is defined and the vectors are anti-parallel, return the complement of the angle
+    if (reference && Vector3d.CrossProduct(a, b).IsParallelTo(reference instanceof Plane ? reference.ZAxis : reference) === Open3d.ParallelIndicator.AntiParallel)
+     return Math.PI * 2 - angle;
+
+    return angle;
   }
 
   /**
