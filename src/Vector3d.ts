@@ -1,5 +1,6 @@
 import { Open3d } from './Open3d';
 import { Open3dMath } from './Open3dMath';
+import { Plane } from './Plane';
 import { Point3d } from './Point3d';
 import { Transform } from './Transform';
 
@@ -282,13 +283,28 @@ Initializes a new instance of a vector, copying the three components from a vect
    * Compute the angle between two vectors.
    * @param a First vector for angle.
    * @param b Second vector for angle.
+   * @param reference (optional) Reference direction when positive angle is required. If not provided, the angle is the smallest one (commutative).
    * @returns The angle between a and b in radians.
    */
-  public static VectorAngle(a: Vector3d, b: Vector3d): number {
+  public static VectorAngle(a: Vector3d, b: Vector3d, reference?: Vector3d | Plane): number {
+    if (reference) {
+      const refPlane = reference instanceof Plane ? reference : Plane.CreateFromNormal(Point3d.Origin, reference);
+      a = refPlane.ClosestPoint(Point3d.CreateFromVector(a)).SubtractPoint(refPlane.Origin);
+      b = refPlane.ClosestPoint(Point3d.CreateFromVector(b)).SubtractPoint(refPlane.Origin);
+    }
     if (a.IsZero || b.IsZero) throw new Error('Cannot compute angle of zero-length vector.');
-    let cos = Vector3d.DotProduct(a, b) / (a.Length * b.Length);
-    cos = Open3dMath.Clamp(cos, -1, 1);
-    return Math.acos(cos);
+    const dotCos = Vector3d.DotProduct(a, b) / (a.Length * b.Length);
+    const angle = Math.acos(Open3dMath.Clamp(dotCos, -1, 1));
+
+    // avoiding cross product calculations that don't make sense
+    if (Math.abs(angle) < Open3d.ANGLE_EPSILON) return 0;
+    if (Math.abs(Math.PI - angle) < Open3d.ANGLE_EPSILON) return Math.PI;
+
+    // if the reference is defined and the vectors are anti-parallel, return the complement of the angle
+    if (reference && Vector3d.CrossProduct(a, b).IsParallelTo(reference instanceof Plane ? reference.ZAxis : reference) === Open3d.ParallelIndicator.AntiParallel)
+     return Math.PI * 2 - angle;
+
+    return angle;
   }
 
   /**
