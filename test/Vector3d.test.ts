@@ -174,6 +174,22 @@ test('VectorAngle', () => {
   v1 = new Vector3d(0, 0, 0);
   v2 = new Vector3d(0, 0, 0);
   expect(() => v1.VectorAngle(v2)).toThrowError();
+
+  v1 = new Vector3d(-1, 0,0);
+  v2 = new Vector3d(0,1,0);
+  expect(v1.VectorAngle(v2)).toBeCloseTo(Math.PI * .5, 3);
+
+  v1 = new Vector3d(-1, 0,0);
+  v2 = new Vector3d(0,-1,0);
+  expect(v1.VectorAngle(v2)).toBeCloseTo(Math.PI * .5, 3);
+
+  v1 = new Vector3d(-1, 0,0);
+  v2 = new Vector3d(0,1,0);
+  expect(Math.abs(Vector3d.VectorAngle(v1, v2, Vector3d.ZAxis)  - Vector3d.VectorAngle(v1, v2))).toBeCloseTo(Math.PI, 3);
+
+  v1 = new Vector3d(-1, 0,0);
+  v2 = new Vector3d(0,-1,0);
+  expect(Math.abs(Vector3d.VectorAngle(v1, v2, Vector3d.ZAxis) - Vector3d.VectorAngle(v1, v2))).toBeCloseTo(0, 3);
 });
 
 test('Reverse', () => {
@@ -259,6 +275,16 @@ test('VectorRotate', () => {
   v1 = new Vector3d(1, 2, 0);
   expect(() => v1.VectorRotate(Math.PI, new Vector3d(0, 0, 0))).toThrowError();
 });
+
+test('PositiveVectorAngle', () => {
+  expect(Vector3d.VectorAngle(Vector3d.XAxis, Vector3d.YAxis, Vector3d.ZAxis)).toBeCloseTo(Math.PI * .5, 4);
+  expect(Vector3d.VectorAngle(Vector3d.YAxis, Vector3d.XAxis, Vector3d.ZAxis)).toBeCloseTo(Math.PI * 1.5, 4);
+  expect(Vector3d.VectorAngle(Vector3d.YAxis, Vector3d.YAxis, Vector3d.XAxis)).toBeCloseTo(0, 4);
+  expect(Vector3d.VectorAngle(Vector3d.YAxis, Vector3d.ZAxis, Vector3d.XAxis)).toBeCloseTo(Math.PI * .5, 4);
+  expect(Vector3d.VectorAngle(new Vector3d(1,0,0), new Vector3d(0,1,1), new Vector3d(0,-1,1))).toBeCloseTo(Math.PI * .5, 4);
+  expect(Vector3d.VectorAngle(new Vector3d(0,1,1), new Vector3d(1,0,0), new Vector3d(0,-1,1))).toBeCloseTo(Math.PI * 1.5, 4);
+  expect(() => Vector3d.VectorAngle(Vector3d.YAxis, Vector3d.XAxis, Vector3d.XAxis)).toThrow('Cannot compute angle of zero-length vector.');
+})
 
 test('Transform', () => {
   // test translation
