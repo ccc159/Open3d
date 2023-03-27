@@ -62,7 +62,7 @@ test('Clone', () => {
 });
 
 test('BoundingBox', () => {
-  expect(l1.BoundingBox.Equals(new BoundingBox(-2, 6, -2, 4, 8, 4))).toBe(true);
+  expect(l1.BoundingBox.Equals(BoundingBox.CreateFromMinMax(-2, 6, -2, 4, 8, 4))).toBe(true);
   expect(lInvalid.BoundingBox.Equals(BoundingBox.Empty)).toBe(true);
 });
 

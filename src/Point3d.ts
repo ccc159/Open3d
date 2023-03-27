@@ -244,6 +244,14 @@ export class Point3d {
   }
 
   /**
+   * Clone this point
+   * @returns A new point that is a copy of this point.
+   */
+  public Clone(): Point3d {
+    return new Point3d(this.X, this.Y, this.Z);
+  }
+
+  /**
    * override toString
    */
   public toString(): string {

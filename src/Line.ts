@@ -78,7 +78,7 @@ export class Line {
    */
   public get BoundingBox(): BoundingBox {
     if (!this.IsValid) return BoundingBox.Empty;
-    const bb = BoundingBox.CreateBoundingBoxFromTwoCorners(this.From, this.To);
+    const bb = new BoundingBox(this.From, this.To);
     bb.MakeValid();
     return bb;
   }

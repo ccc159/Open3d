@@ -265,6 +265,6 @@ export class Point3dList extends List<Point3d> {
       maxZ = Math.max(maxZ, p.Z);
     }
 
-    return new BoundingBox(minX, minY, minZ, maxX, maxY, maxZ);
+    return BoundingBox.CreateFromMinMax(minX, minY, minZ, maxX, maxY, maxZ);
   }
 }
