@@ -41,7 +41,17 @@ export class Open3dMath {
   }
 
   /**
+   * Determines whether a value is valid.
+   * The value is valid if it is a finite number and not NaN.
+   * @returns
+   */
+  public static IsValidNumber(x: number): boolean {
+    return Number.isFinite(x) && !Number.isNaN(x);
+  }
+
+  /**
    * the function to compare if two floating point numbers are equal.
+   * @remarks Note that two NaN values are not equal defined by javascript .
    */
   public static EpsilonEquals = (a: number, b: number, epsilon = Open3d.EPSILON): boolean => {
     return Math.abs(a - b) < epsilon;
