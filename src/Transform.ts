@@ -541,12 +541,12 @@ private SubMatrixDeterminant(rowIndex: 0 | 1 | 2 | 3, columnIndex: 0 | 1 | 2 | 3
    * Transpose the matrix and return a new one.
    */
   public Transpose() {
-    const row0 = [this.M[0], this.M[4], this.M[8], this.M[12]];
-    const row1 = [this.M[1], this.M[5], this.M[9], this.M[13]];
-    const row2 = [this.M[2], this.M[6], this.M[10], this.M[14]];
-    const row3 = [this.M[3], this.M[7], this.M[11], this.M[15]];
-
-    return new Transform([...row0, ...row1, ...row2, ...row3] as Array16Number);
+    return new Transform([
+      this.M[0], this.M[4], this.M[8], this.M[12],
+      this.M[1], this.M[5], this.M[9], this.M[13],
+      this.M[2], this.M[6], this.M[10], this.M[14],
+      this.M[3], this.M[7], this.M[11], this.M[15]
+    ]);
   }
 
   /**
