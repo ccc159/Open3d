@@ -143,33 +143,28 @@ private SubMatrixDeterminant(rowIndex: 0 | 1 | 2 | 3, columnIndex: 0 | 1 | 2 | 3
    * @returns The result of the multiplication.
    */
   public static MultiplyMatrix(a: Transform, b: Transform): Transform {
-    const ae = a.m;
-    const be = b.m;
-
-    const [a11, a12, a13, a14, a21, a22, a23, a24, a31, a32, a33, a34, a41, a42, a43, a44] = ae;
-    const [b11, b12, b13, b14, b21, b22, b23, b24, b31, b32, b33, b34, b41, b42, b43, b44] = be;
-
-    const n11 = a11 * b11 + a12 * b21 + a13 * b31 + a14 * b41;
-    const n12 = a11 * b12 + a12 * b22 + a13 * b32 + a14 * b42;
-    const n13 = a11 * b13 + a12 * b23 + a13 * b33 + a14 * b43;
-    const n14 = a11 * b14 + a12 * b24 + a13 * b34 + a14 * b44;
-
-    const n21 = a21 * b11 + a22 * b21 + a23 * b31 + a24 * b41;
-    const n22 = a21 * b12 + a22 * b22 + a23 * b32 + a24 * b42;
-    const n23 = a21 * b13 + a22 * b23 + a23 * b33 + a24 * b43;
-    const n24 = a21 * b14 + a22 * b24 + a23 * b34 + a24 * b44;
-
-    const n31 = a31 * b11 + a32 * b21 + a33 * b31 + a34 * b41;
-    const n32 = a31 * b12 + a32 * b22 + a33 * b32 + a34 * b42;
-    const n33 = a31 * b13 + a32 * b23 + a33 * b33 + a34 * b43;
-    const n34 = a31 * b14 + a32 * b24 + a33 * b34 + a34 * b44;
-
-    const n41 = a41 * b11 + a42 * b21 + a43 * b31 + a44 * b41;
-    const n42 = a41 * b12 + a42 * b22 + a43 * b32 + a44 * b42;
-    const n43 = a41 * b13 + a42 * b23 + a43 * b33 + a44 * b43;
-    const n44 = a41 * b14 + a42 * b24 + a43 * b34 + a44 * b44;
-
-    return new Transform([n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44]);
+    return new Transform([
+      // Row 1
+      a.m[0] * b.m[0] + a.m[1] * b.m[4] + a.m[2] * b.m[8] + a.m[3] * b.m[12],
+      a.m[0] * b.m[1] + a.m[1] * b.m[5] + a.m[2] * b.m[9] + a.m[3] * b.m[13],
+      a.m[0] * b.m[2] + a.m[1] * b.m[6] + a.m[2] * b.m[10] + a.m[3] * b.m[14],
+      a.m[0] * b.m[3] + a.m[1] * b.m[7] + a.m[2] * b.m[11] + a.m[3] * b.m[15],
+      // Row 2
+      a.m[4] * b.m[0] + a.m[5] * b.m[4] + a.m[6] * b.m[8] + a.m[7] * b.m[12],
+      a.m[4] * b.m[1] + a.m[5] * b.m[5] + a.m[6] * b.m[9] + a.m[7] * b.m[13],
+      a.m[4] * b.m[2] + a.m[5] * b.m[6] + a.m[6] * b.m[10] + a.m[7] * b.m[14],
+      a.m[4] * b.m[3] + a.m[5] * b.m[7] + a.m[6] * b.m[11] + a.m[7] * b.m[15],
+      // Row 3
+      a.m[8] * b.m[0] + a.m[9] * b.m[4] + a.m[10] * b.m[8] + a.m[11] * b.m[12],
+      a.m[8] * b.m[1] + a.m[9] * b.m[5] + a.m[10] * b.m[9] + a.m[11] * b.m[13],
+      a.m[8] * b.m[2] + a.m[9] * b.m[6] + a.m[10] * b.m[10] + a.m[11] * b.m[14],
+      a.m[8] * b.m[3] + a.m[9] * b.m[7] + a.m[10] * b.m[11] + a.m[11] * b.m[15],
+      // Row 4
+      a.m[12] * b.m[0] + a.m[13] * b.m[4] + a.m[14] * b.m[8] + a.m[15] * b.m[12],
+      a.m[12] * b.m[1] + a.m[13] * b.m[5] + a.m[14] * b.m[9] + a.m[15] * b.m[13],
+      a.m[12] * b.m[2] + a.m[13] * b.m[6] + a.m[14] * b.m[10] + a.m[15] * b.m[14],
+      a.m[12] * b.m[3] + a.m[13] * b.m[7] + a.m[14] * b.m[11] + a.m[15] * b.m[15],
+    ]);
   }
 
   /**
