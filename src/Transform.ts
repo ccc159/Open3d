@@ -60,8 +60,6 @@ private SubMatrixDeterminant(rowIndex: 0 | 1 | 2 | 3, columnIndex: 0 | 1 | 2 | 3
    * The determinant of this 4x4 matrix.
    */
   public get Determinant(): number {
-    const [n11, n21, n31, n41, n12, n22, n32, n42, n13, n23, n33, n43, n14, n24, n34, n44] = this.m;
-
     return (
       this.m[0] * this.SubMatrixDeterminant(0, 0)
       - this.m[1] * this.SubMatrixDeterminant(0, 1)
