@@ -628,6 +628,31 @@ private SubMatrixDeterminant(rowIndex: 0 | 1 | 2 | 3, columnIndex: 0 | 1 | 2 | 3
   }
 
   /**
+   * Get unit base vectors of the Transform
+   */
+  public get BaseVectors(): [Vector3d, Vector3d, Vector3d] {
+    if (this.Determinant === 0) throw new Error("Non affine transformation")
+    return [
+      new Vector3d(this.M[0], this.M[1], this.M[2]).Unitize(),
+      new Vector3d(this.M[4], this.M[5], this.M[6]).Unitize(),
+      new Vector3d(this.M[8], this.M[9], this.M[10]).Unitize()
+    ]
+  }
+
+  /**
+   * Get the transform representing only the unit base vectors of the Transform
+   */
+  public get BaseTransform(): Transform {
+    const [x, y, z] = this.BaseVectors;
+    return new Transform([
+      x.X, x.Y, x.Z, 0,
+      y.X, y.Y, y.Z, 0,
+      z.X, z.Y, z.Z, 0,
+      0, 0, 0, 1
+    ]);
+  }
+
+  /**
    * override toString
    */
   public toString(): string {
