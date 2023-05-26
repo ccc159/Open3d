@@ -584,6 +584,30 @@ private SubMatrixDeterminant(rowIndex: 0 | 1 | 2 | 3, columnIndex: 0 | 1 | 2 | 3
   }
 
   /**
+   * Get scale factor of the Transform
+   */
+  public get ScaleFactor(): Vector3d {
+    return new Vector3d(
+      new Vector3d(this.M[0], this.M[1], this.M[2]).Length,
+      new Vector3d(this.M[4], this.M[5], this.M[6]).Length,
+      new Vector3d(this.M[8], this.M[9], this.M[10]).Length
+    )
+  }
+
+  /**
+   * Get the Transform representing only the scaling of the Transform
+   */
+  public get ScaleTransform(): Transform {
+    const scale = this.ScaleFactor;
+    return new Transform([
+      scale.X, 0, 0, 0,
+      0, scale.Y, 0, 0,
+      0, 0, scale.Z, 0,
+      0, 0, 0, 1
+    ]);
+  }
+
+  /**
    * override toString
    */
   public toString(): string {
