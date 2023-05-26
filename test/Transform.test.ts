@@ -206,8 +206,10 @@ test('PlaneToPlane', () => {
   ).toBe(true);
 });
 
-test('Scale decomposing', () => {
-  const transform = new Transform([3, 0, 0, 0, 0, 2, 0, 0, 0, 0, -1, 0, 1, 2, 3, 1]);
+test('Transform decomposing', () => {
+  const transform = new Transform([3, 0, 0, 2, 0, 2, 0, 3, 0, 0, -1, 1, 0, 0, 0, 1]);
   expect(transform.ScaleFactor).toMatchObject(new Vector3d(3, 2, 1));
   expect(transform.ScaleTransform).toMatchObject(new Transform([3, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]));
+  expect(transform.TranslationVector).toMatchObject(new Vector3d(2, 3, 1));
+  expect(transform.TranslationTransform).toMatchObject(new Transform([1, 0, 0, 2, 0, 1, 0, 3, 0, 0, 1, 1, 0, 0, 0, 1]));
 });
