@@ -212,4 +212,6 @@ test('Transform decomposing', () => {
   expect(transform.ScaleTransform).toMatchObject(new Transform([3, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]));
   expect(transform.TranslationVector).toMatchObject(new Vector3d(2, 3, 1));
   expect(transform.TranslationTransform).toMatchObject(new Transform([1, 0, 0, 2, 0, 1, 0, 3, 0, 0, 1, 1, 0, 0, 0, 1]));
+  expect(transform.BaseVectors).toMatchObject([new Vector3d(1, 0, 0), new Vector3d(0, 1, 0), new Vector3d(0, 0, -1)]);
+  expect(transform.BaseTransform).toMatchObject(new Transform([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1]));
 });
