@@ -25,6 +25,37 @@ export class Transform {
 
   // #region Properties
 
+/**
+   * Returns the determinant of the submatrix specified by the indices.
+   * @param rowIndex row index
+   * @param columnIndex column index
+   */
+private SubMatrixDeterminant(rowIndex: 0 | 1 | 2 | 3, columnIndex: 0 | 1 | 2 | 3) {
+  /**
+   * | a b c |
+   * | d e f | = aei + bfg + cdh - ceg - bdi - afh
+   * | g h i |
+   */
+
+  const is = [0, 1, 2, 3].filter((x) => x !== rowIndex);
+  const js = [0, 1, 2, 3].filter((x) => x !== columnIndex);
+
+  const a = this.M[is[0] * 4 + js[0]];
+  const b = this.M[is[0] * 4 + js[1]];
+  const c = this.M[is[0] * 4 + js[2]];
+
+  const d = this.M[is[1] * 4 + js[0]];
+  const e = this.M[is[1] * 4 + js[1]];
+  const f = this.M[is[1] * 4 + js[2]];
+
+  const g = this.M[is[2] * 4 + js[0]];
+  const h = this.M[is[2] * 4 + js[1]];
+  const i = this.M[is[2] * 4 + js[2]];
+
+  return a * e * i + b * f * g + c * d * h - c * e * g - b * d * i - a * f * h;
+}
+
+
   /**
    * The determinant of this 4x4 matrix.
    */
