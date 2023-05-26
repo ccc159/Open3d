@@ -607,25 +607,25 @@ private SubMatrixDeterminant(rowIndex: 0 | 1 | 2 | 3, columnIndex: 0 | 1 | 2 | 3
     ]);
   }
 
-    /**
+  /**
    * Get Translation vector of the Transform
    */
-    public get TranslationVector(): Vector3d {
-      return new Vector3d(this.M[3], this.M[7], this.M[11])
-    }
+  public get TranslationVector(): Vector3d {
+    return new Vector3d(this.M[3], this.M[7], this.M[11])
+  }
   
-    /**
-     * Get the Transform representing only the translation of the Transform
-     */
-    public get TranslationTransform(): Transform {
-      const t = this.TranslationVector;
-      return new Transform([
-        1, 0, 0, t.X,
-        0, 1, 0, t.Y,
-        0, 0, 1, t.Z,
-        0, 0, 0, 1
-      ]);
-    }
+  /**
+   * Get the Transform representing only the translation of the Transform
+   */
+  public get TranslationTransform(): Transform {
+    const t = this.TranslationVector;
+    return new Transform([
+      1, 0, 0, t.X,
+      0, 1, 0, t.Y,
+      0, 0, 1, t.Z,
+      0, 0, 0, 1
+    ]);
+  }
 
   /**
    * override toString
