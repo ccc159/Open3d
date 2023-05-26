@@ -516,31 +516,6 @@ export class Transform {
     const row3 = [this.M[3], this.M[7], this.M[11], this.M[15]];
 
     return new Transform([...row0, ...row1, ...row2, ...row3] as Array16Number);
-
-    const te = this.M;
-    let tmp;
-
-    tmp = te[1];
-    te[1] = te[4];
-    te[4] = tmp;
-    tmp = te[2];
-    te[2] = te[8];
-    te[8] = tmp;
-    tmp = te[6];
-    te[6] = te[9];
-    te[9] = tmp;
-
-    tmp = te[3];
-    te[3] = te[12];
-    te[12] = tmp;
-    tmp = te[7];
-    te[7] = te[13];
-    te[13] = tmp;
-    tmp = te[11];
-    te[11] = te[14];
-    te[14] = tmp;
-
-    return new Transform(te);
   }
 
   /**
