@@ -66,7 +66,7 @@ export class Point3d {
   /**
    * Sums up a point and a vector, and returns a new point.
    * @param point A point.
-   * @param vecotr A vector.
+   * @param vector A vector.
    * @returns A new point that results from the addition of point and vector.
    */
   public static Add(point: Point3d, vector: Vector3d): Point3d {
@@ -88,8 +88,8 @@ export class Point3d {
    * @param vector A vector.
    * @returns A new point that results from the addition of point and vector.
    */
-  public Add(vecotr: Vector3d): Point3d {
-    return Point3d.Add(this, vecotr);
+  public Add(vector: Vector3d): Point3d {
+    return Point3d.Add(this, vector);
   }
 
   /**
@@ -104,7 +104,7 @@ export class Point3d {
   /**
    * Subtracts a vector from a point.
    * @param point A point.
-   * @param vecotr A vector.
+   * @param vector A vector.
    * @returns A new point that is the difference of point minus vector.
    */
   public static Subtract(point: Point3d, vector: Vector3d): Point3d {
@@ -123,11 +123,11 @@ export class Point3d {
 
   /**
    * Subtracts a vector from a point.
-   * @param vecotr A vector.
+   * @param vector A vector.
    * @returns A new point that is the difference of point minus vector.
    */
-  public Subtract(vecotr: Vector3d): Point3d {
-    return Point3d.Subtract(this, vecotr);
+  public Subtract(vector: Vector3d): Point3d {
+    return Point3d.Subtract(this, vector);
   }
 
   /**

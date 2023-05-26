@@ -348,7 +348,7 @@ private SubMatrixDeterminant(rowIndex: 0 | 1 | 2 | 3, columnIndex: 0 | 1 | 2 | 3
 
   /**
    * Constructs a new uniform scaling transformation.
-   * a sacle matrix looks like
+   * a scale matrix looks like
    * [ sx 0  0  0]
    * [ 0  sy 0  0]
    * [ 0  0  sz 0]
@@ -433,7 +433,7 @@ private SubMatrixDeterminant(rowIndex: 0 | 1 | 2 | 3, columnIndex: 0 | 1 | 2 | 3
   }
 
   /**
-   * Constructs a rotation transformation that rotates one vecor to another
+   * Constructs a rotation transformation that rotates one vector to another
    * @param fromVector the from vector
    * @param toVector the to vector
    * @returns A rotation matrix which rotates fromVector to toVector
