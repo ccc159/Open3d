@@ -25,17 +25,46 @@ export class Transform {
 
   // #region Properties
 
+/**
+   * Returns the determinant of the submatrix specified by the indices.
+   * @param rowIndex row index
+   * @param columnIndex column index
+   */
+private SubMatrixDeterminant(rowIndex: 0 | 1 | 2 | 3, columnIndex: 0 | 1 | 2 | 3) {
+  /**
+   * | a b c |
+   * | d e f | = aei + bfg + cdh - ceg - bdi - afh
+   * | g h i |
+   */
+
+  const is = [0, 1, 2, 3].filter((x) => x !== rowIndex);
+  const js = [0, 1, 2, 3].filter((x) => x !== columnIndex);
+
+  const a = this.M[is[0] * 4 + js[0]];
+  const b = this.M[is[0] * 4 + js[1]];
+  const c = this.M[is[0] * 4 + js[2]];
+
+  const d = this.M[is[1] * 4 + js[0]];
+  const e = this.M[is[1] * 4 + js[1]];
+  const f = this.M[is[1] * 4 + js[2]];
+
+  const g = this.M[is[2] * 4 + js[0]];
+  const h = this.M[is[2] * 4 + js[1]];
+  const i = this.M[is[2] * 4 + js[2]];
+
+  return a * e * i + b * f * g + c * d * h - c * e * g - b * d * i - a * f * h;
+}
+
+
   /**
    * The determinant of this 4x4 matrix.
    */
   public get Determinant(): number {
-    const [n11, n21, n31, n41, n12, n22, n32, n42, n13, n23, n33, n43, n14, n24, n34, n44] = this.m;
-
     return (
-      n41 * (+n14 * n23 * n32 - n13 * n24 * n32 - n14 * n22 * n33 + n12 * n24 * n33 + n13 * n22 * n34 - n12 * n23 * n34) +
-      n42 * (+n11 * n23 * n34 - n11 * n24 * n33 + n14 * n21 * n33 - n13 * n21 * n34 + n13 * n24 * n31 - n14 * n23 * n31) +
-      n43 * (+n11 * n24 * n32 - n11 * n22 * n34 - n14 * n21 * n32 + n12 * n21 * n34 + n14 * n22 * n31 - n12 * n24 * n31) +
-      n44 * (-n13 * n22 * n31 - n11 * n23 * n32 + n11 * n22 * n33 + n13 * n21 * n32 - n12 * n21 * n33 + n12 * n23 * n31)
+      this.m[0] * this.SubMatrixDeterminant(0, 0)
+      - this.m[1] * this.SubMatrixDeterminant(0, 1)
+      + this.m[2] * this.SubMatrixDeterminant(0, 2)
+      - this.m[3] * this.SubMatrixDeterminant(0, 3)
     );
   }
 
@@ -114,33 +143,28 @@ export class Transform {
    * @returns The result of the multiplication.
    */
   public static MultiplyMatrix(a: Transform, b: Transform): Transform {
-    const ae = a.m;
-    const be = b.m;
-
-    const [a11, a12, a13, a14, a21, a22, a23, a24, a31, a32, a33, a34, a41, a42, a43, a44] = ae;
-    const [b11, b12, b13, b14, b21, b22, b23, b24, b31, b32, b33, b34, b41, b42, b43, b44] = be;
-
-    const n11 = a11 * b11 + a12 * b21 + a13 * b31 + a14 * b41;
-    const n12 = a11 * b12 + a12 * b22 + a13 * b32 + a14 * b42;
-    const n13 = a11 * b13 + a12 * b23 + a13 * b33 + a14 * b43;
-    const n14 = a11 * b14 + a12 * b24 + a13 * b34 + a14 * b44;
-
-    const n21 = a21 * b11 + a22 * b21 + a23 * b31 + a24 * b41;
-    const n22 = a21 * b12 + a22 * b22 + a23 * b32 + a24 * b42;
-    const n23 = a21 * b13 + a22 * b23 + a23 * b33 + a24 * b43;
-    const n24 = a21 * b14 + a22 * b24 + a23 * b34 + a24 * b44;
-
-    const n31 = a31 * b11 + a32 * b21 + a33 * b31 + a34 * b41;
-    const n32 = a31 * b12 + a32 * b22 + a33 * b32 + a34 * b42;
-    const n33 = a31 * b13 + a32 * b23 + a33 * b33 + a34 * b43;
-    const n34 = a31 * b14 + a32 * b24 + a33 * b34 + a34 * b44;
-
-    const n41 = a41 * b11 + a42 * b21 + a43 * b31 + a44 * b41;
-    const n42 = a41 * b12 + a42 * b22 + a43 * b32 + a44 * b42;
-    const n43 = a41 * b13 + a42 * b23 + a43 * b33 + a44 * b43;
-    const n44 = a41 * b14 + a42 * b24 + a43 * b34 + a44 * b44;
-
-    return new Transform([n11, n12, n13, n14, n21, n22, n23, n24, n31, n32, n33, n34, n41, n42, n43, n44]);
+    return new Transform([
+      // Row 1
+      a.m[0] * b.m[0] + a.m[1] * b.m[4] + a.m[2] * b.m[8] + a.m[3] * b.m[12],
+      a.m[0] * b.m[1] + a.m[1] * b.m[5] + a.m[2] * b.m[9] + a.m[3] * b.m[13],
+      a.m[0] * b.m[2] + a.m[1] * b.m[6] + a.m[2] * b.m[10] + a.m[3] * b.m[14],
+      a.m[0] * b.m[3] + a.m[1] * b.m[7] + a.m[2] * b.m[11] + a.m[3] * b.m[15],
+      // Row 2
+      a.m[4] * b.m[0] + a.m[5] * b.m[4] + a.m[6] * b.m[8] + a.m[7] * b.m[12],
+      a.m[4] * b.m[1] + a.m[5] * b.m[5] + a.m[6] * b.m[9] + a.m[7] * b.m[13],
+      a.m[4] * b.m[2] + a.m[5] * b.m[6] + a.m[6] * b.m[10] + a.m[7] * b.m[14],
+      a.m[4] * b.m[3] + a.m[5] * b.m[7] + a.m[6] * b.m[11] + a.m[7] * b.m[15],
+      // Row 3
+      a.m[8] * b.m[0] + a.m[9] * b.m[4] + a.m[10] * b.m[8] + a.m[11] * b.m[12],
+      a.m[8] * b.m[1] + a.m[9] * b.m[5] + a.m[10] * b.m[9] + a.m[11] * b.m[13],
+      a.m[8] * b.m[2] + a.m[9] * b.m[6] + a.m[10] * b.m[10] + a.m[11] * b.m[14],
+      a.m[8] * b.m[3] + a.m[9] * b.m[7] + a.m[10] * b.m[11] + a.m[11] * b.m[15],
+      // Row 4
+      a.m[12] * b.m[0] + a.m[13] * b.m[4] + a.m[14] * b.m[8] + a.m[15] * b.m[12],
+      a.m[12] * b.m[1] + a.m[13] * b.m[5] + a.m[14] * b.m[9] + a.m[15] * b.m[13],
+      a.m[12] * b.m[2] + a.m[13] * b.m[6] + a.m[14] * b.m[10] + a.m[15] * b.m[14],
+      a.m[12] * b.m[3] + a.m[13] * b.m[7] + a.m[14] * b.m[11] + a.m[15] * b.m[15],
+    ]);
   }
 
   /**
@@ -324,7 +348,7 @@ export class Transform {
 
   /**
    * Constructs a new uniform scaling transformation.
-   * a sacle matrix looks like
+   * a scale matrix looks like
    * [ sx 0  0  0]
    * [ 0  sy 0  0]
    * [ 0  0  sz 0]
@@ -409,7 +433,7 @@ export class Transform {
   }
 
   /**
-   * Constructs a rotation transformation that rotates one vecor to another
+   * Constructs a rotation transformation that rotates one vector to another
    * @param fromVector the from vector
    * @param toVector the to vector
    * @returns A rotation matrix which rotates fromVector to toVector
@@ -510,72 +534,115 @@ export class Transform {
    * Transpose the matrix and return a new one.
    */
   public Transpose() {
-    const te = this.M;
-    let tmp;
-
-    tmp = te[1];
-    te[1] = te[4];
-    te[4] = tmp;
-    tmp = te[2];
-    te[2] = te[8];
-    te[8] = tmp;
-    tmp = te[6];
-    te[6] = te[9];
-    te[9] = tmp;
-
-    tmp = te[3];
-    te[3] = te[12];
-    te[12] = tmp;
-    tmp = te[7];
-    te[7] = te[13];
-    te[13] = tmp;
-    tmp = te[11];
-    te[11] = te[14];
-    te[14] = tmp;
-
-    return new Transform(te);
+    return new Transform([
+      this.M[0], this.M[4], this.M[8], this.M[12],
+      this.M[1], this.M[5], this.M[9], this.M[13],
+      this.M[2], this.M[6], this.M[10], this.M[14],
+      this.M[3], this.M[7], this.M[11], this.M[15]
+    ]);
   }
 
   /**
    * Attempts to get the inverse transform of this transform.
    */
   public TryGetInverse(): Transform | null {
-    const te = this.M;
-
-    const [n11, n21, n31, n41, n12, n22, n32, n42, n13, n23, n33, n43, n14, n24, n34, n44] = this.m;
-
-    const t11 = n23 * n34 * n42 - n24 * n33 * n42 + n24 * n32 * n43 - n22 * n34 * n43 - n23 * n32 * n44 + n22 * n33 * n44,
-      t12 = n14 * n33 * n42 - n13 * n34 * n42 - n14 * n32 * n43 + n12 * n34 * n43 + n13 * n32 * n44 - n12 * n33 * n44,
-      t13 = n13 * n24 * n42 - n14 * n23 * n42 + n14 * n22 * n43 - n12 * n24 * n43 - n13 * n22 * n44 + n12 * n23 * n44,
-      t14 = n14 * n23 * n32 - n13 * n24 * n32 - n14 * n22 * n33 + n12 * n24 * n33 + n13 * n22 * n34 - n12 * n23 * n34;
-
-    const det = n11 * t11 + n21 * t12 + n31 * t13 + n41 * t14;
+    const det = this.Determinant;
 
     if (det === 0) return null;
 
     const detInv = 1 / det;
 
-    te[0] = t11 * detInv;
-    te[1] = (n24 * n33 * n41 - n23 * n34 * n41 - n24 * n31 * n43 + n21 * n34 * n43 + n23 * n31 * n44 - n21 * n33 * n44) * detInv;
-    te[2] = (n22 * n34 * n41 - n24 * n32 * n41 + n24 * n31 * n42 - n21 * n34 * n42 - n22 * n31 * n44 + n21 * n32 * n44) * detInv;
-    te[3] = (n23 * n32 * n41 - n22 * n33 * n41 - n23 * n31 * n42 + n21 * n33 * n42 + n22 * n31 * n43 - n21 * n32 * n43) * detInv;
+    return new Transform([
+      // row 1
+      this.SubMatrixDeterminant(0,0) * detInv,
+      -this.SubMatrixDeterminant(1,0) * detInv,
+      this.SubMatrixDeterminant(2,0) * detInv,
+      -this.SubMatrixDeterminant(3,0) * detInv,
+      // row 2
+      -this.SubMatrixDeterminant(0,1) * detInv,
+      this.SubMatrixDeterminant(1,1) * detInv,
+      -this.SubMatrixDeterminant(2,1) * detInv,
+      this.SubMatrixDeterminant(3,1) * detInv,
+      // row 3
+      this.SubMatrixDeterminant(0,2) * detInv,
+      -this.SubMatrixDeterminant(1,2) * detInv,
+      this.SubMatrixDeterminant(2,2) * detInv,
+      -this.SubMatrixDeterminant(3,2) * detInv,
+      // row 4
+      -this.SubMatrixDeterminant(0,3) * detInv,
+      this.SubMatrixDeterminant(1,3) * detInv,
+      -this.SubMatrixDeterminant(2,3) * detInv,
+      this.SubMatrixDeterminant(3,3) * detInv,
+    ])
+  }
 
-    te[4] = t12 * detInv;
-    te[5] = (n13 * n34 * n41 - n14 * n33 * n41 + n14 * n31 * n43 - n11 * n34 * n43 - n13 * n31 * n44 + n11 * n33 * n44) * detInv;
-    te[6] = (n14 * n32 * n41 - n12 * n34 * n41 - n14 * n31 * n42 + n11 * n34 * n42 + n12 * n31 * n44 - n11 * n32 * n44) * detInv;
-    te[7] = (n12 * n33 * n41 - n13 * n32 * n41 + n13 * n31 * n42 - n11 * n33 * n42 - n12 * n31 * n43 + n11 * n32 * n43) * detInv;
+  /**
+   * Get scale factor of the Transform
+   */
+  public get ScaleFactor(): Vector3d {
+    return new Vector3d(
+      new Vector3d(this.M[0], this.M[1], this.M[2]).Length,
+      new Vector3d(this.M[4], this.M[5], this.M[6]).Length,
+      new Vector3d(this.M[8], this.M[9], this.M[10]).Length
+    )
+  }
 
-    te[8] = t13 * detInv;
-    te[9] = (n14 * n23 * n41 - n13 * n24 * n41 - n14 * n21 * n43 + n11 * n24 * n43 + n13 * n21 * n44 - n11 * n23 * n44) * detInv;
-    te[10] = (n12 * n24 * n41 - n14 * n22 * n41 + n14 * n21 * n42 - n11 * n24 * n42 - n12 * n21 * n44 + n11 * n22 * n44) * detInv;
-    te[11] = (n13 * n22 * n41 - n12 * n23 * n41 - n13 * n21 * n42 + n11 * n23 * n42 + n12 * n21 * n43 - n11 * n22 * n43) * detInv;
+  /**
+   * Get the Transform representing only the scaling of the Transform
+   */
+  public get ScaleTransform(): Transform {
+    const scale = this.ScaleFactor;
+    return new Transform([
+      scale.X, 0, 0, 0,
+      0, scale.Y, 0, 0,
+      0, 0, scale.Z, 0,
+      0, 0, 0, 1
+    ]);
+  }
 
-    te[12] = t14 * detInv;
-    te[13] = (n13 * n24 * n31 - n14 * n23 * n31 + n14 * n21 * n33 - n11 * n24 * n33 - n13 * n21 * n34 + n11 * n23 * n34) * detInv;
-    te[14] = (n14 * n22 * n31 - n12 * n24 * n31 - n14 * n21 * n32 + n11 * n24 * n32 + n12 * n21 * n34 - n11 * n22 * n34) * detInv;
-    te[15] = (n12 * n23 * n31 - n13 * n22 * n31 + n13 * n21 * n32 - n11 * n23 * n32 - n12 * n21 * n33 + n11 * n22 * n33) * detInv;
+  /**
+   * Get Translation vector of the Transform
+   */
+  public get TranslationVector(): Vector3d {
+    return new Vector3d(this.M[3], this.M[7], this.M[11])
+  }
+  
+  /**
+   * Get the Transform representing only the translation of the Transform
+   */
+  public get TranslationTransform(): Transform {
+    const t = this.TranslationVector;
+    return new Transform([
+      1, 0, 0, t.X,
+      0, 1, 0, t.Y,
+      0, 0, 1, t.Z,
+      0, 0, 0, 1
+    ]);
+  }
 
-    return new Transform(te);
+  /**
+   * Get unit base vectors of the Transform
+   */
+  public get BaseVectors(): [Vector3d, Vector3d, Vector3d] {
+    if (this.Determinant === 0) throw new Error("Non affine transformation")
+    return [
+      new Vector3d(this.M[0], this.M[1], this.M[2]).Unitize(),
+      new Vector3d(this.M[4], this.M[5], this.M[6]).Unitize(),
+      new Vector3d(this.M[8], this.M[9], this.M[10]).Unitize()
+    ]
+  }
+
+  /**
+   * Get the transform representing only the unit base vectors of the Transform
+   */
+  public get BaseTransform(): Transform {
+    const [x, y, z] = this.BaseVectors;
+    return new Transform([
+      x.X, x.Y, x.Z, 0,
+      y.X, y.Y, y.Z, 0,
+      z.X, z.Y, z.Z, 0,
+      0, 0, 0, 1
+    ]);
   }
 
   /**
